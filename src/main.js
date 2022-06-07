@@ -9,20 +9,21 @@ import Buefy from 'buefy'
 import router from './router'
 import store from './store'
 
-/* Service Worker */
-import './registerServiceWorker'
-
 /* Vue. Main component */
 import App from './App.vue'
 
+/* Fetch sample data */
+store.dispatch('fetch', 'clients')
+
 /* Default title tag */
-const defaultDocumentTitle = 'PrimeDevs Timetracker App'
+const defaultDocumentTitle = 'Admin One Bulma Buefy'
 
 /* Collapse mobile aside menu on route change & set document title from route meta */
 router.afterEach(to => {
   store.commit('asideMobileStateToggle', false)
+  store.dispatch('asideDesktopOnlyToggle', false)
 
-  if (to.meta.title) {
+  if (to.meta && to.meta.title) {
     document.title = `${to.meta.title} — ${defaultDocumentTitle}`
   } else {
     document.title = defaultDocumentTitle

@@ -1,12 +1,6 @@
 footer.footer {
-  border-top: $light-border;
-
   .logo {
-    a {
-      display: block;
-      height: $footer-logo-height;
-    }
-    img, svg {
+    img {
       width: auto;
       height: $footer-logo-height;
     }

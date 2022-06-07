@@ -1,5 +1,5 @@
 /* We'll need some initial vars to use here */
-@import "~bulma/sass/utilities/initial-variables";
+@import "node_modules/bulma/sass/utilities/initial-variables";
 
 /* Base: Size  */
 $size-base: 1rem;
@@ -10,31 +10,26 @@ $family-sans-serif: "Nunito", sans-serif;
 
 /* Base color */
 $base-color: #2e323a;
-$base-color-light: #f1f2f2;
+$base-color-light: rgba(24, 28, 33, .06);
+
+/* App Scrollbars */
+$app-scrollbar-track: $grey-lighter;
+$app-scrollbar-thumb: $grey-light;
+$app-scrollbar-hover: $grey;
 
 /* General overrides */
-$primary: $cyan;
-$body-background-color: $white;
+$primary: $turquoise;
+$body-background-color: #f8f8f8;
 $link: $blue;
 $link-visited: $purple;
 $light-border: 1px solid $base-color-light;
 $hr-height: 1px;
-$border: $base-color-light;
-
-/* NavBar: Bulma override */
-$navbar-item-color: $link;
-$navbar-item-hover-background-color: transparent;
-$navbar-item-active-color: $black-ter;
-$navbar-item-active-background-color: transparent;
-$navbar-dropdown-item-active-color: $base-color;
-$navbar-dropdown-item-hover-background-color: transparent;
-$navbar-dropdown-item-active-background-color: transparent;
 
 /* NavBar: specifics */
 $navbar-input-color: $grey-darker;
 $navbar-input-placeholder-color: $grey-lighter;
-$navbar-box-shadow: 0 1px $base-color-light;
-$navbar-divider-border: 1px solid $base-color-light;
+$navbar-box-shadow: 0 1px 0 rgba(24, 28, 33, .04);
+$navbar-divider-border: 1px solid rgba($grey-lighter, .25);
 $navbar-item-h-padding: $default-padding * .75;
 $navbar-avatar-size: 1.75rem;
 
@@ -42,34 +37,35 @@ $navbar-avatar-size: 1.75rem;
 $menu-item-radius: 0;
 $menu-list-link-padding: $size-base * .5 0;
 $menu-label-color: lighten($base-color, 25%);
-$menu-item-color: $link;
-$menu-item-hover-color: $black;
-$menu-item-hover-background-color: transparent;
-$menu-item-active-color: $black-ter;
-$menu-item-active-background-color: transparent;
+$menu-item-color: lighten($base-color, 45%);
+$menu-item-hover-color: $white;
+$menu-item-hover-background-color: darken($base-color, 3.5%);
+$menu-item-active-color: $white;
+$menu-item-active-background-color: darken($base-color, 2.5%);
 
 /* Aside: specifics */
 $aside-width: $size-base * 14;
 $aside-mobile-width: $size-base * 15;
 $aside-icon-width: $size-base * 3;
 $aside-submenu-font-size: $size-base * .95;
-$aside-box-shadow: 1px 0 $base-color-light;
-$aside-background-color: $white;
-$aside-tools-background-color: transparent;
-$aside-tools-color: $black-ter;
-$aside-dropdown-background-color: transparent;
+$aside-box-shadow: none;
+$aside-background-color: $base-color;
+$aside-tools-background-color: darken($aside-background-color, 10%);
+$aside-tools-color: $white;
+$aside-scrollbar-track: $black-ter;
+$aside-scrollbar-thumb: $grey;
+//$app-scrollbar-hover: $grey;
 
 /* Title Bar: specifics */
 $title-bar-color: $grey;
 $title-bar-active-color: $black-ter;
 
 /* Hero Bar: specifics */
-$hero-bar-background: transparent;
+$hero-bar-background: $white;
 
 /* Card: Bulma override */
 $card-shadow: none;
 $card-header-shadow: none;
-$card-background-color: transparent;
 
 /* Card: specifics */
 $card-border: 1px solid $base-color-light;
@@ -85,66 +81,32 @@ $table-avatar-size-mobile: 25vw;
 /* Form */
 $checkbox-border: 1px solid $base-color;
 
-/* Overlay: specifics */
-$overlay-background-color: rgba($white, .85);
-
 /* Modal card: Bulma override */
-$modal-z: 60;
-$modal-background-background-color: $overlay-background-color;
-$modal-card-head-background-color: $white;
+$modal-card-head-background-color: $white-ter;
 $modal-card-title-size: $size-base;
 $modal-card-body-padding: $default-padding 20px;
 $modal-card-head-border-bottom: 1px solid $white-ter;
+$modal-card-foot-border-top: 0;
 
 /* Modal card: specifics */
 $modal-card-width: 40vw;
 $modal-card-width-mobile: 90vw;
-$modal-card-foot-background-color: $white;
+$modal-card-foot-background-color: $white-ter;
 
 /* Notification: Bulma override */
-$notification-background-color: $white;
-$notification-padding: $default-padding * .75 $default-padding;
+$notification-padding: $default-padding * .75;
+$notification-padding-ltr: $notification-padding;
 
 /* Footer: Bulma override */
-$footer-background-color: transparent;
+$footer-background-color: $white;
 $footer-padding: $default-padding * .33 $default-padding;
 
 /* Footer: specifics */
 $footer-logo-height: $size-base * 2;
 
 /* Progress: Bulma override */
-//$progress-bar-background-color: transparent;
+$progress-bar-background-color: $grey-lighter;
 
 /* Icon: specifics */
 $icon-update-mark-size: $size-base * .5;
 $icon-update-mark-color: $yellow;
-
-/* Slider: Buefy override */
-$slider-track-background: transparent;
-
-/* Status/State colors (based on Bulma's) */
-$state-colors:
-                ('primary', $cyan, $white),
-                ('info', $blue, $white),
-                ('success', $green, $white),
-                ('warning', $yellow, $grey-darker),
-                ('danger', $red, $white),
-                ('dark', $grey-darker, $white),
-                ('white', $white, $black-ter);
-
-/* Dark Mode */
-$dark-mode-background-color: $black-ter;
-$dark-mode-lighter-background-color: $grey-darker;
-$dark-mode-color: $white-ter;
-$dark-mode-border-color: $white-ter;
-$dark-mode-border: 1px solid $dark-mode-border-color;
-$dark-mode-light-border-color: $grey-darker;
-$dark-mode-light-border: 1px solid $dark-mode-light-border-color;
-$dark-mode-link-color: $cyan;
-$dark-mode-link-active-color: $white-ter;
-$dark-mode-link-hover-color: $white-bis;
-$dark-mode-overlay-background-color: rgba($black, .85);
-$dark-mode-button-color: $white-ter;
-$dark-mode-button-hover-color: $black-ter;
-$dark-mode-card-header-button-color: $grey;
-$dark-mode-card-header-button-hover-color: $black-ter;

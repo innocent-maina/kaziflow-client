@@ -1,13 +1,12 @@
 <template>
-  <div>
-    {{ prefix }}{{ newValueFormatted }}{{ suffix }}
-  </div>
+  <div>{{ prefix }}{{ newValueFormatted }}{{ suffix }}</div>
 </template>
 
 <script>
+import { defineComponent } from '@vue/composition-api'
 import numeral from 'numeral'
 
-export default {
+export default defineComponent({
   name: 'GrowingNumber',
   props: {
     prefix: {
@@ -29,23 +28,23 @@ export default {
   },
   data () {
     return {
-      newValue: 0,
-      step: 0
+      newValue: 0
     }
   },
   computed: {
     newValueFormatted () {
-      return (this.newValue < 1000) ? this.newValue : numeral(this.newValue).format('0,0')
+      return this.newValue < 1000 ? this.newValue : numeral(this.newValue).format('0,0')
+    }
+  },
+  watch: {
+    value () {
+      this.growInit()
     }
   },
   mounted () {
     this.growInit()
   },
   methods: {
-    growInit () {
-      const m = this.value / (this.duration / 25)
-      this.grow(m)
-    },
     grow (m) {
       const v = Math.ceil(this.newValue + m)
 
@@ -55,15 +54,14 @@ export default {
       }
 
       this.newValue = v
+
       setTimeout(() => {
         this.grow(m)
       }, 25)
-    }
-  },
-  watch: {
-    value () {
-      this.growInit()
+    },
+    growInit () {
+      this.grow(this.value / (this.duration / 25))
     }
   }
-}
+})
 </script>

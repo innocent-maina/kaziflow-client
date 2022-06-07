@@ -1,44 +1,55 @@
 <template>
-  <footer v-show="isFooterBarVisible" class="footer">
+  <footer
+    v-show="isFooterBarVisible"
+    class="footer"
+  >
     <div class="container-fluid">
       <div class="level">
         <div class="level-left">
           <div class="level-item">
             <div class="footer-copyright">
-              <b>&copy; {{ year }}, PrimeDevs</b> &mdash; Task & Time Tracker <span class="tag">v1.4.1</span>
+              <b>&copy; {{ year }}, JustBoil.me</b>. <a
+                href="https://github.com/vikdiesel/admin-one-vue-bulma-dashboard"
+                target="_blank"
+              >GitHub</a>
             </div>
           </div>
         </div>
-        <!-- <div class="level-right">
+        <div class="level-right">
           <div class="level-item">
             <div class="logo">
-              <a href="https://justboil.me">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                width="250" height="100" viewBox="0 0 250 100">
-                  <Primedevs picture/>
-                </svg>
+              <a
+                href="https://justboil.me"
+                target="_blank"
+              >
+                <img
+                  src="../assets/justboil-logo.svg"
+                  alt="JustBoil.me"
+                >
               </a>
             </div>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </footer>
 </template>
 
 <script>
-import dayjs from 'dayjs'
+import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
 
-export default {
+export default defineComponent({
   name: 'FooterBar',
+  data () {
+    return {
+      year: new Date().getFullYear()
+    }
+  },
   computed: {
-    year () {
-      return dayjs().year()
-    },
     ...mapState([
       'isFooterBarVisible'
     ])
   }
-}
+})
 </script>

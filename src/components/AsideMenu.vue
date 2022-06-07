@@ -1,33 +1,47 @@
 <template>
   <aside
-      v-show="isAsideVisible"
-      class="aside is-placed-left is-expanded">
-    <aside-tools :is-main-menu="true">
-      <span slot="label">
-        <b>Admin name</b>;
-      </span>
-    </aside-tools>
+    v-show="isAsideVisible"
+    class="aside is-placed-left"
+  >
+    <div class="aside-tools">
+      <a
+        class="navbar-item is-hidden-touch is-hidden-widescreen is-desktop-icon-only"
+        @click="asideToggleDesktopOnly"
+      >
+        <b-icon icon="menu" />
+      </a>
+      <div class="aside-tools-label">
+        <span><b>Admin</b> One</span>
+      </div>
+    </div>
     <div class="menu is-menu-main">
-      <template v-for="(menuGroup, index) in menu" >
-        <p class="menu-label" v-if="typeof menuGroup === 'string'" :key="index">{{ menuGroup }}</p>
+      <template v-for="(menuGroup, index) in menu">
+        <p
+          v-if="typeof menuGroup === 'string'"
+          :key="`label-${index}`"
+          class="menu-label"
+        >
+          {{ menuGroup }}
+        </p>
         <aside-menu-list
-            v-else
-            :key="index"
-            @menu-click="menuClick"
-            :menu="menuGroup"/>
+          v-else
+          :key="`menu-${index}`"
+          :menu="menuGroup"
+          @menu-click="menuClick"
+        />
       </template>
     </div>
   </aside>
 </template>
 
 <script>
+import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-import AsideTools from '@/components/AsideTools'
-import AsideMenuList from '@/components/AsideMenuList'
+import AsideMenuList from '@/components/AsideMenuList.vue'
 
-export default {
+export default defineComponent({
   name: 'AsideMenu',
-  components: { AsideMenuList, AsideTools },
+  components: { AsideMenuList },
   props: {
     menu: {
       type: Array,
@@ -40,9 +54,12 @@ export default {
     ])
   },
   methods: {
+    asideToggleDesktopOnly () {
+      this.$store.dispatch('asideDesktopOnlyToggle')
+    },
     menuClick (item) {
-      this.$emit('menu-click', item)
+      //
     }
   }
-}
+})
 </script>

@@ -1,24 +1,59 @@
 <template>
-  <card-component title="Change Password" icon="lock">
+  <card-component
+    title="Change Password"
+    icon="lock"
+  >
     <form @submit.prevent="submit">
-      <b-field horizontal label="Current password" message="Required. Your current password">
-        <b-input name="password_current" type="password" v-model="form.password_current" required
-                 autcomplete="current-password"/>
+      <b-field
+        horizontal
+        label="Current password"
+        message="Required. Your current password"
+      >
+        <b-input
+          v-model="form.password_current"
+          name="password_current"
+          type="password"
+          required
+          autcomplete="current-password"
+        />
       </b-field>
       <hr>
-      <b-field horizontal label="New password" message="Required. New password">
-        <b-input name="password" type="password" v-model="form.password" required autocomplete="new-password"/>
+      <b-field
+        horizontal
+        label="New password"
+        message="Required. New password"
+      >
+        <b-input
+          v-model="form.password"
+          name="password"
+          type="password"
+          required
+          autocomplete="new-password"
+        />
       </b-field>
-      <b-field horizontal label="Confirm password" message="Required. New password one more time">
-        <b-input name="password_confirmation" type="password" v-model="form.password_confirmation" required
-                 autocomplete="new-password"/>
+      <b-field
+        horizontal
+        label="Confirm password"
+        message="Required. New password one more time"
+      >
+        <b-input
+          v-model="form.password_confirmation"
+          name="password_confirmation"
+          type="password"
+          required
+          autocomplete="new-password"
+        />
       </b-field>
       <hr>
       <b-field horizontal>
         <div class="control">
-          <button type="submit" class="button is-primary" :class="{'is-loading':isLoading}">
+          <b-button
+            native-type="submit"
+            type="is-info"
+            :loading="isLoading"
+          >
             Submit
-          </button>
+          </b-button>
         </div>
       </b-field>
     </form>
@@ -26,9 +61,10 @@
 </template>
 
 <script>
-import CardComponent from '@/components/CardComponent'
+import { defineComponent } from '@vue/composition-api'
+import CardComponent from '@/components/CardComponent.vue'
 
-export default {
+export default defineComponent({
   name: 'PasswordUpdateForm',
   components: {
     CardComponent
@@ -46,14 +82,18 @@ export default {
   methods: {
     submit () {
       this.isLoading = true
+
       setTimeout(() => {
         this.isLoading = false
-        this.$buefy.snackbar.open({
-          message: 'Updated',
-          queue: false
-        }, 500)
-      })
+
+        this.$buefy.snackbar.open(
+          {
+            message: 'Demo only',
+            queue: false
+          }
+        )
+      }, 750)
     }
   }
-}
+})
 </script>

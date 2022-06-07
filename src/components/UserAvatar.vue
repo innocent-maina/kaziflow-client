@@ -1,13 +1,15 @@
 <template>
   <div class="is-user-avatar">
-    <img :src="newUserAvatar" :alt="userName">
+    <img
+      :src="newAvatar"
+    >
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { defineComponent } from '@vue/composition-api'
 
-export default {
+export default defineComponent({
   name: 'UserAvatar',
   props: {
     avatar: {
@@ -16,27 +18,9 @@ export default {
     }
   },
   computed: {
-    newUserAvatar () {
-      if (this.avatar) {
-        return this.avatar
-      }
-
-      if (this.userAvatar) {
-        return this.userAvatar
-      }
-
-      let name = 'somename'
-
-      if (this.userName) {
-        name = this.userName.replace(/[^a-z0-9]+/i, '')
-      }
-
-      return `https://avatars.dicebear.com/v2/human/${name}.svg?options[mood][]=happy`
-    },
-    ...mapState([
-      'userAvatar',
-      'userName'
-    ])
+    newAvatar () {
+      return this.avatar ? this.avatar : this.$store.state.userAvatar
+    }
   }
-}
+})
 </script>

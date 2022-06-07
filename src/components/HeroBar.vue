@@ -5,13 +5,16 @@
         <div class="level-left">
           <div class="level-item">
             <h1 class="title">
-              <slot/>
+              <slot />
             </h1>
           </div>
         </div>
-        <div v-show="hasRightVisible" class="level-right">
+        <div
+          v-show="hasRightVisible"
+          class="level-right"
+        >
           <div class="level-item">
-            <slot name="right"/>
+            <slot name="right" />
           </div>
         </div>
       </div>
@@ -20,7 +23,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from '@vue/composition-api'
+
+export default defineComponent({
   name: 'HeroBar',
   props: {
     hasRightVisible: {
@@ -28,5 +33,5 @@ export default {
       default: true
     }
   }
-}
+})
 </script>

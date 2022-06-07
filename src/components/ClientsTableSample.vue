@@ -1,113 +1,165 @@
 <template>
   <div>
-    <modal-box :is-active="isModalActive" :trash-object-name="trashObjectName" @confirm="trashConfirm"
-               @cancel="trashCancel"/>
+    <modal-box
+      :is-active="isModalActive"
+      :trash-object-name="trashObject ? trashObject.name : null "
+      @confirm="trashConfirm"
+      @cancel="trashCancel"
+    />
     <b-table
       :checked-rows.sync="checkedRows"
       :checkable="checkable"
-      :loading="isLoading"
       :paginated="paginated"
       :per-page="perPage"
-      :striped="true"
-      :hoverable="true"
+      :data="clients"
       default-sort="name"
-      :data="tasks">
-      <b-table-column cell-class="has-no-head-mobile is-image-cell" v-slot="props">
+      striped
+      hoverable
+    >
+      <b-table-column
+        v-slot="props"
+        cell-class="has-no-head-mobile is-image-cell"
+      >
         <div class="image">
-          <img :src="props.row.avatar" class="is-rounded">
+          <img
+            :src="props.row.avatar"
+            class="is-rounded"
+          >
         </div>
       </b-table-column>
-      <!-- <b-table-column label="Employee" field="name" sortable v-slot="props">
+      <b-table-column
+        v-slot="props"
+        label="Name"
+        field="name"
+        sortable
+      >
         {{ props.row.name }}
-      </b-table-column> -->
-      <b-table-column label="Task Name" field="Task Name" sortable v-slot="props">
-        {{ props.row.task_name }}
       </b-table-column>
-      <b-table-column label="Project Name" field="Project Name" sortable v-slot="props">
-        {{ props.row.project_name }}
+      <b-table-column
+        v-slot="props"
+        label="Company"
+        field="company"
+        sortable
+      >
+        {{ props.row.company }}
       </b-table-column>
-      <b-table-column label="Task Description" field="Task Description" sortable v-slot="props">
-        {{ props.row.task_description }}
+      <b-table-column
+        v-slot="props"
+        label="City"
+        field="city"
+        sortable
+      >
+        {{ props.row.city }}
       </b-table-column>
-      <b-table-column label="Created" v-slot="props">
-        <small class="has-text-grey is-abbr-like" :title="props.row.created">{{ props.row.start_date }}</small>
+      <b-table-column
+        v-slot="props"
+        cell-class="is-progress-col"
+        label="Progress"
+        field="progress"
+        sortable
+      >
+        <progress
+          class="progress is-small is-info"
+          :value="props.row.progress"
+          max="100"
+        >
+          {{ props.row.progress }}
+        </progress>
       </b-table-column>
-      <b-table-column label="Due" v-slot="props">
-        <small class="has-text-grey is-abbr-like" :title="props.row.created">{{ props.row.due_date }}</small>
+      <b-table-column
+        v-slot="props"
+        label="Created"
+      >
+        <small
+          class="has-text-grey is-abbr-like"
+          :title="props.row.created"
+        >{{ props.row.created }}</small>
       </b-table-column>
-      <b-table-column custom-key="actions" cell-class="is-actions-cell" v-slot="props">
-        <div class="buttons is-right">
-          <router-link :to="{name:'client.edit', params: {id: props.row.id}}" class="button is-small is-primary">
-            <b-icon icon="account-edit" size="is-small"/>
+      <b-table-column
+        v-slot="props"
+        custom-key="actions"
+        cell-class="is-actions-cell"
+      >
+        <div class="buttons is-right no-wrap">
+          <router-link
+            :to="{name:'client.edit', params: {id: props.row.id}}"
+            class="button is-small is-info"
+          >
+            <b-icon
+              icon="account-edit"
+              size="is-small"
+            />
           </router-link>
-          <button class="button is-small is-danger" type="button" @click.prevent="trashModal(props.row)">
-            <b-icon icon="trash-can" size="is-small"/>
-          </button>
+          <b-button
+            type="is-danger"
+            size="is-small"
+            @click.prevent="trashModalOpen(props.row)"
+          >
+            <b-icon
+              icon="trash-can"
+              size="is-small"
+            />
+          </b-button>
         </div>
       </b-table-column>
 
-      <section class="section" slot="empty">
+      <section
+        slot="empty"
+        class="section"
+      >
         <div class="content has-text-grey has-text-centered">
-          <template v-if="isLoading">
-            <p>
-              <b-icon icon="dots-horizontal" size="is-large"/>
-            </p>
-            <p>Fetching data...</p>
-          </template>
-          <template v-else>
-            <p>
-              <b-icon icon="emoticon-sad" size="is-large"/>
-            </p>
-            <p>Nothing's here&hellip;</p>
-          </template>
+          <p>
+            <b-icon
+              icon="emoticon-sad"
+              size="is-large"
+            />
+          </p>
+          <p>Nothing's here&hellip;</p>
         </div>
       </section>
     </b-table>
   </div>
 </template>
-<script>
-import ModalBox from '@/components/ModalBox'
 
-export default {
+<script>
+import { defineComponent } from '@vue/composition-api'
+import { mapState } from 'vuex'
+import ModalBox from '@/components/ModalBox.vue'
+
+export default defineComponent({
   name: 'ClientsTableSample',
   components: { ModalBox },
   props: {
-    tasks: {
-      type: Array,
-      default: null
-    },
-    checkable: {
-      type: Boolean,
-      default: false
+    checkable: Boolean,
+    isEmpty: Boolean,
+    perPage: {
+      type: Number,
+      default: 10
     }
   },
   data () {
     return {
+      checkedRows: [],
       isModalActive: false,
-      trashObject: null,
-      isLoading: false,
-      paginated: false,
-      perPage: 10,
-      checkedRows: []
+      trashObject: null
     }
   },
   computed: {
-    trashObjectName () {
-      if (this.trashObject) {
-        return this.trashObject.name
-      }
-
-      return null
-    }
+    paginated () {
+      return this.clients.length > this.perPage
+    },
+    ...mapState([
+      'clients'
+    ])
   },
-
   methods: {
-    trashModal (trashObject) {
-      this.trashObject = trashObject
+    trashModalOpen (obj) {
+      this.trashObject = obj
       this.isModalActive = true
     },
     trashConfirm () {
       this.isModalActive = false
+
       this.$buefy.snackbar.open({
         message: 'Confirmed',
         queue: false
@@ -117,5 +169,5 @@ export default {
       this.isModalActive = false
     }
   }
-}
+})
 </script>

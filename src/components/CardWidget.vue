@@ -7,13 +7,24 @@
             {{ label }}
           </h3>
           <h1 class="title">
-            <growing-number :value="number" :prefix="prefix" :suffix="suffix"/>
+            <growing-number
+              :value="number"
+              :prefix="prefix"
+              :suffix="suffix"
+            />
           </h1>
         </div>
       </div>
-      <div v-if="icon" class="level-item has-widget-icon">
+      <div
+        v-if="icon"
+        class="level-item has-widget-icon"
+      >
         <div class="is-widget-icon">
-          <b-icon :icon="icon" size="is-large" :type="type"/>
+          <b-icon
+            :icon="icon"
+            size="is-large"
+            :type="type"
+          />
         </div>
       </div>
     </div>
@@ -21,10 +32,11 @@
 </template>
 
 <script>
-import CardComponent from '@/components/CardComponent'
-import GrowingNumber from '@/components/GrowingNumber'
+import { defineComponent } from '@vue/composition-api'
+import CardComponent from '@/components/CardComponent.vue'
+import GrowingNumber from '@/components/GrowingNumber.vue'
 
-export default {
+export default defineComponent({
   name: 'CardWidget',
   components: { GrowingNumber, CardComponent },
   props: {
@@ -53,5 +65,5 @@ export default {
       default: null
     }
   }
-}
+})
 </script>

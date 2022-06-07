@@ -1,112 +1,160 @@
 <template>
   <div>
-    <h1>New Employee</h1>
-    <!-- <title-bar :title-stack="titleStack"/> -->
+    <title-bar :title-stack="titleStack" />
     <hero-bar>
-      <!-- {{ heroTitle }} -->
-      <h2>Add a New Employee to your Company</h2>
-      <!-- Dashboard Button -->
-      <router-link slot="right" :to="heroRouterLinkTo" class="button">
+      {{ heroTitle }}
+      <router-link
+        slot="right"
+        :to="heroRouterLinkTo"
+        class="button"
+      >
         {{ heroRouterLinkLabel }}
       </router-link>
     </hero-bar>
     <section class="section is-main-section">
-      <!-- DEMO NOTIFICATION -->
-      <!-- <notification class="is-info">
+      <notification class="is-info">
         <div>
           <span><b>Demo only.</b> No data will be saved/updated</span>
         </div>
-
-      </notification> -->
+      </notification>
       <tiles>
-        <card-component title="New Employee" icon="account-edit" class="tile is-child">
+        <card-component
+          :title="formCardTitle"
+          icon="account-edit"
+          class="tile is-child"
+        >
           <form @submit.prevent="submit">
-            <b-field label="Employee ID" horizontal>
-              <b-input v-model="form.id" custom-class="is-static" readonly />
+            <b-field
+              label="ID"
+              horizontal
+            >
+              <b-input
+                v-model="form.id"
+                custom-class="is-static"
+                readonly
+              />
             </b-field>
             <hr>
-            <b-field label="Avatar" horizontal>
-              <file-picker/>
+            <b-field
+              label="Avatar"
+              horizontal
+            >
+              <file-picker type="is-info" />
             </b-field>
             <hr>
-            <b-field label="First Name" message="Employee's first name" horizontal>
-              <b-input placeholder="John" v-model="firstname" required />
+            <b-field
+              label="Name"
+              message="Client name"
+              horizontal
+            >
+              <b-input
+                v-model="form.name"
+                placeholder="e.g. John Doe"
+                required
+              />
             </b-field>
-            <b-field label="Last Name" message="Employee's last name" horizontal>
-              <b-input placeholder="Doe" v-model="lastname" required />
+            <b-field
+              label="Company"
+              message="Client's company name"
+              horizontal
+            >
+              <b-input
+                v-model="form.company"
+                placeholder="e.g. Berton & Steinway"
+                required
+              />
             </b-field>
-            <b-field label="Username" message="Employee's prefered username" horizontal>
-              <b-input placeholder="WillSmith" v-model="username" required />
+            <b-field
+              label="City"
+              message="Client's city"
+              horizontal
+            >
+              <b-input
+                v-model="form.city"
+                placeholder="e.g. Geoffreyton"
+                required
+              />
             </b-field>
-            <b-field label="Email" message="Employee's Email" horizontal>
-              <b-input placeholder="example@example.com" v-model="email" required />
-            </b-field>
-            <b-field label="Role" message="Employee's Role" horizontal>
-              <b-select placeholder="Who's in charge of this project" v-model="role" required>
-              <option v-for="(roles, index) in roles" :key="index" :value="roles">
-                {{ roles }}
-              </option>
-            </b-select>
-            </b-field>
-            <b-field label="Phone Number" message="Employee's phone number" v-model="phone_number" horizontal>
-              <b-field>
-              <p class="control">
-                <a class="button is-static">
-                  +254
-                </a>
-              </p>
-              <b-input type="tel" v-model="phone_number" name="phone" expanded />
-            </b-field>
-            </b-field>
-            <b-field>
-              <b-field label="Member Since" v-model="member_since" horizontal>
+            <b-field
+              label="Created"
+              horizontal
+            >
               <b-datepicker
-                @input="input"
-                v-model="member_since"
+                v-model="form.created_date"
                 placeholder="Click to select..."
-                icon="calendar-today">
-              </b-datepicker>
-            </b-field>
-            <b-field label="Date Of Birth" horizontal>
-              <b-datepicker
-                @input="input"
-                v-model="date_of_birth"
-                placeholder="Click to select..."
-                icon="calendar-today">
-              </b-datepicker>
-            </b-field>
+                icon="calendar-today"
+                @input="dateInput"
+              />
             </b-field>
             <hr>
-            <b-field label="Default Password"  message="Employee's default password" horizontal>
-              <b-input placeholder="Will@Smith2020" type="password"  v-model="password" required />
+            <b-field
+              label="Progress"
+              horizontal
+            >
+              <b-slider
+                v-model="form.progress"
+                type="is-info"
+              />
             </b-field>
             <hr>
             <b-field horizontal>
-              <b-button @click="add_employee" type="is-primary" :loading="isLoading" native-type="submit">Submit</b-button>
+              <b-button
+                type="is-info"
+                :loading="isLoading"
+                native-type="submit"
+              >
+                Submit
+              </b-button>
             </b-field>
           </form>
         </card-component>
-        <card-component v-if="isProfileExists" title="Employee Profile" icon="account" class="tile is-child">
-          <user-avatar :avatar="form.avatar" class="image has-max-width is-aligned-center"/>
+        <card-component
+          v-if="isProfileExists"
+          title="Client Profile"
+          icon="account"
+          class="tile is-child"
+        >
+          <user-avatar
+            :avatar="form.avatar"
+            class="image has-max-width is-aligned-center"
+          />
           <hr>
           <b-field label="Name">
-            <b-input :value="form.name" custom-class="is-static" readonly/>
+            <b-input
+              :value="form.name"
+              custom-class="is-static"
+              readonly
+            />
           </b-field>
-          <b-field label="Email">
-            <b-input :value="form.email" custom-class="is-static" readonly/>
+          <b-field label="Company">
+            <b-input
+              :value="form.company"
+              custom-class="is-static"
+              readonly
+            />
           </b-field>
-          <b-field label="Role">
-            <b-input :value="form.role" custom-class="is-static" aria-placeholder="intern" readonly/>
-          </b-field>
-          <b-field label="Phone Number">
-            <b-input :value="form.number" custom-class="is-static" readonly/>
+          <b-field label="City">
+            <b-input
+              :value="form.city"
+              custom-class="is-static"
+              readonly
+            />
           </b-field>
           <b-field label="Created">
-            <b-input :value="createdReadable" custom-class="is-static" readonly/>
+            <b-input
+              :value="createdReadable"
+              custom-class="is-static"
+              readonly
+            />
           </b-field>
           <hr>
           <b-field label="Progress">
-            <progress class="progress is-small is-primary" :value="form.progress" max="100">{{ form.progress }}</progress>
+            <b-progress
+              :value="form.progress"
+              type="is-info"
+              show-value
+              format="percent"
+            />
           </b-field>
         </card-component>
       </tiles>
@@ -115,107 +163,86 @@
 </template>
 
 <script>
-import axios from 'axios'
-import dayjs from 'dayjs'
+import { defineComponent } from '@vue/composition-api'
+import { mapState } from 'vuex'
 import find from 'lodash/find'
-// import TitleBar from '@/components/TitleBar'
-import HeroBar from '@/components/HeroBar'
-import Tiles from '@/components/Tiles'
-import CardComponent from '@/components/CardComponent'
-import FilePicker from '@/components/FilePicker'
-import UserAvatar from '@/components/UserAvatar'
-// import Notification from '@/components/Notification'
+import TitleBar from '@/components/TitleBar.vue'
+import HeroBar from '@/components/HeroBar.vue'
+import Tiles from '@/components/Tiles.vue'
+import CardComponent from '@/components/CardComponent.vue'
+import FilePicker from '@/components/FilePicker.vue'
+import UserAvatar from '@/components/UserAvatar.vue'
+import Notification from '@/components/Notification.vue'
 
-export default {
+export default defineComponent({
   name: 'ClientForm',
-  components:
-  {
+  components: {
     UserAvatar,
     FilePicker,
     CardComponent,
     Tiles,
-    HeroBar
-    // TitleBar
-    // Notification
+    HeroBar,
+    TitleBar,
+    Notification
   },
   props: {
     id: {
+      type: [String, Number],
       default: null
     }
   },
   data () {
     return {
-      isLoading: false,
-      form: this.getClearFormObject(),
-      createdReadable: null,
       isProfileExists: false,
-      employees: [
-        'Innocent Wahome',
-        'Victor Kariuki',
-        'Daniel Waruo',
-        'Caren Nduta',
-        'Add others From DB'
-      ],
-      roles: [
-        'Intern',
-        'Junior Dev',
-        'Senior Dev',
-        'Graphics Designed',
-        'Consultant'
-      ],
-      firstname: '',
-      lastname: '',
-      username: '',
-      password: '',
-      email: '',
-      role: '',
-      phone_number: '',
-      member_since: '',
-      date_of_birth: ''
+      isLoading: false,
+      form: {
+        id: null,
+        name: null,
+        company: null,
+        city: null,
+        created_date: new Date(),
+        progress: 0
+      },
+      createdReadable: null
     }
   },
   computed: {
     titleStack () {
-      let lastCrumb
-
-      if (this.isProfileExists) {
-        lastCrumb = this.form.name
-      } else {
-        lastCrumb = 'New client'
-      }
-
       return [
         'Admin',
         'Clients',
-        lastCrumb
+        this.isProfileExists ? this.form.name : 'New Client'
       ]
     },
     heroTitle () {
-      if (this.isProfileExists) {
-        return this.form.name
-      } else {
-        return 'Create Client'
-      }
+      return this.isProfileExists ? this.form.name : 'Create Client'
     },
     heroRouterLinkTo () {
-      if (this.isProfileExists) {
-        return { name: 'client.new' }
-      } else {
-        return '/'
-      }
+      return this.isProfileExists ? { name: 'client.new' } : { name: 'home' }
     },
     heroRouterLinkLabel () {
-      if (this.isProfileExists) {
-        return 'New client'
-      } else {
-        return 'Dashboard'
-      }
+      return this.isProfileExists ? 'New client' : 'Dashboard'
     },
     formCardTitle () {
-      if (this.isProfileExists) {
-        return 'Edit Client'
+      return this.isProfileExists ? 'Edit client' : 'Create client'
+    },
+    ...mapState([
+      'clients'
+    ])
+  },
+  watch: {
+    id (newValue) {
+      this.isProfileExists = false
+
+      if (!newValue) {
+        this.form.id = null
+        this.form.name = null
+        this.form.company = null
+        this.form.city = null
+        this.form.created_date = new Date()
+        this.createdReadable = new Date().toLocaleDateString()
       } else {
-        return 'New Client'
+        this.getData()
       }
     }
   },
@@ -223,44 +250,31 @@ export default {
     this.getData()
   },
   methods: {
-    getClearFormObject () {
-      return {
-        id: null,
-        name: null,
-        company: null,
-        city: null,
-        created_date: new Date(),
-        created_mm_dd_yyyy: null,
-        progress: 0
-      }
-    },
     getData () {
       if (this.id) {
-        axios
-          .get(`${this.$router.options.base}data-sources/employees.json`)
-          .then(r => {
-            const item = find(r.data.data, item => item.id === parseInt(this.id))
+        const item = find(
+          this.clients,
+          (item) => item.id === parseInt(this.id)
+        )
 
-            if (item) {
-              this.isProfileExists = true
-              this.form = item
-              this.form.created_date = new Date(item.created_mm_dd_yyyy)
-              this.createdReadable = dayjs(new Date(item.created_mm_dd_yyyy)).format('MMM D, YYYY')
-            } else {
-              this.$router.push({ name: 'client.new' })
-            }
-          })
-          .catch(e => {
-            this.$buefy.toast.open({
-              message: `Error: ${e.message}`,
-              type: 'is-danger',
-              queue: false
-            })
-          })
+        if (item) {
+          this.isProfileExists = true
+
+          this.form.id = item.id
+          this.form.name = item.name
+          this.form.company = item.company
+          this.form.city = item.city
+          this.form.progress = item.progress
+          this.form.created_date = new Date(item.created_mm_dd_yyyy)
+
+          this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
+        } else {
+          this.$router.push({ name: 'client.new' })
+        }
       }
     },
-    input (v) {
-      this.createdReadable = dayjs(v).format('MMM D, YYYY')
+    dateInput (v) {
+      this.createdReadable = new Date(v).toLocaleDateString()
     },
     submit () {
       this.isLoading = true
@@ -272,46 +286,8 @@ export default {
           message: 'Demo only',
           queue: false
         })
-      }, 500)
-    },
-    add_employee () {
-      const newEmployee = {
-        firstname: this.firstname,
-        lastname: this.lastname,
-        username: this.username,
-        password: this.password,
-        email: this.email,
-        role: this.role,
-        phone_number: this.phone_number,
-        member_since: this.member_since,
-        date_of_birth: this.date_of_birth
-      }
-      axios.post('http://localhost:4000/addemployee', newEmployee)
-        .then(res => {
-          console.log(res)
-          this.error = ''
-          this.$router.push('/')
-        }, err => {
-          console.log(err.response)
-          this.error = err.response.data.error
-        })
-    }
-  },
-  watch: {
-    id (newValue) {
-      this.isProfileExists = false
-
-      if (!newValue) {
-        this.form = this.getClearFormObject()
-      } else {
-        this.getData()
-      }
+      }, 750)
     }
   }
-}
+})
 </script>
-<style scoped>
-h2 {
-  text-align: center;
-}
-</style>
