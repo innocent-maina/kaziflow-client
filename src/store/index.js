@@ -104,7 +104,8 @@ const store = new Vuex.Store({
           }
         })
         .catch(error => {
-          alert(error.message)
+          // alert(error.message)
+          console.log(error)
         })
     }
   }

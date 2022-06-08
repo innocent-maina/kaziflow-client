@@ -1,5 +1,5 @@
 /* Styles */
-import '@/scss/main.scss'
+import '@/assets/scss/main.scss'
 
 /* Core */
 import Vue from 'vue'
@@ -16,7 +16,7 @@ import App from './App.vue'
 store.dispatch('fetch', 'clients')
 
 /* Default title tag */
-const defaultDocumentTitle = 'Admin One Bulma Buefy'
+const defaultDocumentTitle = 'Kaziflow'
 
 /* Collapse mobile aside menu on route change & set document title from route meta */
 router.afterEach(to => {

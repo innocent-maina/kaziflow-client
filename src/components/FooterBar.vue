@@ -8,8 +8,8 @@
         <div class="level-left">
           <div class="level-item">
             <div class="footer-copyright">
-              <b>&copy; {{ year }}, JustBoil.me</b>. <a
-                href="https://github.com/vikdiesel/admin-one-vue-bulma-dashboard"
+              <b>&copy; {{ year }}, kaziflow.me</b>. <a
+                href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
                 target="_blank"
               >GitHub</a>
             </div>
@@ -19,12 +19,12 @@
           <div class="level-item">
             <div class="logo">
               <a
-                href="https://justboil.me"
+                href="https://kaziflow.me"
                 target="_blank"
               >
                 <img
                   src="../assets/justboil-logo.svg"
-                  alt="JustBoil.me"
+                  alt="kaziflow.me"
                 >
               </a>
             </div>

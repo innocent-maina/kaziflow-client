@@ -1,90 +1,136 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    // Document title tag
-    // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
-    meta: {
-      title: 'Dashboard'
-    },
     path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    meta: {
-      title: 'Tables'
-    },
-    path: '/tables',
-    name: 'tables',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "tables" */ '@/views/Tables.vue')
-  },
-  {
-    meta: {
-      title: 'Forms'
-    },
-    path: '/forms',
-    name: 'forms',
-    component: () => import(/* webpackChunkName: "forms" */ '@/views/Forms.vue')
-  },
-  {
-    meta: {
-      title: 'Profile'
-    },
-    path: '/profile',
-    name: 'profile',
-    component: () => import(/* webpackChunkName: "profile" */ '@/views/Profile.vue')
-  },
-  {
-    meta: {
-      title: 'New Client'
-    },
-    path: '/client/new',
-    name: 'client.new',
-    component: () => import(/* webpackChunkName: "client-form" */ '@/views/ClientForm.vue')
-  },
-  {
-    meta: {
-      title: 'Edit Client'
-    },
-    path: '/client/:id',
-    name: 'client.edit',
-    component: () => import(/* webpackChunkName: "client-form" */ '@/views/ClientForm.vue'),
-    props: true
-  },
-  {
-    path: '/full-page',
-    component: () => import(/* webpackChunkName: "full-page" */ '@/views/FullPage.vue'),
+    component: () =>
+      import(
+        /* webpackChunkName: "authentication" */ '../views/authentication/Index.vue'
+      ),
     children: [
       {
-        meta: {
-          title: 'Login'
-        },
-        path: '/login',
-        name: 'login',
-        component: () => import(/* webpackChunkName: "full-page" */ '@/views/full-page/Login.vue')
+        path: '',
+        name: 'Login',
+        component: () =>
+          import(
+            /* webpackChunkName: "authentication" */ '../views/authentication/Login.vue'
+          )
+      },
+      {
+        path: 'register',
+        name: 'Register',
+        component: () =>
+          import(
+            /* webpackChunkName: "authentication" */ '../views/authentication/Register.vue'
+          )
+      },
+      {
+        path: 'forgot-password',
+        name: 'ForgotPassword',
+        component: () =>
+          import(
+            /* webpackChunkName: "authentication" */ '../views/authentication/ForgotPassword.vue'
+          )
+      },
+      {
+        path: 'reset-password',
+        name: 'ResetPassword',
+        component: () =>
+          import(
+            /* webpackChunkName: "authentication" */ '../views/authentication/ResetPassword.vue'
+          )
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    component: () =>
+      import(/* webpackChunkName: "dashboard" */ '../views/admin/Home.vue'),
+    children: [
+      {
+        path: '',
+        name: 'AdminDashboard',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/admin/Home.vue')
+      },
+      {
+        path: 'profile',
+        name: 'AdminProfile',
+        component: () =>
+          import(/* webpackChunkName: "users" */ '../views/admin/Profile.vue')
+      },
+      {
+        path: 'tables',
+        name: 'AdminTables',
+        component: () =>
+          import(
+            /* webpackChunkName: "dashboard" */ '../views/admin/Tables.vue'
+          )
+      },
+      {
+        path: 'forms',
+        name: 'Forms',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/admin/Forms.vue')
+      }
+    ]
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/error',
+    component: () =>
+      import(/* webpackChunkName: "errors" */ '../views/errors/Index.vue'),
+    children: [
+      {
+        path: 'forbidden',
+        name: 'Forbidden',
+        component: () =>
+          import(
+            /* webpackChunkName: "errors" */ '../views/errors/Forbidden.vue'
+          )
+      },
+      {
+        path: 'unauthorized',
+        name: 'Unauthorized',
+        component: () =>
+          import(
+            /* webpackChunkName: "errors" */ '../views/errors/Unauthorized.vue'
+          )
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'PageNotFound',
+        component: () =>
+          import(
+            /* webpackChunkName: "errors" */ '../views/errors/PageNotFound.vue'
+          )
+      },
+      {
+        path: 'internal-server-error',
+        name: 'InternalServerError',
+        component: () =>
+          import(
+            /* webpackChunkName: "errors" */ '../views/errors/InternalServerError.vue'
+          )
       }
     ]
   }
-
 ]
 
 const router = new VueRouter({
-  routes,
-  scrollBehavior (to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { x: 0, y: 0 }
-    }
-  }
+  mode: 'history',
+  routes
+  // ,
+  // scrollBehavior (to, from, savedPosition) {
+  //   if (savedPosition) {
+  //     return savedPosition
+  //   } else {
+  //     return { x: 0, y: 0 }
+  //   }
+  // }
 })
 
 export default router

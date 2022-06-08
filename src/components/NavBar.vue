@@ -42,7 +42,7 @@
       :class="{ 'is-active': isMenuActive }"
     >
       <div class="navbar-end">
-        <nav-bar-menu class="has-divider">
+        <!-- <nav-bar-menu class="has-divider">
           <b-icon
             icon="menu"
             custom-size="default"
@@ -86,7 +86,7 @@
               <span>Log Out</span>
             </a>
           </div>
-        </nav-bar-menu>
+        </nav-bar-menu> -->
         <nav-bar-menu class="has-divider has-user-avatar">
           <user-avatar />
           <div class="is-user-name">
@@ -133,7 +133,7 @@
           </div>
         </nav-bar-menu>
         <a
-          href="https://github.com/vikdiesel/admin-one-vue-bulma-dashboard"
+          href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
           class="navbar-item has-divider is-desktop-icon-only"
           title="GitHub"
         >
