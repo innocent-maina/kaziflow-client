@@ -1,100 +1,22 @@
 <template>
-  <card-component
-    title="UNauthorized"
-    icon="lock"
-  >
-    <router-link
-      slot="button"
-      to="/"
-      class="button is-small"
-    >
-      Dashboard
-    </router-link>
-
-    <form
-      method="POST"
-      @submit.prevent="submit"
-    >
-      <b-field label="E-mail Address">
-        <b-input
-          v-model="form.email"
-          name="email"
-          type="email"
-          required
-        />
-      </b-field>
-
-      <b-field label="Password">
-        <b-input
-          v-model="form.password"
-          type="password"
-          name="password"
-          required
-        />
-      </b-field>
-
-      <b-field>
-        <b-checkbox
-          v-model="form.remember"
-          type="is-black"
-          class="is-thin"
-        >
-          Remember me
-        </b-checkbox>
-      </b-field>
-
-      <hr>
-
-      <b-field grouped>
-        <div class="control">
-          <b-button
-            native-type="submit"
-            type="is-black"
-            :loading="isLoading"
-          >
-            Login
-          </b-button>
-        </div>
-        <div class="control">
-          <router-link
-            to="/"
-            class="button is-outlined is-black"
-          >
-            Dashboard
-          </router-link>
-        </div>
-      </b-field>
-    </form>
-  </card-component>
+  <div>
+    <figure class="image is-fullwidth">
+      <img src="../../assets/icons/401.svg">
+    </figure>
+    <div class="level pt-5">
+      <div class="level-item">
+        <b-button class="has-text-centered is-black">
+          Go Back
+        </b-button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import CardComponent from '@/components/CardComponent.vue'
 
 export default defineComponent({
-  name: 'Login',
-  components: { CardComponent },
-  data () {
-    return {
-      isLoading: false,
-      form: {
-        email: 'john.doe@example.com',
-        password: 'my-secret-password-9e9w',
-        remember: false
-      }
-    }
-  },
-  methods: {
-    submit () {
-      this.isLoading = true
-
-      setTimeout(() => {
-        this.isLoading = false
-
-        this.$router.push('/')
-      }, 750)
-    }
-  }
+  name: 'Unauthorized'
 })
 </script>

@@ -23,26 +23,6 @@
           required
         />
       </b-field>
-
-      <b-field label="Password">
-        <b-input
-          v-model="form.password"
-          type="password"
-          name="password"
-          required
-        />
-      </b-field>
-
-      <b-field>
-        <b-checkbox
-          v-model="form.remember"
-          type="is-black"
-          class="is-thin"
-        >
-          Remember me
-        </b-checkbox>
-      </b-field>
-
       <hr>
 
       <b-field grouped>
@@ -52,16 +32,8 @@
             type="is-black"
             :loading="isLoading"
           >
-            Login
+            Proceed
           </b-button>
-        </div>
-        <div class="control">
-          <router-link
-            to="/"
-            class="button is-outlined is-black"
-          >
-            Dashboard
-          </router-link>
         </div>
       </b-field>
     </form>

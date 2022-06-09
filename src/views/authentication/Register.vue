@@ -15,6 +15,30 @@
       method="POST"
       @submit.prevent="submit"
     >
+      <b-field label="First Name">
+        <b-input
+          v-model="form.email"
+          name="email"
+          type="email"
+          required
+        />
+      </b-field>
+      <b-field label="Last Name">
+        <b-input
+          v-model="form.email"
+          name="email"
+          type="email"
+          required
+        />
+      </b-field>
+      <b-field label="Phone Number">
+        <b-input
+          v-model="form.email"
+          name="email"
+          type="email"
+          required
+        />
+      </b-field>
       <b-field label="E-mail Address">
         <b-input
           v-model="form.email"
@@ -52,7 +76,7 @@
             type="is-black"
             :loading="isLoading"
           >
-            Login
+            Sign up
           </b-button>
         </div>
         <div class="control">
@@ -60,7 +84,7 @@
             to="/"
             class="button is-outlined is-black"
           >
-            Dashboard
+            Already have an account?
           </router-link>
         </div>
       </b-field>

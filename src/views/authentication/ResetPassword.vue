@@ -15,7 +15,7 @@
       method="POST"
       @submit.prevent="submit"
     >
-      <b-field label="E-mail Address">
+      <b-field label="New Password">
         <b-input
           v-model="form.email"
           name="email"
@@ -24,7 +24,7 @@
         />
       </b-field>
 
-      <b-field label="Password">
+      <b-field label="Confirm Password">
         <b-input
           v-model="form.password"
           type="password"
@@ -52,16 +52,8 @@
             type="is-black"
             :loading="isLoading"
           >
-            Login
+            Reset Password
           </b-button>
-        </div>
-        <div class="control">
-          <router-link
-            to="/"
-            class="button is-outlined is-black"
-          >
-            Dashboard
-          </router-link>
         </div>
       </b-field>
     </form>
