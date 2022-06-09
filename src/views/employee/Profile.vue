@@ -2,7 +2,7 @@
   <div>
     <title-bar :title-stack="titleStack" />
     <hero-bar>
-      Tasks page
+      Profile
       <router-link
         slot="right"
         to="/"
@@ -67,7 +67,7 @@ export default defineComponent({
   },
   data () {
     return {
-      titleStack: ['Admin', 'Profile']
+      titleStack: ['Employee', 'Profile']
     }
   },
   computed: {

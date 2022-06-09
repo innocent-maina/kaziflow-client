@@ -1,13 +1,16 @@
 <template>
-  <div id="app">
+  <admin-layout>
     <router-view />
-  </div>
+  </admin-layout>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-
+import AdminLayout from '../../layouts/AdminLayout.vue'
 export default defineComponent({
-  name: 'Home'
+  name: 'Home',
+  components: {
+    AdminLayout
+  }
 })
 </script>

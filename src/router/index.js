@@ -48,7 +48,7 @@ const routes = [
   {
     path: '/admin',
     component: () =>
-      import(/* webpackChunkName: "dashboard" */ '../views/admin/Home.vue'),
+      import(/* webpackChunkName: "dashboard" */ '../views/admin/Index.vue'),
     children: [
       {
         path: '',
@@ -63,21 +63,89 @@ const routes = [
           import(/* webpackChunkName: "users" */ '../views/admin/Profile.vue')
       },
       {
-        path: 'tables',
-        name: 'AdminTables',
+        path: 'employees',
+        name: 'Employees',
         component: () =>
           import(
-            /* webpackChunkName: "dashboard" */ '../views/admin/Tables.vue'
+            /* webpackChunkName: "dashboard" */ '../views/admin/Employees.vue'
           )
       },
       {
-        path: 'forms',
-        name: 'Forms',
+        path: 'projects',
+        name: 'Projects',
         component: () =>
-          import(/* webpackChunkName: "dashboard" */ '../views/admin/Forms.vue')
+          import(/* webpackChunkName: "dashboard" */ '../views/admin/Projects.vue')
+      },
+      {
+        path: 'tasks',
+        name: 'Tasks',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/admin/Tasks.vue')
+      },
+      {
+        path: 'settings',
+        name: 'Settings',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/admin/Settings.vue')
+      },
+      {
+        path: 'teams',
+        name: 'Teams',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/admin/Teams.vue')
       }
     ]
-    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/employee',
+    component: () =>
+      import(/* webpackChunkName: "dashboard" */ '../views/employee/Index.vue'),
+    children: [
+      {
+        path: '',
+        name: 'EmployeeDashboard',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/employee/Home.vue')
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: () =>
+          import(/* webpackChunkName: "users" */ '../views/employee/Profile.vue')
+      },
+      {
+        path: 'employees',
+        name: 'Employees',
+        component: () =>
+          import(
+            /* webpackChunkName: "dashboard" */ '../views/employee/Employees.vue'
+          )
+      },
+      {
+        path: 'projects',
+        name: 'Projects',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/employee/Projects.vue')
+      },
+      {
+        path: 'tasks',
+        name: 'Tasks',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/employee/Tasks.vue')
+      },
+      {
+        path: 'settings',
+        name: 'Settings',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/employee/Settings.vue')
+      },
+      {
+        path: 'teams',
+        name: 'Teams',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../views/employee/Teams.vue')
+      }
+    ]
   },
   {
     path: '/error',
@@ -110,10 +178,10 @@ const routes = [
       },
       {
         path: 'internal-server-error',
-        name: 'InternalServerError',
+        name: 'ServerError',
         component: () =>
           import(
-            /* webpackChunkName: "errors" */ '../views/errors/InternalServerError.vue'
+            /* webpackChunkName: "errors" */ '../views/errors/ServerError.vue'
           )
       }
     ]

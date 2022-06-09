@@ -67,7 +67,7 @@ export default defineComponent({
   },
   data () {
     return {
-      titleStack: ['Admin', 'Profile']
+      titleStack: ['Employee', 'Profile']
     }
   },
   computed: {

@@ -1,140 +1,80 @@
 <template>
   <div>
     <title-bar :title-stack="titleStack" />
-    <hero-bar :has-right-visible="false">
-      Dashboard
+    <hero-bar>
+      Home page
+      <router-link
+        slot="right"
+        to="/"
+        class="button"
+      >
+        Dashboard
+      </router-link>
     </hero-bar>
     <section class="section is-main-section">
-      <notification class="is-info">
-        New Github updates
-
-        <a
-          slot="right"
-          href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
-          target="_blank"
-          class="button is-white is-small"
-        >
-          <b-icon
-            icon="github-circle"
-            custom-size="default"
-          />
-          <span>GitHub</span>
-        </a>
-      </notification>
-
       <tiles>
-        <card-widget
+        <profile-update-form class="tile is-child" />
+        <card-component
+          title="Profile"
+          icon="account"
           class="tile is-child"
-          type="is-primary"
-          icon="account-multiple"
-          :number="12"
-          label="New Tasks Completed"
-        />
-        <card-widget
-          class="tile is-child"
-          type="is-info"
-          icon="cart-outline"
-          :number="7770"
-          prefix="$"
-          label="Total Number of Projects"
-        />
-        <card-widget
-          class="tile is-child"
-          type="is-success"
-          icon="chart-timeline-variant"
-          :number="256"
-          suffix="%"
-          label="Employee Performance"
-        />
-      </tiles>
-
-      <card-component
-        title="Performance"
-        icon="finance"
-        header-icon="reload"
-        @header-icon-click="fillChartData"
-      >
-        <div
-          v-if="chartData"
-          class="chart-area"
         >
-          <line-chart
-            :chart-data="chartData"
-            :chart-options="chartOptions"
-            :style="{height: '100%'}"
-          />
-        </div>
-      </card-component>
-
-      <card-component
-        title="Clients"
-        class="has-table has-mobile-sort-spaced"
-      >
-        <clients-table-sample />
-      </card-component>
+          <user-avatar class="image has-max-width is-aligned-center" />
+          <hr>
+          <b-field label="Name">
+            <b-input
+              :value="userName"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <hr>
+          <b-field label="E-mail">
+            <b-input
+              :value="userEmail"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+        </card-component>
+      </tiles>
+      <password-update-form />
     </section>
   </div>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import * as chartConfig from '@/components/Charts/chart.config.js'
+import { mapState } from 'vuex'
+import CardComponent from '@/components/CardComponent.vue'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
+import ProfileUpdateForm from '@/components/ProfileUpdateForm.vue'
+import PasswordUpdateForm from '@/components/PasswordUpdateForm.vue'
 import Tiles from '@/components/Tiles.vue'
-import CardWidget from '@/components/CardWidget.vue'
-import CardComponent from '@/components/CardComponent.vue'
-import LineChart from '@/components/Charts/LineChart.vue'
-import ClientsTableSample from '@/components/ClientsTableSample.vue'
-import Notification from '@/components/Notification.vue'
+import UserAvatar from '@/components/UserAvatar.vue'
 
 export default defineComponent({
-  name: 'Home',
+  name: 'Profile',
   components: {
-    ClientsTableSample,
-    LineChart,
-    CardComponent,
-    CardWidget,
+    UserAvatar,
     Tiles,
+    PasswordUpdateForm,
+    ProfileUpdateForm,
     HeroBar,
     TitleBar,
-    Notification
+    CardComponent
   },
   data () {
     return {
-      titleStack: ['Admin', 'Dashboard'],
-      chartData: null,
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: true,
-        scales: {
-          y: {
-            display: false
-          },
-          x: {
-            display: true
-          }
-        },
-        plugins: {
-          legend: {
-            display: false
-          }
-        }
-      }
+      titleStack: ['Admin', 'Profile']
     }
   },
-  mounted () {
-    this.fillChartData()
-
-    this.$buefy.snackbar.open({
-      message: 'Welcome back',
-      queue: false
-    })
-  },
-  methods: {
-    fillChartData () {
-      this.chartData = chartConfig.sampleChartData()
-    }
+  computed: {
+    ...mapState([
+      'userName',
+      'userEmail'
+    ])
   }
 })
 </script>

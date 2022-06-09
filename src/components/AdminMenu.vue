@@ -11,7 +11,7 @@
         <b-icon icon="menu" />
       </a>
       <div class="aside-tools-label">
-        <span>Kaziflow</span>
+        <span>Kaziflow admin</span>
       </div>
     </div>
     <div class="menu is-menu-main">
@@ -20,47 +20,51 @@
           <b-menu-item
             icon="desktop-mac"
             label="Dashboard"
-            href="/"
+            href="/admin/"
           />
           <b-menu-item
             icon="table"
             label="Employees"
-            href="/tables"
+            href="/admin/employees"
           />
           <b-menu-item
-            href="/forms"
+            href="/admin/projects"
             icon="square-edit-outline"
             label="Projects"
           />
           <b-menu-item
             icon="account-circle"
             label="Teams"
-            href="/profile"
+            href="/admin/teams"
           />
           <b-menu-item
             icon="lock"
             label="Tasks"
-            href="/login"
+            href="/admin/tasks"
           />
         </b-menu-list>
         <b-menu-list>
           <b-menu-item
             label="Settings"
             icon="link"
+            href="/admin/settings"
           />
         </b-menu-list>
         <b-menu-list label="Extensions">
           <b-menu-item
             icon="logout"
             label="Slack"
+            href="https://slack.com"
           />
           <b-menu-item
             icon="logout"
             label="Ms Teams"
+            href="https://teams.microsoft.com/"
           />
           <b-menu-item
             icon="logout"
             label="Trello"
+            href="https://trello.com/"
           />
         </b-menu-list>
         <b-menu-list label="Actions">

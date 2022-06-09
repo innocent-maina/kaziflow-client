@@ -2,7 +2,7 @@
   <div>
     <title-bar :title-stack="titleStack" />
     <hero-bar>
-      Tasks page
+      Settings page
       <router-link
         slot="right"
         to="/"
