@@ -23,11 +23,6 @@
             href="/employee/"
           />
           <b-menu-item
-            icon="table"
-            label="Employees"
-            href="/employee/employees"
-          />
-          <b-menu-item
             href="/employee/projects"
             icon="square-edit-outline"
             label="Projects"

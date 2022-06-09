@@ -19,7 +19,7 @@
         <b-input
           v-model="form.email"
           name="email"
-          type="email"
+          type="password"
           required
         />
       </b-field>

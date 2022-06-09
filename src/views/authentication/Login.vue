@@ -17,7 +17,7 @@
     >
       <b-field label="E-mail Address">
         <b-input
-          v-model="form.email"
+          v-model="email"
           name="email"
           type="email"
           required
@@ -26,7 +26,7 @@
 
       <b-field label="Password">
         <b-input
-          v-model="form.password"
+          v-model="password"
           type="password"
           name="password"
           required
@@ -35,14 +35,14 @@
 
       <b-field>
         <b-checkbox
-          v-model="form.remember"
+          v-model="remember"
           type="is-black"
           class="is-thin"
         >
           Remember me
         </b-checkbox>
       </b-field>
-
+      {{ error }}
       <hr>
 
       <b-field grouped>
@@ -51,16 +51,17 @@
             native-type="submit"
             type="is-black"
             :loading="isLoading"
+            @click="login"
           >
             Login
           </b-button>
         </div>
         <div class="control">
           <router-link
-            to="/"
+            to="/forgot-password"
             class="button is-outlined is-black"
           >
-            Dashboard
+            Forgot Password?
           </router-link>
         </div>
       </b-field>
@@ -71,29 +72,39 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import CardComponent from '@/components/CardComponent.vue'
-
+import axios from 'axios'
 export default defineComponent({
   name: 'Login',
   components: { CardComponent },
   data () {
     return {
       isLoading: false,
-      form: {
-        email: 'john.doe@example.com',
-        password: 'my-secret-password-9e9w',
-        remember: false
-      }
+      email: '',
+      password: '',
+      remember: false,
+      error: ''
     }
   },
   methods: {
-    submit () {
-      this.isLoading = true
-
-      setTimeout(() => {
-        this.isLoading = false
-
-        this.$router.push('/')
-      }, 750)
+    login () {
+      const user = {
+        email: this.email,
+        password: this.password
+      }
+      axios.post('http://localhost:3000/api/v1/auth/login', user).then(
+        (res) => {
+          // if successful
+          if (res.status === 200) {
+            localStorage.setItem('token', res.data.token)
+            // instead of this, run the authorization function
+            this.$router.push('/')
+          }
+        },
+        (err) => {
+          console.log(err.response)
+          this.error = err.response.data.error
+        }
+      )
     }
   }
 })

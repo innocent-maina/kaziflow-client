@@ -114,14 +114,6 @@ const routes = [
           import(/* webpackChunkName: "users" */ '../views/employee/Profile.vue')
       },
       {
-        path: 'employees',
-        name: 'Employees',
-        component: () =>
-          import(
-            /* webpackChunkName: "dashboard" */ '../views/employee/Employees.vue'
-          )
-      },
-      {
         path: 'projects',
         name: 'Projects',
         component: () =>

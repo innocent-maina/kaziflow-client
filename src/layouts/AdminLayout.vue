@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-bar />
+    <admin-navbar />
     <admin-menu />
     <router-view />
     <footer-bar />
@@ -9,7 +9,7 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import NavBar from '@/components/NavBar.vue'
+import AdminNavbar from '@/components/AdminNavbar.vue'
 import AdminMenu from '@/components/AdminMenu.vue'
 import FooterBar from '@/components/FooterBar.vue'
 
@@ -18,7 +18,7 @@ export default defineComponent({
   components: {
     FooterBar,
     AdminMenu,
-    NavBar
+    AdminNavbar
   }
 })
 </script>

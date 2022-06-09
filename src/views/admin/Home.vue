@@ -1,80 +1,140 @@
 <template>
   <div>
     <title-bar :title-stack="titleStack" />
-    <hero-bar>
-      Home page
-      <router-link
-        slot="right"
-        to="/"
-        class="button"
-      >
-        Dashboard
-      </router-link>
+    <hero-bar :has-right-visible="false">
+      Dashboard
     </hero-bar>
     <section class="section is-main-section">
-      <tiles>
-        <profile-update-form class="tile is-child" />
-        <card-component
-          title="Profile"
-          icon="account"
-          class="tile is-child"
+      <notification class="is-info">
+        New Github updates
+
+        <a
+          slot="right"
+          href="http"
+          target="_blank"
+          class="button is-white is-small"
         >
-          <user-avatar class="image has-max-width is-aligned-center" />
-          <hr>
-          <b-field label="Name">
-            <b-input
-              :value="userName"
-              custom-class="is-static"
-              readonly
-            />
-          </b-field>
-          <hr>
-          <b-field label="E-mail">
-            <b-input
-              :value="userEmail"
-              custom-class="is-static"
-              readonly
-            />
-          </b-field>
-        </card-component>
+          <b-icon
+            icon="github-circle"
+            custom-size="default"
+          />
+          <span>GitHub</span>
+        </a>
+      </notification>
+
+      <tiles>
+        <card-widget
+          class="tile is-child"
+          type="is-primary"
+          icon="account-multiple"
+          :number="12"
+          label="New Tasks Completed"
+        />
+        <card-widget
+          class="tile is-child"
+          type="is-info"
+          icon="cart-outline"
+          :number="7770"
+          prefix="$"
+          label="Total Number of Projects"
+        />
+        <card-widget
+          class="tile is-child"
+          type="is-success"
+          icon="chart-timeline-variant"
+          :number="256"
+          suffix="%"
+          label="Employee Performance"
+        />
       </tiles>
-      <password-update-form />
+
+      <card-component
+        title="Performance"
+        icon="finance"
+        header-icon="reload"
+        @header-icon-click="fillChartData"
+      >
+        <div
+          v-if="chartData"
+          class="chart-area"
+        >
+          <line-chart
+            :chart-data="chartData"
+            :chart-options="chartOptions"
+            :style="{height: '100%'}"
+          />
+        </div>
+      </card-component>
+
+      <card-component
+        title="Clients"
+        class="has-table has-mobile-sort-spaced"
+      >
+        <clients-table-sample />
+      </card-component>
     </section>
   </div>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import { mapState } from 'vuex'
-import CardComponent from '@/components/CardComponent.vue'
+import * as chartConfig from '@/components/Charts/chart.config.js'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
-import ProfileUpdateForm from '@/components/ProfileUpdateForm.vue'
-import PasswordUpdateForm from '@/components/PasswordUpdateForm.vue'
 import Tiles from '@/components/Tiles.vue'
-import UserAvatar from '@/components/UserAvatar.vue'
+import CardWidget from '@/components/CardWidget.vue'
+import CardComponent from '@/components/CardComponent.vue'
+import LineChart from '@/components/Charts/LineChart.vue'
+import ClientsTableSample from '@/components/ClientsTableSample.vue'
+import Notification from '@/components/Notification.vue'
 
 export default defineComponent({
-  name: 'Profile',
+  name: 'Home',
   components: {
-    UserAvatar,
+    ClientsTableSample,
+    LineChart,
+    CardComponent,
+    CardWidget,
     Tiles,
-    PasswordUpdateForm,
-    ProfileUpdateForm,
     HeroBar,
     TitleBar,
-    CardComponent
+    Notification
   },
   data () {
     return {
-      titleStack: ['Admin', 'Profile']
+      titleStack: ['Admin', 'Dashboard'],
+      chartData: null,
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          y: {
+            display: false
+          },
+          x: {
+            display: true
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
     }
   },
-  computed: {
-    ...mapState([
-      'userName',
-      'userEmail'
-    ])
+  mounted () {
+    this.fillChartData()
+
+    this.$buefy.snackbar.open({
+      message: 'Welcome back',
+      queue: false
+    })
+  },
+  methods: {
+    fillChartData () {
+      this.chartData = chartConfig.sampleChartData()
+    }
   }
 })
 </script>

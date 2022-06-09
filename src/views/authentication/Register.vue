@@ -17,31 +17,31 @@
     >
       <b-field label="First Name">
         <b-input
-          v-model="form.email"
-          name="email"
-          type="email"
+          v-model="firstName"
+          name="firstName"
+          type="text"
           required
         />
       </b-field>
       <b-field label="Last Name">
         <b-input
-          v-model="form.email"
-          name="email"
-          type="email"
+          v-model="lastName"
+          name="lastName"
+          type="text"
           required
         />
       </b-field>
       <b-field label="Phone Number">
         <b-input
-          v-model="form.email"
-          name="email"
-          type="email"
+          v-model="phoneNumber"
+          name="phoneNumber"
+          type="number"
           required
         />
       </b-field>
       <b-field label="E-mail Address">
         <b-input
-          v-model="form.email"
+          v-model="email"
           name="email"
           type="email"
           required
@@ -50,7 +50,7 @@
 
       <b-field label="Password">
         <b-input
-          v-model="form.password"
+          v-model="password"
           type="password"
           name="password"
           required
@@ -59,14 +59,14 @@
 
       <b-field>
         <b-checkbox
-          v-model="form.remember"
+          v-model="remember"
           type="is-black"
           class="is-thin"
         >
           Remember me
         </b-checkbox>
       </b-field>
-
+      {{ error }}
       <hr>
 
       <b-field grouped>
@@ -75,6 +75,7 @@
             native-type="submit"
             type="is-black"
             :loading="isLoading"
+            @click="register"
           >
             Sign up
           </b-button>
@@ -95,6 +96,7 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import CardComponent from '@/components/CardComponent.vue'
+import axios from 'axios'
 
 export default defineComponent({
   name: 'Login',
@@ -102,22 +104,32 @@ export default defineComponent({
   data () {
     return {
       isLoading: false,
-      form: {
-        email: 'john.doe@example.com',
-        password: 'my-secret-password-9e9w',
-        remember: false
-      }
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      phoneNumber: '',
+      error: ''
     }
   },
   methods: {
-    submit () {
-      this.isLoading = true
-
-      setTimeout(() => {
-        this.isLoading = false
-
-        this.$router.push('/')
-      }, 750)
+    signup () {
+      const newUser = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }
+      axios.post('http://localhost:3000/api/v1/auth/register', newUser).then(
+        (res) => {
+          console.log(res)
+          this.error = ''
+          this.$router.push('/')
+        },
+        (err) => {
+          console.log(err.response)
+          this.error = err.response.data.error
+        }
+      )
     }
   }
 })

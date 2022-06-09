@@ -19,7 +19,7 @@ store.dispatch('fetch', 'clients')
 const defaultDocumentTitle = 'Kaziflow'
 
 /* Collapse mobile aside menu on route change & set document title from route meta */
-router.afterEach(to => {
+router.afterEach((to) => {
   store.commit('asideMobileStateToggle', false)
   store.dispatch('asideDesktopOnlyToggle', false)
 
@@ -37,5 +37,5 @@ Vue.use(Buefy)
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount('#app')
