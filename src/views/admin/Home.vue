@@ -10,7 +10,7 @@
 
         <a
           slot="right"
-          href="http"
+          href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
           target="_blank"
           class="button is-white is-small"
         >
@@ -67,7 +67,7 @@
       </card-component>
 
       <card-component
-        title="Clients"
+        title="Recently Completed Tasks"
         class="has-table has-mobile-sort-spaced"
       >
         <clients-table-sample />

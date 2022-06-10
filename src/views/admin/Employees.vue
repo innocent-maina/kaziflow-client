@@ -2,7 +2,7 @@
   <div>
     <title-bar :title-stack="titleStack" />
     <hero-bar>
-      Employees page
+      Employees
       <router-link
         slot="right"
         to="/"
@@ -12,69 +12,48 @@
       </router-link>
     </hero-bar>
     <section class="section is-main-section">
-      <tiles>
-        <profile-update-form class="tile is-child" />
-        <card-component
-          title="Profile"
-          icon="account"
-          class="tile is-child"
-        >
-          <user-avatar class="image has-max-width is-aligned-center" />
-          <hr>
-          <b-field label="Name">
-            <b-input
-              :value="userName"
-              custom-class="is-static"
-              readonly
-            />
-          </b-field>
-          <hr>
-          <b-field label="E-mail">
-            <b-input
-              :value="userEmail"
-              custom-class="is-static"
-              readonly
-            />
-          </b-field>
-        </card-component>
-      </tiles>
-      <password-update-form />
+      <notification class="is-info">
+        <div>
+          <b-icon
+            icon="buffer"
+            custom-size="default"
+          />
+          <b>Done with a project? You can now mark it as complete </b>
+        </div>
+      </notification>
+
+      <card-component
+        class="has-table has-mobile-sort-spaced"
+        title="All Employees"
+        icon="account-multiple"
+      >
+        <clients-table-sample checkable />
+      </card-component>
     </section>
   </div>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import { mapState } from 'vuex'
+import Notification from '@/components/Notification.vue'
+import ClientsTableSample from '@/components/ClientsTableSample.vue'
 import CardComponent from '@/components/CardComponent.vue'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
-import ProfileUpdateForm from '@/components/ProfileUpdateForm.vue'
-import PasswordUpdateForm from '@/components/PasswordUpdateForm.vue'
-import Tiles from '@/components/Tiles.vue'
-import UserAvatar from '@/components/UserAvatar.vue'
 
 export default defineComponent({
-  name: 'Profile',
+  name: 'AdminEmployees',
   components: {
-    UserAvatar,
-    Tiles,
-    PasswordUpdateForm,
-    ProfileUpdateForm,
     HeroBar,
     TitleBar,
-    CardComponent
+    CardComponent,
+    ClientsTableSample,
+    Notification
   },
   data () {
     return {
-      titleStack: ['Admin', 'Profile']
+      titleStack: ['Admin', 'Employees']
     }
-  },
-  computed: {
-    ...mapState([
-      'userName',
-      'userEmail'
-    ])
   }
 })
 </script>
