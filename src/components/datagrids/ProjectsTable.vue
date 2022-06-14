@@ -37,7 +37,7 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Company Name"
+        label="Participants"
         field="company"
         sortable
       >
@@ -45,7 +45,7 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="City"
+        label="Tasks"
         field="city"
         sortable
       >
@@ -68,7 +68,7 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Created"
+        label="Due date"
       >
         <small
           class="has-text-grey is-abbr-like"

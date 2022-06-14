@@ -27,7 +27,7 @@
         title="All Teams"
         icon="account-multiple"
       >
-        <clients-table-sample checkable />
+        <teams-table checkable />
       </card-component>
     </section>
   </div>
@@ -36,7 +36,7 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import Notification from '@/components/Notification.vue'
-import ClientsTableSample from '@/components/ClientsTableSample.vue'
+import TeamsTable from '@/components/datagrids/TeamsTable.vue'
 import CardComponent from '@/components/CardComponent.vue'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
@@ -47,7 +47,7 @@ export default defineComponent({
     HeroBar,
     TitleBar,
     CardComponent,
-    ClientsTableSample,
+    TeamsTable,
     Notification
   },
   data () {

@@ -36,14 +36,14 @@
             </b-field>
             <hr>
             <b-field
-              label="Avatar"
+              label="Project logo"
               horizontal
             >
               <file-picker type="is-info" />
             </b-field>
             <hr>
             <b-field
-              label="Project Name"
+              label="Name"
               message="Client name"
               horizontal
             >
@@ -54,7 +54,7 @@
               />
             </b-field>
             <b-field
-              label="Company"
+              label="Participants"
               message="Client's company name"
               horizontal
             >
@@ -65,7 +65,7 @@
               />
             </b-field>
             <b-field
-              label="City"
+              label="Tasks"
               message="Client's city"
               horizontal
             >
@@ -76,7 +76,7 @@
               />
             </b-field>
             <b-field
-              label="Created"
+              label="Due Date"
               horizontal
             >
               <b-datepicker
@@ -126,21 +126,21 @@
               readonly
             />
           </b-field>
-          <b-field label="Company">
+          <b-field label="Participants">
             <b-input
               :value="form.company"
               custom-class="is-static"
               readonly
             />
           </b-field>
-          <b-field label="City">
+          <b-field label="Tasks">
             <b-input
               :value="form.city"
               custom-class="is-static"
               readonly
             />
           </b-field>
-          <b-field label="Created">
+          <b-field label="Due Date">
             <b-input
               :value="createdReadable"
               custom-class="is-static"
@@ -209,7 +209,6 @@ export default defineComponent({
   computed: {
     titleStack () {
       return [
-        'Admin',
         'Projects',
         this.isProfileExists ? this.form.name : 'New Project'
       ]

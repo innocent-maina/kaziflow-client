@@ -93,6 +93,74 @@ const routes = [
         name: 'AdminTeams',
         component: () =>
           import(/* webpackChunkName: "dashboard" */ '../views/admin/Teams.vue')
+      },
+      {
+        meta: {
+          title: 'Edit Employee'
+        },
+        path: '/employee/:id',
+        name: 'employee.edit',
+        component: () => import(/* webpackChunkName: "client-form" */ '@/components/forms/EmployeesForm.vue'),
+        props: true
+      },
+      {
+        meta: {
+          title: 'New Employee'
+        },
+        path: '/employee/new',
+        name: 'employee.new',
+        component: () => import(/* webpackChunkName: "client-form" */ '@/components/forms/EmployeesForm.vue')
+      },
+      {
+        meta: {
+          title: 'Edit Project'
+        },
+        path: '/project/:id',
+        name: 'project.edit',
+        component: () => import(/* webpackChunkName: "client-form" */ '@/components/forms/ProjectsForm.vue'),
+        props: true
+      },
+      {
+        meta: {
+          title: 'New Project'
+        },
+        path: '/project/new',
+        name: 'project.new',
+        component: () => import(/* webpackChunkName: "client-form" */ '@/components/forms/ProjectsForm.vue')
+      },
+      {
+        meta: {
+          title: 'Edit Team'
+        },
+        path: '/team/:id',
+        name: 'team.edit',
+        component: () => import(/* webpackChunkName: "team-form" */ '@/components/forms/TeamForm.vue'),
+        props: true
+      },
+      {
+        meta: {
+          title: 'New Team'
+        },
+        path: '/team/new',
+        name: 'team.new',
+        component: () => import(/* webpackChunkName: "team-form" */ '@/components/forms/TeamForm.vue')
+      },
+      {
+        meta: {
+          title: 'Edit Task'
+        },
+        path: '/task/:id',
+        name: 'task.edit',
+        component: () => import(/* webpackChunkName: "task-form" */ '@/components/forms/TasksForm.vue'),
+        props: true
+      },
+      {
+        meta: {
+          title: 'New Task'
+        },
+        path: '/task/new',
+        name: 'task.new',
+        component: () => import(/* webpackChunkName: "task-form" */ '@/components/forms/TasksForm.vue')
       }
     ]
   },
@@ -139,23 +207,6 @@ const routes = [
       },
       {
         meta: {
-          title: 'Edit Client'
-        },
-        path: '/client/:id',
-        name: 'client.edit',
-        component: () => import(/* webpackChunkName: "client-form" */ '@/views/ClientForm.vue'),
-        props: true
-      },
-      {
-        meta: {
-          title: 'New Client'
-        },
-        path: '/client/new',
-        name: 'client.new',
-        component: () => import(/* webpackChunkName: "client-form" */ '@/views/ClientForm.vue')
-      },
-      {
-        meta: {
           title: 'Edit Project'
         },
         path: '/project/:id',
@@ -170,6 +221,40 @@ const routes = [
         path: '/project/new',
         name: 'project.new',
         component: () => import(/* webpackChunkName: "client-form" */ '@/components/forms/ProjectsForm.vue')
+      },
+      {
+        meta: {
+          title: 'Edit Team'
+        },
+        path: '/team/:id',
+        name: 'team.edit',
+        component: () => import(/* webpackChunkName: "team-form" */ '@/components/forms/TeamForm.vue'),
+        props: true
+      },
+      {
+        meta: {
+          title: 'New Team'
+        },
+        path: '/team/new',
+        name: 'team.new',
+        component: () => import(/* webpackChunkName: "team-form" */ '@/components/forms/TeamForm.vue')
+      },
+      {
+        meta: {
+          title: 'Edit Task'
+        },
+        path: '/task/:id',
+        name: 'task.edit',
+        component: () => import(/* webpackChunkName: "task-form" */ '@/components/forms/TasksForm.vue'),
+        props: true
+      },
+      {
+        meta: {
+          title: 'New Task'
+        },
+        path: '/task/new',
+        name: 'task.new',
+        component: () => import(/* webpackChunkName: "task-form" */ '@/components/forms/TasksForm.vue')
       }
     ]
   },

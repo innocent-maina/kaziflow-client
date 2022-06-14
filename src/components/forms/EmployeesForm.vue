@@ -36,7 +36,7 @@
             </b-field>
             <hr>
             <b-field
-              label="Avatar"
+              label="Employee Avatar"
               horizontal
             >
               <file-picker type="is-info" />
@@ -44,7 +44,7 @@
             <hr>
             <b-field
               label="Name"
-              message="Client name"
+              message="First name"
               horizontal
             >
               <b-input
@@ -54,7 +54,7 @@
               />
             </b-field>
             <b-field
-              label="Company"
+              label="Last Name"
               message="Client's company name"
               horizontal
             >
@@ -65,7 +65,7 @@
               />
             </b-field>
             <b-field
-              label="City"
+              label="Email"
               message="Client's city"
               horizontal
             >
@@ -76,7 +76,7 @@
               />
             </b-field>
             <b-field
-              label="Created"
+              label="Phone Number"
               horizontal
             >
               <b-datepicker
@@ -110,7 +110,7 @@
         </card-component>
         <card-component
           v-if="isProfileExists"
-          title="Client Profile"
+          title="Employee Profile"
           icon="account"
           class="tile is-child"
         >
@@ -119,28 +119,28 @@
             class="image has-max-width is-aligned-center"
           />
           <hr>
-          <b-field label="Name">
+          <b-field label="First Name">
             <b-input
               :value="form.name"
               custom-class="is-static"
               readonly
             />
           </b-field>
-          <b-field label="Company">
+          <b-field label="Last Name">
             <b-input
               :value="form.company"
               custom-class="is-static"
               readonly
             />
           </b-field>
-          <b-field label="City">
+          <b-field label="Email">
             <b-input
               :value="form.city"
               custom-class="is-static"
               readonly
             />
           </b-field>
-          <b-field label="Created">
+          <b-field label="Phone Number">
             <b-input
               :value="createdReadable"
               custom-class="is-static"
@@ -175,7 +175,7 @@ import UserAvatar from '@/components/UserAvatar.vue'
 import Notification from '@/components/Notification.vue'
 
 export default defineComponent({
-  name: 'ClientForm',
+  name: 'EmployeesForm',
   components: {
     UserAvatar,
     FilePicker,
@@ -209,22 +209,21 @@ export default defineComponent({
   computed: {
     titleStack () {
       return [
-        'Admin',
-        'EmployeesForm',
-        this.isProfileExists ? this.form.name : 'New Client'
+        'Employees',
+        this.isProfileExists ? this.form.name : 'New Employee'
       ]
     },
     heroTitle () {
-      return this.isProfileExists ? this.form.name : 'Create Client'
+      return this.isProfileExists ? this.form.name : 'Create Employee'
     },
     heroRouterLinkTo () {
-      return this.isProfileExists ? { name: 'client.new' } : { name: 'home' }
+      return this.isProfileExists ? { name: 'employee.new' } : { name: 'home' }
     },
     heroRouterLinkLabel () {
-      return this.isProfileExists ? 'New client' : 'Dashboard'
+      return this.isProfileExists ? 'New Employee' : 'Dashboard'
     },
     formCardTitle () {
-      return this.isProfileExists ? 'Edit client' : 'Create client'
+      return this.isProfileExists ? 'Edit Employee' : 'Create Employee'
     },
     ...mapState([
       'clients'
@@ -250,16 +249,21 @@ export default defineComponent({
     this.getData()
   },
   methods: {
+    // this is to reload to take in new data
+    // reloadPage () {
+    //   window.location.reload()
+    // },
     getData () {
+      // this.reloadPage()
       if (this.id) {
         const item = find(
           this.clients,
           (item) => item.id === parseInt(this.id)
+
         )
 
         if (item) {
           this.isProfileExists = true
-
           this.form.id = item.id
           this.form.name = item.name
           this.form.company = item.company
@@ -269,7 +273,7 @@ export default defineComponent({
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
         } else {
-          this.$router.push({ name: 'client.new' })
+          this.$router.push({ name: 'employee.new' })
         }
       }
     },

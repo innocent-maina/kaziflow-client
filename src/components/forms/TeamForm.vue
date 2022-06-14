@@ -36,7 +36,7 @@
             </b-field>
             <hr>
             <b-field
-              label="Avatar"
+              label="Team Avatar"
               horizontal
             >
               <file-picker type="is-info" />
@@ -54,7 +54,7 @@
               />
             </b-field>
             <b-field
-              label="Company"
+              label="Participants"
               message="Client's company name"
               horizontal
             >
@@ -65,7 +65,18 @@
               />
             </b-field>
             <b-field
-              label="City"
+              label="Leader"
+              message="Team's captain"
+              horizontal
+            >
+              <b-input
+                v-model="form.company"
+                placeholder="e.g. Berton & Steinway"
+                required
+              />
+            </b-field>
+            <b-field
+              label="Responsibilities"
               message="Client's city"
               horizontal
             >
@@ -76,7 +87,7 @@
               />
             </b-field>
             <b-field
-              label="Created"
+              label="Due Date"
               horizontal
             >
               <b-datepicker
@@ -110,7 +121,7 @@
         </card-component>
         <card-component
           v-if="isProfileExists"
-          title="Client Profile"
+          title="Team Profile"
           icon="account"
           class="tile is-child"
         >
@@ -126,21 +137,28 @@
               readonly
             />
           </b-field>
-          <b-field label="Company">
+          <b-field label="Participants">
             <b-input
               :value="form.company"
               custom-class="is-static"
               readonly
             />
           </b-field>
-          <b-field label="City">
+          <b-field label="Leader">
             <b-input
               :value="form.city"
               custom-class="is-static"
               readonly
             />
           </b-field>
-          <b-field label="Created">
+          <b-field label="Responsibilities">
+            <b-input
+              :value="form.city"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <b-field label="Due Date">
             <b-input
               :value="createdReadable"
               custom-class="is-static"
@@ -175,7 +193,7 @@ import UserAvatar from '@/components/UserAvatar.vue'
 import Notification from '@/components/Notification.vue'
 
 export default defineComponent({
-  name: 'ClientForm',
+  name: 'TeamForm',
   components: {
     UserAvatar,
     FilePicker,
@@ -209,22 +227,21 @@ export default defineComponent({
   computed: {
     titleStack () {
       return [
-        'Admin',
-        'TeamForm',
-        this.isProfileExists ? this.form.name : 'New Client'
+        'Teams',
+        this.isProfileExists ? this.form.name : 'New Team'
       ]
     },
     heroTitle () {
-      return this.isProfileExists ? this.form.name : 'Create Client'
+      return this.isProfileExists ? this.form.name : 'Create Team'
     },
     heroRouterLinkTo () {
-      return this.isProfileExists ? { name: 'client.new' } : { name: 'home' }
+      return this.isProfileExists ? { name: 'team.new' } : { name: 'home' }
     },
     heroRouterLinkLabel () {
-      return this.isProfileExists ? 'New client' : 'Dashboard'
+      return this.isProfileExists ? 'New Team' : 'Dashboard'
     },
     formCardTitle () {
-      return this.isProfileExists ? 'Edit client' : 'Create client'
+      return this.isProfileExists ? 'Edit Team' : 'Create Team'
     },
     ...mapState([
       'clients'
@@ -250,16 +267,21 @@ export default defineComponent({
     this.getData()
   },
   methods: {
+    // this is to reload to take in new data
+    // reloadPage () {
+    //   window.location.reload()
+    // },
     getData () {
+      // this.reloadPage()
       if (this.id) {
         const item = find(
           this.clients,
           (item) => item.id === parseInt(this.id)
+
         )
 
         if (item) {
           this.isProfileExists = true
-
           this.form.id = item.id
           this.form.name = item.name
           this.form.company = item.company
@@ -269,7 +291,7 @@ export default defineComponent({
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
         } else {
-          this.$router.push({ name: 'client.new' })
+          this.$router.push({ name: 'team.new' })
         }
       }
     },

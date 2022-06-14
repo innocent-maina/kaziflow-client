@@ -27,7 +27,7 @@
         title="All Available Tasks"
         icon="account-multiple"
       >
-        <clients-table-sample checkable />
+        <tasks-table checkable />
       </card-component>
       <hr>
       <card-component
@@ -78,23 +78,23 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import Notification from '@/components/Notification.vue'
-import ClientsTableSample from '@/components/ClientsTableSample.vue'
+import TasksTable from '@/components/datagrids/TasksTable.vue'
 import CardComponent from '@/components/CardComponent.vue'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 
 export default defineComponent({
-  name: 'AdminTasks',
+  name: 'EmployeeTasks',
   components: {
     HeroBar,
     TitleBar,
     CardComponent,
-    ClientsTableSample,
+    TasksTable,
     Notification
   },
   data () {
     return {
-      titleStack: ['Admin', 'Tasks']
+      titleStack: ['Employee', 'Tasks']
     }
   }
 })

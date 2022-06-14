@@ -2,7 +2,7 @@
   <div>
     <title-bar :title-stack="titleStack" />
     <hero-bar>
-      Employees
+      Projects
       <router-link
         slot="right"
         to="/"
@@ -24,10 +24,10 @@
 
       <card-component
         class="has-table has-mobile-sort-spaced"
-        title="All Employees"
+        title="All Projects"
         icon="account-multiple"
       >
-        <clients-table-sample checkable />
+        <employees-table checkable />
       </card-component>
     </section>
   </div>
@@ -36,23 +36,23 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import Notification from '@/components/Notification.vue'
-import ClientsTableSample from '@/components/ClientsTableSample.vue'
+import EmployeesTable from '@/components/datagrids/EmployeesTable.vue'
 import CardComponent from '@/components/CardComponent.vue'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 
 export default defineComponent({
-  name: 'AdminEmployees',
+  name: 'EmployeeProjects',
   components: {
     HeroBar,
     TitleBar,
     CardComponent,
-    ClientsTableSample,
+    EmployeesTable,
     Notification
   },
   data () {
     return {
-      titleStack: ['Admin', 'Employees']
+      titleStack: ['Employee', 'Projects']
     }
   }
 })
