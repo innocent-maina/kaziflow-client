@@ -65,6 +65,20 @@
           </router-link>
         </div>
       </b-field>
+      <!-- <hr> -->
+      <b-field grouped>
+        <div class="level">
+          <p class="level-item">
+            Don't have an account? &nbsp;
+            <router-link
+              to="/register"
+              class="has-text-dark"
+            >
+              Sign up
+            </router-link>&nbsp; for one
+          </p>
+        </div>
+      </b-field>
     </form>
   </card-component>
 </template>

@@ -128,7 +128,6 @@ import ModalBox from '@/components/ModalBox.vue'
 
 export default defineComponent({
   name: 'ClientsTableSample',
-
   components: { ModalBox },
   props: {
     checkable: Boolean,

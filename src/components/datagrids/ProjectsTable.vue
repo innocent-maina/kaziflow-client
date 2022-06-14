@@ -29,7 +29,7 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Name"
+        label="Project Name"
         field="name"
         sortable
       >
@@ -37,7 +37,7 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Company"
+        label="Company Name"
         field="company"
         sortable
       >
@@ -82,7 +82,7 @@
       >
         <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'client.edit', params: {id: props.row.id}}"
+            :to="{name:'project.edit', params: {id: props.row.id}}"
             class="button is-small is-info"
           >
             <b-icon
@@ -127,8 +127,7 @@ import { mapState } from 'vuex'
 import ModalBox from '@/components/ModalBox.vue'
 
 export default defineComponent({
-  name: 'ClientsTableSample',
-
+  name: 'ProjectsTable',
   components: { ModalBox },
   props: {
     checkable: Boolean,

@@ -64,7 +64,7 @@ const routes = [
       },
       {
         path: 'employees',
-        name: 'Employees',
+        name: 'AdminEmployees',
         component: () =>
           import(
             /* webpackChunkName: "dashboard" */ '../views/admin/Employees.vue'
@@ -72,25 +72,25 @@ const routes = [
       },
       {
         path: 'projects',
-        name: 'Projects',
+        name: 'AdminProjects',
         component: () =>
           import(/* webpackChunkName: "dashboard" */ '../views/admin/Projects.vue')
       },
       {
         path: 'tasks',
-        name: 'Tasks',
+        name: 'AdminTasks',
         component: () =>
           import(/* webpackChunkName: "dashboard" */ '../views/admin/Tasks.vue')
       },
       {
         path: 'settings',
-        name: 'Settings',
+        name: 'AdminSettings',
         component: () =>
           import(/* webpackChunkName: "dashboard" */ '../views/admin/Settings.vue')
       },
       {
         path: 'teams',
-        name: 'Teams',
+        name: 'AdminTeams',
         component: () =>
           import(/* webpackChunkName: "dashboard" */ '../views/admin/Teams.vue')
       }
@@ -136,13 +136,47 @@ const routes = [
         name: 'Teams',
         component: () =>
           import(/* webpackChunkName: "dashboard" */ '../views/employee/Teams.vue')
+      },
+      {
+        meta: {
+          title: 'Edit Client'
+        },
+        path: '/client/:id',
+        name: 'client.edit',
+        component: () => import(/* webpackChunkName: "client-form" */ '@/views/ClientForm.vue'),
+        props: true
+      },
+      {
+        meta: {
+          title: 'New Client'
+        },
+        path: '/client/new',
+        name: 'client.new',
+        component: () => import(/* webpackChunkName: "client-form" */ '@/views/ClientForm.vue')
+      },
+      {
+        meta: {
+          title: 'Edit Project'
+        },
+        path: '/project/:id',
+        name: 'project.edit',
+        component: () => import(/* webpackChunkName: "client-form" */ '@/components/forms/ProjectsForm.vue'),
+        props: true
+      },
+      {
+        meta: {
+          title: 'New Project'
+        },
+        path: '/project/new',
+        name: 'project.new',
+        component: () => import(/* webpackChunkName: "client-form" */ '@/components/forms/ProjectsForm.vue')
       }
     ]
   },
   {
     path: '/error',
-    component: () =>
-      import(/* webpackChunkName: "errors" */ '../views/errors/Index.vue'),
+    // component: () =>
+    //   import(/* webpackChunkName: "errors" */ '../views/errors/Index.vue'),
     children: [
       {
         path: 'forbidden',
