@@ -35,7 +35,7 @@
         title="My Tasks"
         icon="account-multiple"
       >
-        <clients-table-sample checkable />
+        <tasks-table checkable />
       </card-component>
 
       <!-- <hr>
@@ -51,7 +51,7 @@
       </notification>
 
       <card-component class="has-table has-mobile-sort-spaced">
-        <clients-table-sample
+        <tasks-table
           checkable
         />
       </card-component>
@@ -69,7 +69,7 @@
       </notification>
 
       <card-component class="has-table has-thead-hidden">
-        <clients-table-sample is-empty />
+        <tasks-table is-empty />
       </card-component> -->
     </section>
   </div>

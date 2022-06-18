@@ -70,7 +70,7 @@
         title="Clients"
         class="has-table has-mobile-sort-spaced"
       >
-        <clients-table-sample />
+        <tasks-table />
       </card-component>
     </section>
   </div>
@@ -85,14 +85,12 @@ import Tiles from '@/components/Tiles.vue'
 import CardWidget from '@/components/CardWidget.vue'
 import CardComponent from '@/components/CardComponent.vue'
 import LineChart from '@/components/Charts/LineChart.vue'
-import ClientsTableSample from '@/components/ClientsTableSample.vue'
-import Notification from '@/components/Notification.vue'
+import TasksTable from '@components/datagrids/TasksTable.vue'        import Notification from '@/components/Notification.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    ClientsTableSample,
-    LineChart,
+TasksTable,    LineChart,
     CardComponent,
     CardWidget,
     Tiles,

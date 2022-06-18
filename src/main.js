@@ -7,21 +7,21 @@ import Buefy from 'buefy'
 
 /* Router & Store */
 import router from './router'
-import store from './store'
+import store from './store/index'
 
 /* Vue. Main component */
 import App from './App.vue'
 
 /* Fetch sample data */
-store.dispatch('fetch', 'clients')
+store.dispatch('system/fetch')
 
 /* Default title tag */
 const defaultDocumentTitle = 'Kaziflow'
 
 /* Collapse mobile aside menu on route change & set document title from route meta */
 router.afterEach((to) => {
-  store.commit('asideMobileStateToggle', false)
-  store.dispatch('asideDesktopOnlyToggle', false)
+  store.commit('system/asideMobileStateToggle', false)
+  store.dispatch('system/asideDesktopOnlyToggle', false)
 
   if (to.meta && to.meta.title) {
     document.title = `${to.meta.title} — ${defaultDocumentTitle}`

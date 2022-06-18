@@ -97,7 +97,7 @@ export default defineComponent({
   },
   methods: {
     asideToggleDesktopOnly () {
-      this.$store.dispatch('asideDesktopOnlyToggle')
+      this.$store.dispatch('system/asideDesktopOnlyToggle')
     },
     menuClick (item) {
       //

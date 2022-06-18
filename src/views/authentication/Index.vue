@@ -21,10 +21,10 @@ import { defineComponent } from '@vue/composition-api'
 export default defineComponent({
   name: 'Index',
   created () {
-    this.$store.dispatch('toggleFullPage', true)
+    this.$store.dispatch('system/toggleFullPage', true)
   },
   beforeDestroy () {
-    this.$store.dispatch('toggleFullPage', false)
+    this.$store.dispatch('system/toggleFullPage', false)
   }
 })
 </script>

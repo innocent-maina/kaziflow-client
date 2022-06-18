@@ -6,12 +6,13 @@
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
+    <!-- {{ projects }} -->
     <b-table
       :checked-rows.sync="checkedRows"
       :checkable="checkable"
       :paginated="paginated"
       :per-page="perPage"
-      :data="clients"
+      :data="projects"
       default-sort="name"
       striped
       hoverable
@@ -41,7 +42,7 @@
         field="company"
         sortable
       >
-        {{ props.row.company }}
+        {{ props.row.category }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -49,7 +50,7 @@
         field="city"
         sortable
       >
-        {{ props.row.city }}
+        {{ props.row.status }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -57,7 +58,7 @@
         field="company"
         sortable
       >
-        {{ props.row.company }}
+        {{ props.row.description }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -90,7 +91,7 @@
       >
         <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'task.edit', params: {id: props.row.id}}"
+            :to="{name:'task.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
           >
             <b-icon
@@ -152,15 +153,26 @@ export default defineComponent({
       trashObject: null
     }
   },
+
   computed: {
     paginated () {
-      return this.clients.length > this.perPage
+      return this.$store.state.projects.projects.length > this.perPage
     },
-    ...mapState([
-      'clients'
-    ])
+
+    ...mapState({
+      projects: state => state.projects.projects
+    })
+
+  },
+  created () {
+    this.getProducts()
+    console.log(this.projects)
   },
   methods: {
+    getProducts () {
+      // console.log(this.$store.state.projects.projects)
+      this.$store.dispatch('projects/getAllProjects')
+    },
     trashModalOpen (obj) {
       this.trashObject = obj
       this.isModalActive = true

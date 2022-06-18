@@ -196,10 +196,10 @@ export default defineComponent({
   },
   methods: {
     asideToggleMobile () {
-      this.$store.commit('asideMobileStateToggle')
+      this.$store.commit('system/asideMobileStateToggle')
     },
     asideDesktopOnlyToggle () {
-      this.$store.dispatch('asideDesktopOnlyToggle')
+      this.$store.dispatch('system/asideDesktopOnlyToggle')
     },
     menuToggle () {
       this.isMenuActive = !this.isMenuActive

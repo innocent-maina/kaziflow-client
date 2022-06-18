@@ -27,7 +27,7 @@
         title="Clients"
         icon="account-multiple"
       >
-        <clients-table-sample
+        <tasks-table
           checkable
         />
       </card-component>
@@ -45,7 +45,7 @@
       </notification>
 
       <card-component class="has-table has-mobile-sort-spaced">
-        <clients-table-sample
+        <tasks-table
           checkable
         />
       </card-component>
@@ -63,7 +63,7 @@
       </notification>
 
       <card-component class="has-table has-thead-hidden">
-        <clients-table-sample is-empty />
+        <tasks-table is-empty />
       </card-component>
     </section>
   </div>
@@ -72,8 +72,7 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import Notification from '@/components/Notification.vue'
-import ClientsTableSample from '@/components/ClientsTableSample.vue'
-import CardComponent from '@/components/CardComponent.vue'
+import TasksTable from '@components/datagrids/TasksTable.vue'        import CardComponent from '@/components/CardComponent.vue'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 
@@ -83,8 +82,7 @@ export default defineComponent({
     HeroBar,
     TitleBar,
     CardComponent,
-    ClientsTableSample,
-    Notification
+TasksTable,    Notification
   },
   data () {
     return {
