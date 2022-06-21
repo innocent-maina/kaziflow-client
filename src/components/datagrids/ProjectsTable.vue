@@ -46,19 +46,35 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Reporter"
-        field="city"
+        label="Status"
+        field="status"
         sortable
       >
         {{ props.row.status }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Assignee"
-        field="company"
+        label="Leader"
+        field="leader"
         sortable
       >
-        {{ props.row.description }}
+        {{ props.row.leader }}
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
+        label="Team"
+        field="team"
+        sortable
+      >
+        {{ props.row.team }}
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
+        label="Tasks"
+        field="tasks"
+        sortable
+      >
+        {{ props.row.tasks }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -77,13 +93,21 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Due date"
+        label="Participants"
+        field="participants"
+        sortable
+      >
+        {{ props.row.participants }}
+      </b-table-column>
+      <!-- <b-table-column
+        v-slot="props"
+        label="Created date"
       >
         <small
           class="has-text-grey is-abbr-like"
-          :title="props.row.created"
-        >{{ props.row.created }}</small>
-      </b-table-column>
+          :title="props.row.createdAt"
+        >{{ props.row.createdAt }}</small>
+      </b-table-column> -->
       <b-table-column
         v-slot="props"
         custom-key="actions"
@@ -91,7 +115,7 @@
       >
         <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'task.edit', params: {id: props.row._id}}"
+            :to="{name:'project.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
           >
             <b-icon

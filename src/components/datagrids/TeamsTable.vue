@@ -30,31 +30,7 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Project Name"
-        field="name"
-        sortable
-      >
-        {{ props.row.name }}
-      </b-table-column>
-      <b-table-column
-        v-slot="props"
         label="Description"
-        field="company"
-        sortable
-      >
-        {{ props.row.category }}
-      </b-table-column>
-      <b-table-column
-        v-slot="props"
-        label="Reporter"
-        field="city"
-        sortable
-      >
-        {{ props.row.status }}
-      </b-table-column>
-      <b-table-column
-        v-slot="props"
-        label="Assignee"
         field="company"
         sortable
       >
@@ -62,27 +38,27 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        cell-class="is-progress-col"
-        label="Progress"
-        field="progress"
+        label="Responsibilities"
+        field="responsibilities"
         sortable
       >
-        <progress
-          class="progress is-small is-info"
-          :value="props.row.progress"
-          max="100"
-        >
-          {{ props.row.progress }}
-        </progress>
+        {{ props.row.responsibilities }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Due date"
+        label="Leader"
+        field="leader"
+        sortable
       >
-        <small
-          class="has-text-grey is-abbr-like"
-          :title="props.row.created"
-        >{{ props.row.created }}</small>
+        {{ props.row.leader }}
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
+        label="Members"
+        field="members"
+        sortable
+      >
+        {{ props.row.members }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -91,7 +67,7 @@
       >
         <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'task.edit', params: {id: props.row._id}}"
+            :to="{name:'team.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
           >
             <b-icon

@@ -6,7 +6,6 @@
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
-    <!-- {{ tasks }} -->
     <b-table
       :checked-rows.sync="checkedRows"
       :checkable="checkable"
@@ -28,10 +27,17 @@
           >
         </div>
       </b-table-column>
+      <!-- <b-table-column
+        label="Project Name"
+        field="project-name"
+        sortable
+      >
+        {{ props.row.name }}
+      </b-table-column> -->
       <b-table-column
         v-slot="props"
-        label="Project Name"
-        field="name"
+        label="Task Name"
+        field="company"
         sortable
       >
         {{ props.row.name }}
@@ -39,26 +45,26 @@
       <b-table-column
         v-slot="props"
         label="Description"
-        field="company"
+        field="description"
         sortable
       >
-        {{ props.row.category }}
+        {{ props.row.description }}
       </b-table-column>
       <b-table-column
         v-slot="props"
         label="Reporter"
-        field="city"
+        field="reporter"
         sortable
       >
-        {{ props.row.status }}
+        {{ props.row.reporter[0] }}
       </b-table-column>
       <b-table-column
         v-slot="props"
         label="Assignee"
-        field="company"
+        field="assignee"
         sortable
       >
-        {{ props.row.description }}
+        {{ props.row.assignees[0] }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -81,8 +87,8 @@
       >
         <small
           class="has-text-grey is-abbr-like"
-          :title="props.row.created"
-        >{{ props.row.created }}</small>
+          :title="props.row.createdAt"
+        >{{ props.row.createdAt }}</small>
       </b-table-column>
       <b-table-column
         v-slot="props"
