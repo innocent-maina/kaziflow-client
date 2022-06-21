@@ -6,12 +6,13 @@
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
+    <!-- {{ teams }} -->
     <b-table
       :checked-rows.sync="checkedRows"
       :checkable="checkable"
       :paginated="paginated"
       :per-page="perPage"
-      :data="clients"
+      :data="teams"
       default-sort="name"
       striped
       hoverable
@@ -29,7 +30,7 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Team Name"
+        label="Project Name"
         field="name"
         sortable
       >
@@ -37,27 +38,27 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Participants"
+        label="Description"
         field="company"
         sortable
       >
-        {{ props.row.company }}
+        {{ props.row.category }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Leader"
+        label="Reporter"
         field="city"
         sortable
       >
-        {{ props.row.city }}
+        {{ props.row.status }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Responsibilities"
+        label="Assignee"
         field="company"
         sortable
       >
-        {{ props.row.company }}
+        {{ props.row.description }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -90,7 +91,7 @@
       >
         <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'team.edit', params: {id: props.row.id}}"
+            :to="{name:'task.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
           >
             <b-icon
@@ -152,15 +153,24 @@ export default defineComponent({
       trashObject: null
     }
   },
+
   computed: {
     paginated () {
-      return this.clients.length > this.perPage
+      return this.$store.state.teams.teams.length > this.perPage
     },
+
     ...mapState({
-      clients: state => state.system.clients
+      teams: state => state.teams.teams
     })
+
+  },
+  created () {
+    this.getProducts()
   },
   methods: {
+    getProducts () {
+      this.$store.dispatch('teams/getAllTeams')
+    },
     trashModalOpen (obj) {
       this.trashObject = obj
       this.isModalActive = true

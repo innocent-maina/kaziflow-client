@@ -6,12 +6,13 @@
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
+    <!-- {{ employees }} -->
     <b-table
       :checked-rows.sync="checkedRows"
       :checkable="checkable"
       :paginated="paginated"
       :per-page="perPage"
-      :data="clients"
+      :data="employees"
       default-sort="name"
       striped
       hoverable
@@ -29,7 +30,7 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="First Name"
+        label="Project Name"
         field="name"
         sortable
       >
@@ -37,24 +38,32 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Last Name"
+        label="Description"
         field="company"
         sortable
       >
-        {{ props.row.company }}
+        {{ props.row.category }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Email"
+        label="Reporter"
         field="city"
         sortable
       >
-        {{ props.row.city }}
+        {{ props.row.status }}
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
+        label="Assignee"
+        field="company"
+        sortable
+      >
+        {{ props.row.description }}
       </b-table-column>
       <b-table-column
         v-slot="props"
         cell-class="is-progress-col"
-        label="Phone Number"
+        label="Progress"
         field="progress"
         sortable
       >
@@ -82,7 +91,7 @@
       >
         <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'admin-employee.edit', params: {id: props.row.id}}"
+            :to="{name:'task.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
           >
             <b-icon
@@ -144,15 +153,24 @@ export default defineComponent({
       trashObject: null
     }
   },
+
   computed: {
     paginated () {
-      return this.clients.length > this.perPage
+      return this.$store.state.employees.employees.length > this.perPage
     },
+
     ...mapState({
-      clients: state => state.system.clients
+      employees: state => state.employees.employees
     })
+
+  },
+  created () {
+    this.getProducts()
   },
   methods: {
+    getProducts () {
+      this.$store.dispatch('employees/getAllEmployees')
+    },
     trashModalOpen (obj) {
       this.trashObject = obj
       this.isModalActive = true

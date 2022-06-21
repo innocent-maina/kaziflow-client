@@ -6,13 +6,13 @@
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
-    <!-- {{ projects }} -->
+    <!-- {{ tasks }} -->
     <b-table
       :checked-rows.sync="checkedRows"
       :checkable="checkable"
       :paginated="paginated"
       :per-page="perPage"
-      :data="projects"
+      :data="tasks"
       default-sort="name"
       striped
       hoverable
@@ -156,11 +156,11 @@ export default defineComponent({
 
   computed: {
     paginated () {
-      return this.$store.state.projects.projects.length > this.perPage
+      return this.$store.state.tasks.tasks.length > this.perPage
     },
 
     ...mapState({
-      projects: state => state.projects.projects
+      tasks: state => state.tasks.tasks
     })
 
   },
@@ -169,7 +169,7 @@ export default defineComponent({
   },
   methods: {
     getProducts () {
-      this.$store.dispatch('projects/getAllProjects')
+      this.$store.dispatch('tasks/getAllTasks')
     },
     trashModalOpen (obj) {
       this.trashObject = obj

@@ -6,12 +6,13 @@
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
+    <!-- {{ projects }} -->
     <b-table
       :checked-rows.sync="checkedRows"
       :checkable="checkable"
       :paginated="paginated"
       :per-page="perPage"
-      :data="clients"
+      :data="projects"
       default-sort="name"
       striped
       hoverable
@@ -37,19 +38,27 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Participants"
+        label="Description"
         field="company"
         sortable
       >
-        {{ props.row.company }}
+        {{ props.row.category }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Tasks"
+        label="Reporter"
         field="city"
         sortable
       >
-        {{ props.row.city }}
+        {{ props.row.status }}
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
+        label="Assignee"
+        field="company"
+        sortable
+      >
+        {{ props.row.description }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -82,7 +91,7 @@
       >
         <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'project.edit', params: {id: props.row.id}}"
+            :to="{name:'task.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
           >
             <b-icon
@@ -127,7 +136,7 @@ import { mapState } from 'vuex'
 import ModalBox from '@/components/ModalBox.vue'
 
 export default defineComponent({
-  name: 'ProjectsTable',
+  name: 'TasksTable',
   components: { ModalBox },
   props: {
     checkable: Boolean,
@@ -144,16 +153,24 @@ export default defineComponent({
       trashObject: null
     }
   },
+
   computed: {
     paginated () {
-      return this.clients.length > this.perPage
+      return this.$store.state.projects.projects.length > this.perPage
     },
+
     ...mapState({
-      clients: state => state.system.clients
+      projects: state => state.projects.projects
     })
 
   },
+  created () {
+    this.getProducts()
+  },
   methods: {
+    getProducts () {
+      this.$store.dispatch('projects/getAllProjects')
+    },
     trashModalOpen (obj) {
       this.trashObject = obj
       this.isModalActive = true
