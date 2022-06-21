@@ -166,7 +166,7 @@ export default defineComponent({
   },
   created () {
     this.getProducts()
-    console.log(this.projects)
+    // console.log(this.projects)
   },
   methods: {
     getProducts () {

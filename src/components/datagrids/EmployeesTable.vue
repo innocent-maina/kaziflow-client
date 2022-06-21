@@ -148,9 +148,9 @@ export default defineComponent({
     paginated () {
       return this.clients.length > this.perPage
     },
-    ...mapState([
-      'clients'
-    ])
+    ...mapState({
+      clients: state => state.system.clients
+    })
   },
   methods: {
     trashModalOpen (obj) {

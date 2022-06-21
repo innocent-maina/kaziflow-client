@@ -121,7 +121,7 @@ export default defineComponent({
       }
       axios.post('http://localhost:3000/api/v1/auth/register', newUser).then(
         (res) => {
-          console.log(res)
+          // console.log(res)
           this.error = ''
           this.$router.push('/')
         },

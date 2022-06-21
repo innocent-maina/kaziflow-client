@@ -183,11 +183,11 @@ export default defineComponent({
     menuToggleIcon () {
       return this.isMenuActive ? 'close' : 'dots-vertical'
     },
-    ...mapState([
-      'isAsideMobileExpanded',
-      'isNavBarVisible',
-      'userName'
-    ])
+    ...mapState({
+      isAsideMobileExpanded: state => state.system.isAsideMobileExpanded,
+      isNavBarVisible: state => state.system.isNavBarVisible,
+      userName: state => state.system.userName
+    })
   },
   mounted () {
     this.$router.afterEach(() => {

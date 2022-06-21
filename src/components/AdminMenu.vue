@@ -81,11 +81,9 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-// import AsideMenuList from '@/components/AsideMenuList.vue'
 
 export default defineComponent({
   name: 'AsideMenu',
-  // components: { AsideMenuList },
   props: {
     menu: {
       type: Array,
@@ -93,7 +91,9 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapState(['isAsideVisible'])
+    ...mapState({
+      isAsideVisible: state => state.system.isAsideVisible
+    })
   },
   methods: {
     asideToggleDesktopOnly () {

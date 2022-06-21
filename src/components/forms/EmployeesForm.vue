@@ -225,9 +225,9 @@ export default defineComponent({
     formCardTitle () {
       return this.isProfileExists ? 'Edit Employee' : 'Create Employee'
     },
-    ...mapState([
-      'clients'
-    ])
+    ...mapState({
+      clients: state => state.system.clients
+    })
   },
   watch: {
     id (newValue) {

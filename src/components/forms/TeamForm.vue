@@ -243,9 +243,9 @@ export default defineComponent({
     formCardTitle () {
       return this.isProfileExists ? 'Edit Team' : 'Create Team'
     },
-    ...mapState([
-      'clients'
-    ])
+    ...mapState({
+      clients: state => state.system.clients
+    })
   },
   watch: {
     id (newValue) {

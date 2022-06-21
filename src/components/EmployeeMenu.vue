@@ -88,7 +88,10 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapState(['isAsideVisible'])
+    // ...mapState(['isAsideVisible'])
+    ...mapState({
+      isAsideVisible: state => state.system.isAsideVisible
+    })
   },
   methods: {
     asideToggleDesktopOnly () {

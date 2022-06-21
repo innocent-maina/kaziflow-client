@@ -80,18 +80,18 @@ export default defineComponent({
   computed: {
     userName: {
       get: function () {
-        return this.$store.state.userName
+        return this.$store.state.system.userName
       },
       set: function (name) {
-        this.$store.commit('user', { name })
+        this.$store.commit('system/user', { name })
       }
     },
     userEmail: {
       get: function () {
-        return this.$store.state.userEmail
+        return this.$store.state.system.userEmail
       },
       set: function (email) {
-        this.$store.commit('user', { email })
+        this.$store.commit('system/user', { email })
       }
     }
   },

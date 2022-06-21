@@ -71,10 +71,10 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapState([
-      'userName',
-      'userEmail'
-    ])
+    ...mapState({
+      userName: state => state.system.userName,
+      userEmail: state => state.system.userEmail
+    })
   }
 })
 </script>
