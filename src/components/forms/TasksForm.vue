@@ -217,7 +217,7 @@ export default defineComponent({
       return this.isProfileExists ? this.form.name : 'Create Task'
     },
     heroRouterLinkTo () {
-      return this.isProfileExists ? { name: 'task.new' } : { name: 'home' }
+      return this.isProfileExists ? { name: 'task.new' } : { name: 'AdminTasks' }
     },
     heroRouterLinkLabel () {
       return this.isProfileExists ? 'New Task' : 'Dashboard'

@@ -47,9 +47,6 @@ export default defineComponent({
     }
   },
   computed: {
-    // ...mapState([
-    //   'isFooterBarVisible'
-    // ])
     ...mapState({
       isFooterBarVisible: state => state.system.isFooterBarVisible
     })

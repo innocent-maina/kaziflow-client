@@ -235,7 +235,7 @@ export default defineComponent({
       return this.isProfileExists ? this.form.name : 'Create Team'
     },
     heroRouterLinkTo () {
-      return this.isProfileExists ? { name: 'team.new' } : { name: 'home' }
+      return this.isProfileExists ? { name: 'team.new' } : { name: 'AdminTeams' }
     },
     heroRouterLinkLabel () {
       return this.isProfileExists ? 'New Team' : 'Dashboard'

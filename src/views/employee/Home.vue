@@ -102,7 +102,7 @@ export default defineComponent({
   },
   data () {
     return {
-      titleStack: ['Admin', 'Dashboard'],
+      titleStack: ['Employee', 'Dashboard'],
       chartData: null,
       chartOptions: {
         responsive: true,

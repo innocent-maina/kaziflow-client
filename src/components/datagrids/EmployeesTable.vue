@@ -82,7 +82,7 @@
       >
         <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'employee.edit', params: {id: props.row.id}}"
+            :to="{name:'admin-employee.edit', params: {id: props.row.id}}"
             class="button is-small is-info"
           >
             <b-icon

@@ -217,7 +217,7 @@ export default defineComponent({
       return this.isProfileExists ? this.form.name : 'Create Employee'
     },
     heroRouterLinkTo () {
-      return this.isProfileExists ? { name: 'employee.new' } : { name: 'home' }
+      return this.isProfileExists ? { name: 'admin-employee.new' } : { name: 'AdminEmployees' }
     },
     heroRouterLinkLabel () {
       return this.isProfileExists ? 'New Employee' : 'Dashboard'
@@ -273,7 +273,7 @@ export default defineComponent({
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
         } else {
-          this.$router.push({ name: 'employee.new' })
+          this.$router.push({ name: 'admin-employee.new' })
         }
       }
     },

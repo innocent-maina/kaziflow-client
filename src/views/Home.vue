@@ -61,7 +61,7 @@
           <line-chart
             :chart-data="chartData"
             :chart-options="chartOptions"
-            :style="{height: '100%'}"
+            :style="{ height: '100%' }"
           />
         </div>
       </card-component>
@@ -85,12 +85,14 @@ import Tiles from '@/components/Tiles.vue'
 import CardWidget from '@/components/CardWidget.vue'
 import CardComponent from '@/components/CardComponent.vue'
 import LineChart from '@/components/Charts/LineChart.vue'
-import TasksTable from '@components/datagrids/TasksTable.vue'        import Notification from '@/components/Notification.vue'
+import TasksTable from '@components/datagrids/TasksTable.vue'
+import Notification from '@/components/Notification.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
-TasksTable,    LineChart,
+    TasksTable,
+    LineChart,
     CardComponent,
     CardWidget,
     Tiles,

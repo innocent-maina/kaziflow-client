@@ -166,11 +166,9 @@ export default defineComponent({
   },
   created () {
     this.getProducts()
-    // console.log(this.projects)
   },
   methods: {
     getProducts () {
-      // console.log(this.$store.state.projects.projects)
       this.$store.dispatch('projects/getAllProjects')
     },
     trashModalOpen (obj) {

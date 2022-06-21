@@ -98,8 +98,8 @@ const routes = [
         meta: {
           title: 'Edit Employee'
         },
-        path: '/employee/:id',
-        name: 'employee.edit',
+        path: '/admin-employee/:id',
+        name: 'admin-employee.edit',
         component: () => import(/* webpackChunkName: "client-form" */ '@/components/forms/EmployeesForm.vue'),
         props: true
       },
@@ -107,8 +107,8 @@ const routes = [
         meta: {
           title: 'New Employee'
         },
-        path: '/employee/new',
-        name: 'employee.new',
+        path: '/admin-employee/new',
+        name: 'admin-employee.new',
         component: () => import(/* webpackChunkName: "client-form" */ '@/components/forms/EmployeesForm.vue')
       },
       {
