@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>Demo only.</b> No data will be saved/updated</span>
+          <span><b>change me.</b> change me</span>
         </div>
       </notification>
       <tiles>
@@ -267,16 +267,11 @@ export default defineComponent({
     this.getData()
   },
   methods: {
-    // this is to reload to take in new data
-    // reloadPage () {
-    //   window.location.reload()
-    // },
     getData () {
-      // this.reloadPage()
       if (this.id) {
         const item = find(
           this.clients,
-          (item) => item.id === parseInt(this.id)
+          (item) => item._id === parseInt(this.id)
 
         )
 
@@ -305,7 +300,7 @@ export default defineComponent({
         this.isLoading = false
 
         this.$buefy.snackbar.open({
-          message: 'Demo only',
+          message: 'change me',
           queue: false
         })
       }, 750)

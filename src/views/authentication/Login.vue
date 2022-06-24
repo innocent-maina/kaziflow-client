@@ -48,7 +48,6 @@
       <b-field grouped>
         <div class="control">
           <b-button
-            native-type="submit"
             type="is-black"
             :loading="isLoading"
             @click="login"
@@ -86,7 +85,7 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import CardComponent from '@/components/CardComponent.vue'
-import axios from 'axios'
+// import axios from 'axios'
 export default defineComponent({
   name: 'Login',
   components: { CardComponent },
@@ -100,25 +99,44 @@ export default defineComponent({
     }
   },
   methods: {
-    login () {
+    login (async) {
       const user = {
         email: this.email,
         password: this.password
       }
-      axios.post('http://localhost:3000/api/v1/auth/login', user).then(
-        (res) => {
-          // if successful
-          if (res.status === 200) {
-            localStorage.setItem('token', res.data.token)
-            // instead of this, run the authorization function
-            this.$router.push('/')
-          }
-        },
-        (err) => {
-          console.log(err.response)
-          this.error = err.response.data.error
-        }
-      )
+      this.$store.dispatch('authentication/login', user)
+      // set notification for either wrong credentials or successful login
+      // if (this.$store.state.authentication.accessToken === '') {
+      //   this.isLoading = true
+      //   setTimeout(() => {
+      //     this.isLoading = false
+      //     this.$buefy.snackbar.open(
+      //       {
+      //         message: 'Invalid credentials!',
+      //         queue: false
+      //       }
+      //     )
+      //   }, 750)
+      // } else {
+      //   this.isLoading = true
+      //   setTimeout(() => {
+      //     this.isLoading = false
+      //     this.$buefy.snackbar.open(
+      //       {
+      //         message: 'Login successful!',
+      //         queue: false
+      //       }
+      //     )
+      //   }, 750)
+      // }
+      if (
+        this.$store.state.authentication.accessToken !== '' &&
+        this.$store.state.authentication.role === 'admin'
+      ) {
+        this.$router.push('/admin')
+      } else if (this.$store.state.authentication.role === 'employee') {
+        this.$router.push('/employee')
+      }
     }
   }
 })

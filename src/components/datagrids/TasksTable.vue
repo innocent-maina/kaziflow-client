@@ -87,8 +87,8 @@
       >
         <small
           class="has-text-grey is-abbr-like"
-          :title="props.row.createdAt"
-        >{{ props.row.createdAt }}</small>
+          :title="props.row.dueDate"
+        >{{ props.row.dueDate }}</small>
       </b-table-column>
       <b-table-column
         v-slot="props"

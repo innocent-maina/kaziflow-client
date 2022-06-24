@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>Demo only.</b> No data will be saved/updated</span>
+          <span><b>change me.</b> changed</span>
         </div>
       </notification>
       <tiles>
@@ -59,7 +59,7 @@
               horizontal
             >
               <b-input
-                v-model="form.company"
+                v-model="form.description"
                 placeholder="e.g. Berton & Steinway"
                 required
               />
@@ -70,7 +70,7 @@
               horizontal
             >
               <b-input
-                v-model="form.city"
+                v-model="form.reporter"
                 placeholder="e.g. Geoffreyton"
                 required
               />
@@ -128,14 +128,14 @@
           </b-field>
           <b-field label="Description">
             <b-input
-              :value="form.company"
+              :value="form.description"
               custom-class="is-static"
               readonly
             />
           </b-field>
           <b-field label="Reporter">
             <b-input
-              :value="form.city"
+              :value="form.reporter"
               custom-class="is-static"
               readonly
             />
@@ -226,7 +226,7 @@ export default defineComponent({
       return this.isProfileExists ? 'Edit Task' : 'Create Task'
     },
     ...mapState({
-      clients: state => state.system.clients
+      tasks: state => state.tasks.tasks
     })
   },
   watch: {
@@ -236,8 +236,8 @@ export default defineComponent({
       if (!newValue) {
         this.form.id = null
         this.form.name = null
-        this.form.company = null
-        this.form.city = null
+        this.form.description = null
+        this.form.reporter = null
         this.form.created_date = new Date()
         this.createdReadable = new Date().toLocaleDateString()
       } else {
@@ -249,25 +249,21 @@ export default defineComponent({
     this.getData()
   },
   methods: {
-    // this is to reload to take in new data
-    // reloadPage () {
-    //   window.location.reload()
-    // },
     getData () {
-      // this.reloadPage()
       if (this.id) {
         const item = find(
-          this.clients,
-          (item) => item.id === parseInt(this.id)
-
+          this.tasks,
+          // eslint-disable-next-line dot-notation
+          (item) => item._id === '62aa2913b9205decba42c416' // parseInt(this._id)
         )
-
+        console.log('below is item')
+        console.log(item)
         if (item) {
           this.isProfileExists = true
-          this.form.id = item.id
+          this.form.id = item._id
           this.form.name = item.name
-          this.form.company = item.company
-          this.form.city = item.city
+          this.form.description = item.description
+          this.form.reporter = item.reporter[0]
           this.form.progress = item.progress
           this.form.created_date = new Date(item.created_mm_dd_yyyy)
 
@@ -282,7 +278,6 @@ export default defineComponent({
     },
     submit () {
       this.isLoading = true
-
       setTimeout(() => {
         this.isLoading = false
 

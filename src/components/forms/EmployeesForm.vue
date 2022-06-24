@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>Demo only.</b> No data will be saved/updated</span>
+          <span><b>change me.</b> change me</span>
         </div>
       </notification>
       <tiles>
@@ -287,7 +287,7 @@ export default defineComponent({
         this.isLoading = false
 
         this.$buefy.snackbar.open({
-          message: 'Demo only',
+          message: 'change me',
           queue: false
         })
       }, 750)

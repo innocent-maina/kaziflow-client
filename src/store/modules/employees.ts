@@ -17,7 +17,7 @@ export default {
   actions: {
     async getAllEmployees ({ commit }, state) {
       try {
-        const res = await axios.get('http://localhost:3000/api/v1/employees/')
+        const res = await axios.get('http://localhost:3000/api/v1/users/')
         commit('SET_EMPLOYEES', res.data?.data)
       } catch (error) {
         console.error(error)

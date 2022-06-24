@@ -2,7 +2,7 @@
   <div>
     <title-bar :title-stack="titleStack" />
     <hero-bar>
-      Projects
+      Employees
       <router-link
         slot="right"
         to="/"
@@ -18,13 +18,13 @@
             icon="buffer"
             custom-size="default"
           />
-          <b>Done with a project? You can now mark it as complete </b>
+          <b>Add to your team </b>
         </div>
       </notification>
 
       <card-component
         class="has-table has-mobile-sort-spaced"
-        title="All Projects"
+        title="All Users"
         icon="account-multiple"
       >
         <employees-table checkable />
@@ -42,7 +42,7 @@ import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 
 export default defineComponent({
-  name: 'EmployeeProjects',
+  name: 'AdminEmployees',
   components: {
     HeroBar,
     TitleBar,
@@ -52,7 +52,7 @@ export default defineComponent({
   },
   data () {
     return {
-      titleStack: ['Employee', 'Projects']
+      titleStack: ['Admin', 'Employees']
     }
   }
 })

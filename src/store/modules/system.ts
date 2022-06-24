@@ -22,7 +22,7 @@ export default {
     /* Sample data (commonly used) */
     clients: [
       {
-        id: 19,
+        _id: 19,
         avatar: "https://avatars.dicebear.com/v2/gridy/Howell-Hand.svg",
         login: "percy64",
         name: "Howell Hand",
@@ -33,7 +33,7 @@ export default {
         created_mm_dd_yyyy: "03-03-2021",
       },
       {
-        id: 11,
+        _id: 11,
         avatar: "https://avatars.dicebear.com/v2/gridy/Hope-Howe.svg",
         login: "dare.concepcion",
         name: "Hope Howe",
@@ -44,7 +44,7 @@ export default {
         created_mm_dd_yyyy: "12-01-2021",
       },
       {
-        id: 32,
+        _id: 32,
         avatar: "https://avatars.dicebear.com/v2/gridy/Nelson-Jerde.svg",
         login: "geovanni.kessler",
         name: "Nelson Jerde",
@@ -55,7 +55,7 @@ export default {
         created_mm_dd_yyyy: "05-18-2021",
       },
       {
-        id: 22,
+        _id: 22,
         avatar: "https://avatars.dicebear.com/v2/gridy/Kim-Weimann.svg",
         login: "macejkovic.dashawn",
         name: "Kim Weimann",
@@ -66,7 +66,7 @@ export default {
         created_mm_dd_yyyy: "05-04-2021",
       },
       {
-        id: 34,
+        _id: 34,
         avatar: "https://avatars.dicebear.com/v2/gridy/Justice-OReilly.svg",
         login: "hilpert.leora",
         name: "Justice O'Reilly",
@@ -77,7 +77,7 @@ export default {
         created_mm_dd_yyyy: "03-27-2021",
       },
       {
-        id: 48,
+        _id: 48,
         avatar: "https://avatars.dicebear.com/v2/gridy/Adrienne-Mayer-III.svg",
         login: "ferry.sophia",
         name: "Adrienne Mayer III",
@@ -88,7 +88,7 @@ export default {
         created_mm_dd_yyyy: "03-29-2021",
       },
       {
-        id: 20,
+        _id: 20,
         avatar: "https://avatars.dicebear.com/v2/gridy/Mr.-Julien-Ebert.svg",
         login: "gokuneva",
         name: "Mr. Julien Ebert",
@@ -99,7 +99,7 @@ export default {
         created_mm_dd_yyyy: "06-25-2021",
       },
       {
-        id: 47,
+        _id: 47,
         avatar: "https://avatars.dicebear.com/v2/gridy/Lenna-Smitham.svg",
         login: "paolo.walter",
         name: "Lenna Smitham",
@@ -110,7 +110,7 @@ export default {
         created_mm_dd_yyyy: "10-08-2021",
       },
       {
-        id: 24,
+        _id: 24,
         avatar: "https://avatars.dicebear.com/v2/gridy/Travis-Davis.svg",
         login: "lkessler",
         name: "Travis Davis",
@@ -121,7 +121,7 @@ export default {
         created_mm_dd_yyyy: "10-20-2021",
       },
       {
-        id: 49,
+        _id: 49,
         avatar:
           "https://avatars.dicebear.com/v2/gridy/Prof.-Esteban-Steuber.svg",
         login: "shana.lang",
@@ -133,7 +133,7 @@ export default {
         created_mm_dd_yyyy: "05-16-2021",
       },
       {
-        id: 36,
+        _id: 36,
         avatar: "https://avatars.dicebear.com/v2/gridy/Russell-Goodwin-V.svg",
         login: "jewel07",
         name: "Russell Goodwin V",
@@ -144,7 +144,7 @@ export default {
         created_mm_dd_yyyy: "04-22-2021",
       },
       {
-        id: 33,
+        _id: 33,
         avatar:
           "https://avatars.dicebear.com/v2/gridy/Ms.-Cassidy-Wiegand-DVM.svg",
         login: "burnice.okuneva",
@@ -156,7 +156,7 @@ export default {
         created_mm_dd_yyyy: "09-16-2021",
       },
       {
-        id: 44,
+        _id: 44,
         avatar:
           "https://avatars.dicebear.com/v2/gridy/Mr.-Watson-Brakus-PhD.svg",
         login: "oconnell.juanita",
@@ -168,7 +168,7 @@ export default {
         created_mm_dd_yyyy: "06-22-2021",
       },
       {
-        id: 46,
+        _id: 46,
         avatar:
           "https://avatars.dicebear.com/v2/gridy/Mr.-Garrison-Friesen-V.svg",
         login: "vgutmann",
@@ -180,7 +180,7 @@ export default {
         created_mm_dd_yyyy: "10-19-2021",
       },
       {
-        id: 14,
+        _id: 14,
         avatar: "https://avatars.dicebear.com/v2/gridy/Ms.-Sister-Morar.svg",
         login: "veum.lucio",
         name: "Ms. Sister Morar",
@@ -191,7 +191,7 @@ export default {
         created_mm_dd_yyyy: "06-11-2021",
       },
       {
-        id: 40,
+        _id: 40,
         avatar: "https://avatars.dicebear.com/v2/gridy/Ms.-Laisha-Reinger.svg",
         login: "edietrich",
         name: "Ms. Laisha Reinger",
@@ -202,7 +202,7 @@ export default {
         created_mm_dd_yyyy: "11-02-2021",
       },
       {
-        id: 5,
+        _id: 5,
         avatar: "https://avatars.dicebear.com/v2/gridy/Cameron-Lind.svg",
         login: "mose44",
         name: "Cameron Lind",
@@ -213,7 +213,7 @@ export default {
         created_mm_dd_yyyy: "09-14-2021",
       },
       {
-        id: 43,
+        _id: 43,
         avatar: "https://avatars.dicebear.com/v2/gridy/Sarai-Little.svg",
         login: "rau.abelardo",
         name: "Sarai Little",
@@ -224,7 +224,7 @@ export default {
         created_mm_dd_yyyy: "06-13-2021",
       },
       {
-        id: 2,
+        _id: 2,
         avatar: "https://avatars.dicebear.com/v2/gridy/Shyann-Kautzer.svg",
         login: "imurazik",
         name: "Shyann Kautzer",
@@ -235,7 +235,7 @@ export default {
         created_mm_dd_yyyy: "02-15-2021",
       },
       {
-        id: 15,
+        _id: 15,
         avatar: "https://avatars.dicebear.com/v2/gridy/Lorna-Christiansen.svg",
         login: "annalise97",
         name: "Lorna Christiansen",

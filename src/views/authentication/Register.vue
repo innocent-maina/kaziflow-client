@@ -57,7 +57,7 @@
         />
       </b-field>
 
-      <b-field>
+      <!-- <b-field>
         <b-checkbox
           v-model="remember"
           type="is-black"
@@ -65,14 +65,13 @@
         >
           Remember me
         </b-checkbox>
-      </b-field>
+      </b-field> -->
       {{ error }}
       <hr>
 
       <b-field grouped>
         <div class="control">
           <b-button
-            native-type="submit"
             type="is-black"
             :loading="isLoading"
             @click="register"
@@ -96,7 +95,6 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import CardComponent from '@/components/CardComponent.vue'
-import axios from 'axios'
 
 export default defineComponent({
   name: 'Login',
@@ -113,23 +111,16 @@ export default defineComponent({
     }
   },
   methods: {
-    signup () {
+    register () {
       const newUser = {
-        name: this.name,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        phoneNumber: this.phoneNumber,
         email: this.email,
         password: this.password
       }
-      axios.post('http://localhost:3000/api/v1/auth/register', newUser).then(
-        (res) => {
-          // console.log(res)
-          this.error = ''
-          this.$router.push('/')
-        },
-        (err) => {
-          console.log(err.response)
-          this.error = err.response.data.error
-        }
-      )
+      this.$store.dispatch('authentication/register', newUser)
+      this.$router.push('/')
     }
   }
 })

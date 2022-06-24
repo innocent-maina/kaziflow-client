@@ -6,7 +6,6 @@
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
-    <!-- {{ employees }} -->
     <b-table
       :checked-rows.sync="checkedRows"
       :checkable="checkable"
@@ -30,59 +29,51 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Project Name"
-        field="name"
+        label="First Name"
+        field="firstName"
         sortable
       >
-        {{ props.row.name }}
+        {{ props.row.firstName }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Description"
-        field="company"
+        label="Last Name"
+        field="lastName"
         sortable
       >
-        {{ props.row.category }}
+        {{ props.row.lastName }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Reporter"
-        field="city"
+        label="Email"
+        field="email"
         sortable
       >
-        {{ props.row.status }}
+        {{ props.row.email }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Assignee"
-        field="company"
+        label="Phone Number"
+        field="phoneNumber"
         sortable
       >
-        {{ props.row.description }}
+        {{ props.row.phoneNumber }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        cell-class="is-progress-col"
-        label="Progress"
-        field="progress"
+        label="Role"
+        field="role"
         sortable
       >
-        <progress
-          class="progress is-small is-info"
-          :value="props.row.progress"
-          max="100"
-        >
-          {{ props.row.progress }}
-        </progress>
+        {{ props.row.role }}
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Due date"
+        label="Member Since"
+        field="createdAt"
+        sortable
       >
-        <small
-          class="has-text-grey is-abbr-like"
-          :title="props.row.created"
-        >{{ props.row.created }}</small>
+        {{ props.row.createdAt }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -91,7 +82,7 @@
       >
         <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'task.edit', params: {id: props.row._id}}"
+            :to="{name:'employee.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
           >
             <b-icon

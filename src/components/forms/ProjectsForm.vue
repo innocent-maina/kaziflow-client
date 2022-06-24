@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>Demo only.</b> No data will be saved/updated</span>
+          <span><b>change me.</b> No data will be saved/updated</span>
         </div>
       </notification>
       <tiles>
@@ -44,13 +44,12 @@
             <hr>
             <b-field
               label="Name"
-              message="Client name"
+              message="Project name"
               horizontal
             >
               <b-input
                 v-model="form.name"
                 placeholder="e.g. John Doe"
-                required
               />
             </b-field>
             <b-field
@@ -59,9 +58,36 @@
               horizontal
             >
               <b-input
-                v-model="form.company"
+                v-model="form.participants"
                 placeholder="e.g. Berton & Steinway"
-                required
+              />
+            </b-field>
+            <b-field
+              label="Leader"
+              message=""
+              horizontal
+            >
+              <b-input
+                v-model="form.leader"
+              />
+            </b-field>
+            <b-field
+              label="Category"
+              message=""
+              horizontal
+            >
+              <b-input
+                v-model="form.category"
+              />
+            </b-field>
+            <b-field
+              label="Status"
+              message=""
+              horizontal
+            >
+              <b-input
+                v-model="form.status"
+                placeholder="e.g. Berton & Steinway"
               />
             </b-field>
             <b-field
@@ -72,7 +98,6 @@
               <b-input
                 v-model="form.city"
                 placeholder="e.g. Geoffreyton"
-                required
               />
             </b-field>
             <b-field
@@ -196,12 +221,15 @@ export default defineComponent({
       isProfileExists: false,
       isLoading: false,
       form: {
-        id: null,
-        name: null,
-        company: null,
-        city: null,
-        created_date: new Date(),
-        progress: 0
+        name: 'wahome',
+        category: 'wahome',
+        description: 'wahome',
+        leader: 'wahome',
+        status: 'wahome',
+        team: 'wahome',
+        tasks: 'wahome',
+        participants: 'wahome'
+
       },
       createdReadable: null
     }
@@ -258,7 +286,7 @@ export default defineComponent({
       if (this.id) {
         const item = find(
           this.clients,
-          (item) => item.id === parseInt(this.id)
+          (item) => item._id === parseInt(this.id)
 
         )
 
@@ -282,12 +310,12 @@ export default defineComponent({
     },
     submit () {
       this.isLoading = true
-
+      this.$store.dispatch('projects/createProjects', this.form)
       setTimeout(() => {
         this.isLoading = false
 
         this.$buefy.snackbar.open({
-          message: 'Demo only',
+          message: 'Project has been created successfully',
           queue: false
         })
       }, 750)
