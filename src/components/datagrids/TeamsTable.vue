@@ -30,8 +30,16 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
+        label="Name"
+        field="name"
+        sortable
+      >
+        {{ props.row.name }}
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
         label="Description"
-        field="company"
+        field="description"
         sortable
       >
         {{ props.row.description }}

@@ -41,7 +41,7 @@ export default {
     SET_ACCESS_TOKEN (state, payload) {
       localStorage.setItem('accessToken', payload)
       state.accessToken = payload
-    },
+    }
   },
   actions: {
     async register ({ commit }, payload) {

@@ -36,20 +36,13 @@
             </b-field>
             <hr>
             <b-field
-              label="Project logo"
-              horizontal
-            >
-              <file-picker type="is-info" />
-            </b-field>
-            <hr>
-            <b-field
               label="Name"
-              message="Project name"
+              message="Task name"
               horizontal
             >
               <b-input
                 v-model="form.name"
-                placeholder="e.g. John Doe"
+                placeholder="e.g. Create Datagrids"
                 required
               />
             </b-field>
@@ -60,7 +53,18 @@
             >
               <b-input
                 v-model="form.description"
-                placeholder="e.g. Berton & Steinway"
+                placeholder="e.g. You are required to create component datagrids..."
+                required
+              />
+            </b-field>
+            <b-field
+              label="Project"
+              message="Project this task belongs to"
+              horizontal
+            >
+              <b-input
+                v-model="form.project"
+                placeholder="e.g. Project A"
                 required
               />
             </b-field>
@@ -71,16 +75,38 @@
             >
               <b-input
                 v-model="form.reporter"
-                placeholder="e.g. Geoffreyton"
+                placeholder="e.g. Karen Nduta"
                 required
               />
             </b-field>
             <b-field
-              label="Assignee"
+              label="Assignees"
+              message="Individual working on the task"
+              horizontal
+            >
+              <b-input
+                v-model="form.assignees"
+                placeholder="e.g. Karen Nduta"
+                required
+              />
+            </b-field>
+            <b-field
+              label="Status"
+              message="Task update"
+              horizontal
+            >
+              <b-input
+                v-model="form.status"
+                placeholder="Select One"
+                required
+              />
+            </b-field>
+            <b-field
+              label="Due Date"
               horizontal
             >
               <b-datepicker
-                v-model="form.created_date"
+                v-model="form.dueDate"
                 placeholder="Click to select..."
                 icon="calendar-today"
                 @input="dateInput"
@@ -133,6 +159,13 @@
               readonly
             />
           </b-field>
+          <b-field label="Project">
+            <b-input
+              :value="form.project"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
           <b-field label="Reporter">
             <b-input
               :value="form.reporter"
@@ -140,7 +173,21 @@
               readonly
             />
           </b-field>
-          <b-field label="Assignee">
+          <b-field label="Assignees">
+            <b-input
+              :value="createdReadable"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <b-field label="Status">
+            <b-input
+              :value="form.status"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <b-field label="Due date">
             <b-input
               :value="createdReadable"
               custom-class="is-static"
@@ -170,7 +217,7 @@ import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 import Tiles from '@/components/Tiles.vue'
 import CardComponent from '@/components/CardComponent.vue'
-import FilePicker from '@/components/FilePicker.vue'
+// import FilePicker from '@/components/FilePicker.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import Notification from '@/components/Notification.vue'
 
@@ -178,7 +225,7 @@ export default defineComponent({
   name: 'TasksForm',
   components: {
     UserAvatar,
-    FilePicker,
+    // FilePicker,
     CardComponent,
     Tiles,
     HeroBar,
@@ -196,11 +243,14 @@ export default defineComponent({
       isProfileExists: false,
       isLoading: false,
       form: {
-        id: null,
-        name: null,
-        company: null,
-        city: null,
-        created_date: new Date(),
+        id: '',
+        name: '',
+        description: '',
+        project: '',
+        reporter: '',
+        assignees: '',
+        status: '',
+        dueDate: '',
         progress: 0
       },
       createdReadable: null
@@ -234,11 +284,15 @@ export default defineComponent({
       this.isProfileExists = false
 
       if (!newValue) {
-        this.form.id = null
-        this.form.name = null
-        this.form.description = null
-        this.form.reporter = null
-        this.form.created_date = new Date()
+        this.form.id = ''
+        this.form.name = ''
+        this.form.description = ''
+        this.form.reporter = ''
+        this.form.project = ''
+        this.form.assignees = ''
+        this.form.status = ''
+        this.form.progress = 0
+        this.form.dueDate = ''
         this.createdReadable = new Date().toLocaleDateString()
       } else {
         this.getData()
@@ -263,9 +317,12 @@ export default defineComponent({
           this.form.id = item._id
           this.form.name = item.name
           this.form.description = item.description
+          this.form.project = item.project
           this.form.reporter = item.reporter[0]
+          this.form.assignees = item.assignees[0]
+          this.form.status = item.status
+          this.form.dueDate = item.dueDate
           this.form.progress = item.progress
-          this.form.created_date = new Date(item.created_mm_dd_yyyy)
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
         } else {
@@ -277,6 +334,17 @@ export default defineComponent({
       this.createdReadable = new Date(v).toLocaleDateString()
     },
     submit () {
+      const newTask = {
+        name: this.form.name,
+        description: this.form.description,
+        reporter: this.form.reporter,
+        project: this.form.project,
+        assignees: this.form.assignees,
+        status: this.form.status,
+        progress: this.form.progress,
+        dueDate: this.form.dueDate
+      }
+      this.$store.dispatch('tasks/createTasks', newTask)
       this.isLoading = true
       setTimeout(() => {
         this.isLoading = false

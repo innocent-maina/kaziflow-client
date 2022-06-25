@@ -49,17 +49,17 @@
             >
               <b-input
                 v-model="form.name"
-                placeholder="e.g. John Doe"
+                placeholder="e.g. Project A"
               />
             </b-field>
             <b-field
-              label="Participants"
-              message="Client's company name"
+              label="Description"
+              message="Project description"
               horizontal
             >
               <b-input
-                v-model="form.participants"
-                placeholder="e.g. Berton & Steinway"
+                v-model="form.description"
+                placeholder="e.g. Provide marketing solutions to freelancers"
               />
             </b-field>
             <b-field
@@ -81,6 +81,15 @@
               />
             </b-field>
             <b-field
+              label="Team"
+              message=""
+              horizontal
+            >
+              <b-input
+                v-model="form.team"
+              />
+            </b-field>
+            <b-field
               label="Status"
               message=""
               horizontal
@@ -91,21 +100,11 @@
               />
             </b-field>
             <b-field
-              label="Tasks"
-              message="Client's city"
-              horizontal
-            >
-              <b-input
-                v-model="form.city"
-                placeholder="e.g. Geoffreyton"
-              />
-            </b-field>
-            <b-field
-              label="Due Date"
+              label="Estimated end date"
               horizontal
             >
               <b-datepicker
-                v-model="form.created_date"
+                v-model="form.endDate"
                 placeholder="Click to select..."
                 icon="calendar-today"
                 @input="dateInput"
@@ -151,23 +150,44 @@
               readonly
             />
           </b-field>
-          <b-field label="Participants">
+          <b-field label="Description">
             <b-input
-              :value="form.company"
+              :value="form.Description"
               custom-class="is-static"
               readonly
             />
           </b-field>
-          <b-field label="Tasks">
+          <b-field label="Leader">
             <b-input
-              :value="form.city"
+              :value="form.leader"
               custom-class="is-static"
               readonly
             />
           </b-field>
-          <b-field label="Due Date">
+          <b-field label="Category">
             <b-input
-              :value="createdReadable"
+              :value="form.category"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <b-field label="Team">
+            <b-input
+              :value="form.team"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <b-field label="Status">
+            <b-input
+              :value="form.status"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <b-field label="End date">
+            <b-input
+              :value="form.endDate"
               custom-class="is-static"
               readonly
             />
@@ -221,14 +241,14 @@ export default defineComponent({
       isProfileExists: false,
       isLoading: false,
       form: {
-        name: 'wahome',
-        category: 'wahome',
-        description: 'wahome',
-        leader: 'wahome',
-        status: 'wahome',
-        team: 'wahome',
-        tasks: 'wahome',
-        participants: 'wahome'
+        name: '',
+        category: '',
+        description: '',
+        leader: '',
+        status: '',
+        team: '',
+        endDate: '',
+        progress: ''
 
       },
       createdReadable: null
@@ -262,11 +282,15 @@ export default defineComponent({
       this.isProfileExists = false
 
       if (!newValue) {
-        this.form.id = null
-        this.form.name = null
-        this.form.company = null
-        this.form.city = null
-        this.form.created_date = new Date()
+        this.form.id = ''
+        this.form.name = ''
+        this.form.description = ''
+        this.form.category = ''
+        this.form.leader = ''
+        this.form.team = ''
+        this.form.status = ''
+        this.form.endDate = ''
+        this.form.progress = 0
         this.createdReadable = new Date().toLocaleDateString()
       } else {
         this.getData()
@@ -294,8 +318,12 @@ export default defineComponent({
           this.isProfileExists = true
           this.form.id = item.id
           this.form.name = item.name
-          this.form.company = item.company
-          this.form.city = item.city
+          this.form.description = item.description
+          this.form.category = item.category
+          this.form.leader = item.leader
+          this.form.team = item.team
+          this.form.status = item.status
+          this.form.endDate = item.endDate
           this.form.progress = item.progress
           this.form.created_date = new Date(item.created_mm_dd_yyyy)
 
@@ -309,6 +337,17 @@ export default defineComponent({
       this.createdReadable = new Date(v).toLocaleDateString()
     },
     submit () {
+      const newProject = {
+        name: this.form.name,
+        description: this.form.description,
+        category: this.form.category,
+        leader: this.form.leader,
+        team: this.form.team,
+        status: this.form.status,
+        endDate: this.form.endDate,
+        progress: this.form.progress
+      }
+      this.$store.dispatch('projects/createProject', newProject)
       this.isLoading = true
       this.$store.dispatch('projects/createProjects', this.form)
       setTimeout(() => {

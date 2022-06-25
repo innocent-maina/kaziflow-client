@@ -30,13 +30,13 @@ export default {
         console.error(error)
       }
     },
-    async createProjects ({ commit }) {
+    async createProject ({ commit }, payload) {
       try {
-        console.log('create project action has been called')
         const response = await axios.post(
-          'http://localhost:3000/api/v1/projects/'
+          'http://localhost:3000/api/v1/projects',
+          payload
         )
-        commit('NEW_PROJECT', response.data?.data)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }

@@ -36,64 +36,65 @@
             </b-field>
             <hr>
             <b-field
-              label="Employee Avatar"
+              label="Profile"
               horizontal
             >
               <file-picker type="is-info" />
             </b-field>
             <hr>
             <b-field
-              label="Name"
+              label="First Name"
               message="First name"
               horizontal
             >
               <b-input
-                v-model="form.name"
-                placeholder="e.g. John Doe"
+                v-model="form.firstName"
+                placeholder="e.g. John"
                 required
               />
             </b-field>
             <b-field
-              label="Last Name"
-              message="Client's company name"
+              label="Last name"
+              message="Last name"
               horizontal
             >
               <b-input
-                v-model="form.company"
-                placeholder="e.g. Berton & Steinway"
+                v-model="form.lastName"
+                placeholder="e.g. Doe"
                 required
               />
             </b-field>
             <b-field
               label="Email"
-              message="Client's city"
+              message="Company email"
               horizontal
             >
               <b-input
-                v-model="form.city"
-                placeholder="e.g. Geoffreyton"
+                v-model="form.email"
+                placeholder="e.g. karen@kaziflow.com"
+                required
+              />
+            </b-field>
+            <b-field
+              label="Password"
+              message="password"
+              horizontal
+            >
+              <b-input
+                v-model="form.password"
+                placeholder="e.g. K!22@ark_cd"
                 required
               />
             </b-field>
             <b-field
               label="Phone Number"
+              message="Phone Number"
               horizontal
             >
-              <b-datepicker
-                v-model="form.created_date"
-                placeholder="Click to select..."
-                icon="calendar-today"
-                @input="dateInput"
-              />
-            </b-field>
-            <hr>
-            <b-field
-              label="Progress"
-              horizontal
-            >
-              <b-slider
-                v-model="form.progress"
-                type="is-info"
+              <b-input
+                v-model="form.phoneNumber"
+                placeholder="2547******"
+                required
               />
             </b-field>
             <hr>
@@ -121,41 +122,33 @@
           <hr>
           <b-field label="First Name">
             <b-input
-              :value="form.name"
+              :value="form.firstName"
               custom-class="is-static"
               readonly
             />
           </b-field>
           <b-field label="Last Name">
             <b-input
-              :value="form.company"
+              :value="form.lastName"
               custom-class="is-static"
               readonly
             />
           </b-field>
           <b-field label="Email">
             <b-input
-              :value="form.city"
+              :value="form.email"
               custom-class="is-static"
               readonly
             />
           </b-field>
           <b-field label="Phone Number">
             <b-input
-              :value="createdReadable"
+              :value="form.phoneNumber"
               custom-class="is-static"
               readonly
             />
           </b-field>
           <hr>
-          <b-field label="Progress">
-            <b-progress
-              :value="form.progress"
-              type="is-info"
-              show-value
-              format="percent"
-            />
-          </b-field>
         </card-component>
       </tiles>
     </section>
@@ -173,7 +166,7 @@ import CardComponent from '@/components/CardComponent.vue'
 import FilePicker from '@/components/FilePicker.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import Notification from '@/components/Notification.vue'
-
+// import bcrypt from 'bcryptjs'
 export default defineComponent({
   name: 'EmployeesForm',
   components: {
@@ -196,12 +189,12 @@ export default defineComponent({
       isProfileExists: false,
       isLoading: false,
       form: {
-        id: null,
-        name: null,
-        company: null,
-        city: null,
-        created_date: new Date(),
-        progress: 0
+        id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phoneNumber: ''
       },
       createdReadable: null
     }
@@ -234,11 +227,12 @@ export default defineComponent({
       this.isProfileExists = false
 
       if (!newValue) {
-        this.form.id = null
-        this.form.name = null
-        this.form.company = null
-        this.form.city = null
-        this.form.created_date = new Date()
+        this.form.id = ''
+        this.form.firstName = ''
+        this.form.lastName = ''
+        this.form.email = ''
+        this.form.password = ''
+        this.form.phoneNumber = ''
         this.createdReadable = new Date().toLocaleDateString()
       } else {
         this.getData()
@@ -249,12 +243,7 @@ export default defineComponent({
     this.getData()
   },
   methods: {
-    // this is to reload to take in new data
-    // reloadPage () {
-    //   window.location.reload()
-    // },
     getData () {
-      // this.reloadPage()
       if (this.id) {
         const item = find(
           this.clients,
@@ -265,11 +254,10 @@ export default defineComponent({
         if (item) {
           this.isProfileExists = true
           this.form.id = item.id
-          this.form.name = item.name
-          this.form.company = item.company
-          this.form.city = item.city
-          this.form.progress = item.progress
-          this.form.created_date = new Date(item.created_mm_dd_yyyy)
+          this.form.firstName = item.firstName
+          this.form.lastName = item.lastName
+          this.form.email = item.email
+          this.form.phoneNumber = item.phoneNumber
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
         } else {
@@ -281,13 +269,24 @@ export default defineComponent({
       this.createdReadable = new Date(v).toLocaleDateString()
     },
     submit () {
+      // const password = 'password'
+      // const saltRounds = 2
+      // const hashedPassword = bcrypt.hash(password, saltRounds)
+      const newEmployee = {
+        firstName: this.form.firstName,
+        lastName: this.form.lastName,
+        email: this.form.email,
+        phoneNumber: this.form.phoneNumber,
+        password: this.form.password
+      }
+      this.$store.dispatch('employees/createEmployee', newEmployee)
       this.isLoading = true
 
       setTimeout(() => {
         this.isLoading = false
 
         this.$buefy.snackbar.open({
-          message: 'change me',
+          message: 'Create employee notification',
           queue: false
         })
       }, 750)

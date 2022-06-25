@@ -44,23 +44,34 @@
             <hr>
             <b-field
               label="Name"
-              message="Client name"
+              message="Team name"
               horizontal
             >
               <b-input
                 v-model="form.name"
-                placeholder="e.g. John Doe"
+                placeholder="e.g. Team One"
                 required
               />
             </b-field>
             <b-field
-              label="Participants"
-              message="Client's company name"
+              label="Description"
+              message="Team description"
               horizontal
             >
               <b-input
-                v-model="form.company"
-                placeholder="e.g. Berton & Steinway"
+                v-model="form.description"
+                placeholder="e.g. This team solely works on Project A"
+                required
+              />
+            </b-field>
+            <b-field
+              label="Members"
+              message="Members of the team"
+              horizontal
+            >
+              <b-input
+                v-model="form.members"
+                placeholder="e.g. Karen Nduta & John Kamau"
                 required
               />
             </b-field>
@@ -70,41 +81,20 @@
               horizontal
             >
               <b-input
-                v-model="form.company"
-                placeholder="e.g. Berton & Steinway"
+                v-model="form.leader"
+                placeholder="e.g. Karen Nduta"
                 required
               />
             </b-field>
             <b-field
               label="Responsibilities"
-              message="Client's city"
+              message="Duties of the team"
               horizontal
             >
               <b-input
-                v-model="form.city"
-                placeholder="e.g. Geoffreyton"
+                v-model="form.responsibilities"
+                placeholder="e.g. Devops & SSR"
                 required
-              />
-            </b-field>
-            <b-field
-              label="Due Date"
-              horizontal
-            >
-              <b-datepicker
-                v-model="form.created_date"
-                placeholder="Click to select..."
-                icon="calendar-today"
-                @input="dateInput"
-              />
-            </b-field>
-            <hr>
-            <b-field
-              label="Progress"
-              horizontal
-            >
-              <b-slider
-                v-model="form.progress"
-                type="is-info"
               />
             </b-field>
             <hr>
@@ -137,41 +127,32 @@
               readonly
             />
           </b-field>
-          <b-field label="Participants">
+          <b-field label="Description">
             <b-input
-              :value="form.company"
+              :value="form.description"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <b-field label="Members">
+            <b-input
+              :value="form.members"
               custom-class="is-static"
               readonly
             />
           </b-field>
           <b-field label="Leader">
             <b-input
-              :value="form.city"
+              :value="form.leader"
               custom-class="is-static"
               readonly
             />
           </b-field>
           <b-field label="Responsibilities">
             <b-input
-              :value="form.city"
+              :value="form.responsibilities"
               custom-class="is-static"
               readonly
-            />
-          </b-field>
-          <b-field label="Due Date">
-            <b-input
-              :value="createdReadable"
-              custom-class="is-static"
-              readonly
-            />
-          </b-field>
-          <hr>
-          <b-field label="Progress">
-            <b-progress
-              :value="form.progress"
-              type="is-info"
-              show-value
-              format="percent"
             />
           </b-field>
         </card-component>
@@ -214,12 +195,12 @@ export default defineComponent({
       isProfileExists: false,
       isLoading: false,
       form: {
-        id: null,
-        name: null,
-        company: null,
-        city: null,
-        created_date: new Date(),
-        progress: 0
+        id: '',
+        name: '',
+        description: '',
+        members: '',
+        leader: '',
+        responsibilities: ''
       },
       createdReadable: null
     }
@@ -252,11 +233,12 @@ export default defineComponent({
       this.isProfileExists = false
 
       if (!newValue) {
-        this.form.id = null
-        this.form.name = null
-        this.form.company = null
-        this.form.city = null
-        this.form.created_date = new Date()
+        this.form.id = ''
+        this.form.name = ''
+        this.form.description = ''
+        this.form.members = ''
+        this.form.leader = ''
+        this.form.responsibilities = ''
         this.createdReadable = new Date().toLocaleDateString()
       } else {
         this.getData()
@@ -279,10 +261,10 @@ export default defineComponent({
           this.isProfileExists = true
           this.form.id = item.id
           this.form.name = item.name
-          this.form.company = item.company
-          this.form.city = item.city
-          this.form.progress = item.progress
-          this.form.created_date = new Date(item.created_mm_dd_yyyy)
+          this.form.description = item.description
+          this.form.leader = item.leader
+          this.form.members = item.members
+          this.form.responsibilities = item.responsibilities
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
         } else {
@@ -294,13 +276,21 @@ export default defineComponent({
       this.createdReadable = new Date(v).toLocaleDateString()
     },
     submit () {
+      const newTeam = {
+        name: this.form.name,
+        description: this.form.description,
+        members: this.form.members,
+        leader: this.form.leader,
+        responsibilities: this.form.responsibilities
+      }
+      this.$store.dispatch('teams/createTeam', newTeam)
       this.isLoading = true
 
       setTimeout(() => {
         this.isLoading = false
 
         this.$buefy.snackbar.open({
-          message: 'change me',
+          message: 'Team Creation Notification',
           queue: false
         })
       }, 750)

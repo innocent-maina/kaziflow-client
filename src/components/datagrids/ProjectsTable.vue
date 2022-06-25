@@ -30,7 +30,7 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Project Name"
+        label="Name"
         field="name"
         sortable
       >
@@ -39,7 +39,15 @@
       <b-table-column
         v-slot="props"
         label="Description"
-        field="company"
+        field="description"
+        sortable
+      >
+        {{ props.row.description }}
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
+        label="Category"
+        field="category"
         sortable
       >
         {{ props.row.category }}
@@ -70,14 +78,6 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Tasks"
-        field="tasks"
-        sortable
-      >
-        {{ props.row.tasks }}
-      </b-table-column>
-      <b-table-column
-        v-slot="props"
         cell-class="is-progress-col"
         label="Progress"
         field="progress"
@@ -91,23 +91,6 @@
           {{ props.row.progress }}
         </progress>
       </b-table-column>
-      <b-table-column
-        v-slot="props"
-        label="Participants"
-        field="participants"
-        sortable
-      >
-        {{ props.row.participants }}
-      </b-table-column>
-      <!-- <b-table-column
-        v-slot="props"
-        label="Created date"
-      >
-        <small
-          class="has-text-grey is-abbr-like"
-          :title="props.row.createdAt"
-        >{{ props.row.createdAt }}</small>
-      </b-table-column> -->
       <b-table-column
         v-slot="props"
         custom-key="actions"

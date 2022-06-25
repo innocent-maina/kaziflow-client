@@ -36,7 +36,7 @@
       </b-table-column> -->
       <b-table-column
         v-slot="props"
-        label="Task Name"
+        label="Name"
         field="company"
         sortable
       >
@@ -49,6 +49,14 @@
         sortable
       >
         {{ props.row.description }}
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
+        label="Project"
+        field="project"
+        sortable
+      >
+        {{ props.row.project }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -65,6 +73,14 @@
         sortable
       >
         {{ props.row.assignees[0] }}
+      </b-table-column>
+      <b-table-column
+        v-slot="props"
+        label="Status"
+        field="status"
+        sortable
+      >
+        {{ props.row.status }}
       </b-table-column>
       <b-table-column
         v-slot="props"
