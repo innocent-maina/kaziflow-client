@@ -29,16 +29,21 @@ export default {
     },
     async createEmployee (payload) {
       try {
-        // const response = await axios.post(
-        //   'http://localhost:3000/api/v1/users',
-        //   payload
-        // )
-        const response = $http.Api({
+        await $http.Api({
           method: 'POST',
           url: '/users',
           data: payload
         })
-        // console.log(response)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteEmployee ({ commit }, payload) {
+      try {
+        await $http.Api({
+          method: 'DELETE',
+          url: `/users/${payload}`
+        })
       } catch (error) {
         console.error(error)
       }

@@ -33,29 +33,24 @@ export default {
     },
     async createProject ({ commit }, payload) {
       try {
-        // const response = await axios.post(
-        //   'http://localhost:3000/api/v1/projects',
-        //   payload
-        // )
-        const response = $http.Api({
+        await $http.Api({
           method: 'POST',
           url: '/projects',
           data: payload
         })
-        // console.log(response)
       } catch (error) {
         console.error(error)
       }
     },
-    async deleteProject ({ commit }, _id) {
+    async deleteProject ({ commit }, payload) {
       try {
-        const response = await axios.delete(
-          `http://localhost:3000/api/v1/projects/${_id}`
-        )
-        commit('DELETE_PROJECT', response.data?.data)
+        await $http.Api({
+          method: 'DELETE',
+          url: `/projects/${payload}`
+        })
       } catch (error) {
         console.error(error)
       }
-    }
+    },
   }
 }

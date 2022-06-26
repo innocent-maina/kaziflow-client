@@ -87,6 +87,7 @@
             type="is-danger"
             size="is-small"
             @click.prevent="trashModalOpen(props.row)"
+            @click="remove(props.row._id)"
           >
             <b-icon
               icon="trash-can"
@@ -158,6 +159,9 @@ export default defineComponent({
     trashModalOpen (obj) {
       this.trashObject = obj
       this.isModalActive = true
+    },
+    remove (id) {
+      this.$store.dispatch('teams/deleteTeam', id)
     },
     trashConfirm () {
       this.isModalActive = false

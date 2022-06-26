@@ -27,13 +27,6 @@
           >
         </div>
       </b-table-column>
-      <!-- <b-table-column
-        label="Project Name"
-        field="project-name"
-        sortable
-      >
-        {{ props.row.name }}
-      </b-table-column> -->
       <b-table-column
         v-slot="props"
         label="Name"
@@ -125,6 +118,7 @@
             type="is-danger"
             size="is-small"
             @click.prevent="trashModalOpen(props.row)"
+            @click="trashConfirm(props.row._id)"
           >
             <b-icon
               icon="trash-can"
@@ -197,9 +191,9 @@ export default defineComponent({
       this.trashObject = obj
       this.isModalActive = true
     },
-    trashConfirm () {
+    trashConfirm (id) {
       this.isModalActive = false
-
+      this.$store.dispatch('tasks/deleteTask', id)
       this.$buefy.snackbar.open({
         message: 'Confirmed',
         queue: false

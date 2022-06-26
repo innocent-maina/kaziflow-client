@@ -29,16 +29,21 @@ export default {
     },
     async createTeam (payload) {
       try {
-        // const response = await axios.post(
-        //   'http://localhost:3000/api/v1/teams',
-        //   payload
-        // )
-        const response = $http.Api({
+        await $http.Api({
           method: 'POST',
           url: '/teams',
           data: payload
         })
-        // console.log(response)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteTeam ({ commit }, payload) {
+      try {
+        await $http.Api({
+          method: 'DELETE',
+          url: `/teams/${payload}`
+        })
       } catch (error) {
         console.error(error)
       }

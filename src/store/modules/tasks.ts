@@ -29,16 +29,21 @@ export default {
     },
     async createTasks ({ commit }, payload) {
       try {
-        // const response = await axios.post(
-        //   'http://localhost:3000/api/v1/tasks',
-        //   payload
-        // )
-        const response = $http.Api({
+        await $http.Api({
           method: 'POST',
           url: '/tasks',
           data: payload
         })
-        // console.log(response)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteTask ({ commit }, payload) {
+      try {
+        await $http.Api({
+          method: 'DELETE',
+          url: `/tasks/${payload}`
+        })
       } catch (error) {
         console.error(error)
       }
