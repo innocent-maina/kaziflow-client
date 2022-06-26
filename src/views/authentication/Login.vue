@@ -99,12 +99,22 @@ export default defineComponent({
     }
   },
   methods: {
-    login (async) {
+    async login () {
       const user = {
         email: this.email,
         password: this.password
       }
-      this.$store.dispatch('authentication/login', user)
+      await this.$store.dispatch('authentication/login', user)
+        .then((async) => {
+          if (
+            this.$store.state.authentication.accessToken !== '' &&
+        this.$store.state.authentication.role === 'admin'
+          ) {
+            this.$router.push('/admin')
+          } else if (this.$store.state.authentication.role === 'employee') {
+            this.$router.push('/employee')
+          }
+        })
       // set notification for either wrong credentials or successful login
       // if (this.$store.state.authentication.accessToken === '') {
       //   this.isLoading = true
@@ -129,14 +139,6 @@ export default defineComponent({
       //     )
       //   }, 750)
       // }
-      if (
-        this.$store.state.authentication.accessToken !== '' &&
-        this.$store.state.authentication.role === 'admin'
-      ) {
-        this.$router.push('/admin')
-      } else if (this.$store.state.authentication.role === 'employee') {
-        this.$router.push('/employee')
-      }
     }
   }
 })
