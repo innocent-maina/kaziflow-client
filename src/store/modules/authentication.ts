@@ -1,4 +1,5 @@
 import axios from 'axios'
+import $http from '@/plugins/axios'
 
 export default {
   namespaced: true,
@@ -46,10 +47,11 @@ export default {
   actions: {
     async register ({ commit }, payload) {
       try {
-        const response = await axios.post(
-          'http://localhost:3000/api/v1/auth/register',
-          payload
-        )
+        const response = await $http.Authentication({
+          method: 'POST',
+          url: '/register',
+          data: payload
+        })
         // console.log(response)
       } catch (error) {
         console.error(error)
@@ -58,10 +60,11 @@ export default {
 
     async login ({ commit }, payload, state) {
       try {
-        const response = await axios.post(
-          'http://localhost:3000/api/v1/auth/login',
-          payload
-        )
+        const response = await $http.Authentication({
+          method: 'POST',
+          url: '/login',
+          data: payload
+        })
         // console.log(response.data)
         // const { _id, firstName, lastName, phoneNumber, email, role } =
         //   response.data

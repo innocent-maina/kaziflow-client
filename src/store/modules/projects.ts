@@ -1,4 +1,5 @@
 import axios from 'axios'
+import $http from '@/plugins/axios'
 
 export default {
   namespaced: true,
@@ -21,10 +22,10 @@ export default {
   actions: {
     async getAllProjects ({ commit }) {
       try {
-        console.log('gotten all projects')
-        const response = await axios.get(
-          'http://localhost:3000/api/v1/projects/'
-        )
+        const response = await $http.Api({
+          method: 'GET',
+          url: '/projects'
+        })
         commit('SET_PROJECTS', response.data?.data)
       } catch (error) {
         console.error(error)
@@ -32,10 +33,15 @@ export default {
     },
     async createProject ({ commit }, payload) {
       try {
-        const response = await axios.post(
-          'http://localhost:3000/api/v1/projects',
-          payload
-        )
+        // const response = await axios.post(
+        //   'http://localhost:3000/api/v1/projects',
+        //   payload
+        // )
+        const response = $http.Api({
+          method: 'POST',
+          url: '/projects',
+          data: payload
+        })
         // console.log(response)
       } catch (error) {
         console.error(error)

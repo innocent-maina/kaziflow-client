@@ -13,7 +13,7 @@ import store from './store/index'
 import App from './App.vue'
 
 /* Fetch sample data */
-store.dispatch('system/fetch')
+// store.dispatch('system/fetch')
 
 /* Default title tag */
 const defaultDocumentTitle = 'Kaziflow'

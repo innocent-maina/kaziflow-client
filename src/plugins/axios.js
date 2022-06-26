@@ -1,7 +1,7 @@
 import axios from 'axios'
 const $http = {
   Authentication: axios.create({
-    baseURL: process.env.VUE_APP_BASE_URL,
+    baseURL: process.env.VUE_APP_AUTHENTICATION_URL,
     headers: {
       'Access-Control-Allow-Origin': '*'
     }
@@ -14,15 +14,4 @@ const $http = {
     }
   })
 }
-
-const accessToken = () => localStorage.getItem('access_token')
-const authenticationInterceptor = (config) => {
-  config.headers = {
-    Authorization: `Bearer ${accessToken()}`
-  }
-  return config
-}
-
-$http.Api.interceptors.request.use(authenticationInterceptor)
-
 export default $http

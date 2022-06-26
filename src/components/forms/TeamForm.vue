@@ -225,7 +225,7 @@ export default defineComponent({
       return this.isProfileExists ? 'Edit Team' : 'Create Team'
     },
     ...mapState({
-      clients: state => state.system.clients
+      teams: state => state.teams.teams
     })
   },
   watch: {
@@ -247,12 +247,13 @@ export default defineComponent({
   },
   created () {
     this.getData()
+    console.log(this.teams)
   },
   methods: {
     getData () {
       if (this.id) {
         const item = find(
-          this.clients,
+          this.teams,
           (item) => item._id === parseInt(this.id)
 
         )
@@ -284,16 +285,16 @@ export default defineComponent({
         responsibilities: this.form.responsibilities
       }
       this.$store.dispatch('teams/createTeam', newTeam)
-      this.isLoading = true
+      // this.isLoading = true
 
-      setTimeout(() => {
-        this.isLoading = false
+      // setTimeout(() => {
+      //   this.isLoading = false
 
-        this.$buefy.snackbar.open({
-          message: 'Team Creation Notification',
-          queue: false
-        })
-      }, 750)
+      //   this.$buefy.snackbar.open({
+      //     message: 'Team Creation Notification',
+      //     queue: false
+      //   })
+      // }, 750)
     }
   }
 })

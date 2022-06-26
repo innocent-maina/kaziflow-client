@@ -5,7 +5,10 @@
     </figure>
     <div class="level pt-5">
       <div class="level-item">
-        <b-button class="has-text-centered is-black">
+        <b-button
+          class="has-text-centered is-black"
+          @click="$router.go(-1)"
+        >
           Back To Safety
         </b-button>
       </div>

@@ -250,7 +250,7 @@ export default defineComponent({
         reporter: '',
         assignees: '',
         status: '',
-        dueDate: '',
+        dueDate: null,
         progress: 0
       },
       createdReadable: null
@@ -292,7 +292,7 @@ export default defineComponent({
         this.form.assignees = ''
         this.form.status = ''
         this.form.progress = 0
-        this.form.dueDate = ''
+        this.form.dueDate = null
         this.createdReadable = new Date().toLocaleDateString()
       } else {
         this.getData()
@@ -307,14 +307,13 @@ export default defineComponent({
       if (this.id) {
         const item = find(
           this.tasks,
-          // eslint-disable-next-line dot-notation
-          (item) => item._id === '62aa2913b9205decba42c416' // parseInt(this._id)
+          (item) => item.id === parseInt(this.id)
         )
         console.log('below is item')
-        console.log(item)
+        console.log(item.id)
         if (item) {
           this.isProfileExists = true
-          this.form.id = item._id
+          this.form.id = item.id
           this.form.name = item.name
           this.form.description = item.description
           this.form.project = item.project
