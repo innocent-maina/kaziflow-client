@@ -6,10 +6,8 @@ export default {
 
   state: {
     tasks: []
-
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
     SET_TASKS (state, payload) {
       state.tasks = payload
@@ -38,15 +36,27 @@ export default {
         console.error(error)
       }
     },
-    async deleteTask ({ commit }, payload) {
+    async updateTask ({ commit }, payload) {
       try {
         await $http.Api({
-          method: 'DELETE',
-          url: `/tasks/${payload}`
+          method: 'PUT',
+          url: `/tasks/${payload.taskId}`,
+          data: payload.task
         })
       } catch (error) {
         console.error(error)
       }
     },
+    async deleteTask ({ commit }, payload) {
+      try {
+        await $http.Api({
+          method: 'DELETE',
+          url: `/tasks/${payload.taskId}`,
+          data: payload.task
+        })
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
 }

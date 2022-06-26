@@ -330,7 +330,7 @@ export default defineComponent({
       this.createdReadable = new Date(v).toLocaleDateString()
     },
     submit () {
-      const newTask = {
+      const taskData = {
         name: this.form.name,
         description: this.form.description,
         reporter: this.form.reporter,
@@ -340,13 +340,21 @@ export default defineComponent({
         progress: this.form.progress,
         dueDate: this.form.dueDate
       }
-      this.$store.dispatch('tasks/createTasks', newTask)
+      const updateTask = {
+        taskId: this.$route.params.id,
+        task: this.form
+      }
+      if (this.$route.params.id) {
+        this.$store.dispatch('tasks/updateTask', updateTask)
+      } else {
+        this.$store.dispatch('tasks/createTasks', taskData)
+      }
       this.isLoading = true
       setTimeout(() => {
         this.isLoading = false
 
         this.$buefy.snackbar.open({
-          message: 'Demo only',
+          message: 'Change response',
           queue: false
         })
       }, 750)

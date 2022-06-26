@@ -272,24 +272,22 @@ export default defineComponent({
       this.createdReadable = new Date(v).toLocaleDateString()
     },
     submit () {
-      const newTeam = {
+      const teamData = {
         name: this.form.name,
         description: this.form.description,
         members: this.form.members,
         leader: this.form.leader,
         responsibilities: this.form.responsibilities
       }
-      this.$store.dispatch('teams/createTeam', newTeam)
-      // this.isLoading = true
-
-      // setTimeout(() => {
-      //   this.isLoading = false
-
-      //   this.$buefy.snackbar.open({
-      //     message: 'Team Creation Notification',
-      //     queue: false
-      //   })
-      // }, 750)
+      const updateTeam = {
+        teamId: this.$route.params.id,
+        team: this.form
+      }
+      if (this.$route.params.id) {
+        this.$store.dispatch('teams/updateTeam', updateTeam)
+      } else {
+        this.$store.dispatch('teams/createTeam', teamData)
+      }
     }
   }
 })

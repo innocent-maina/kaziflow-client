@@ -337,17 +337,15 @@ export default defineComponent({
         endDate: this.form.endDate,
         progress: this.form.progress
       }
-      this.$store.dispatch('projects/createProject', newProject)
-      this.isLoading = true
-      this.$store.dispatch('projects/createProjects', this.form)
-      setTimeout(() => {
-        this.isLoading = false
-
-        this.$buefy.snackbar.open({
-          message: 'Project has been created successfully',
-          queue: false
-        })
-      }, 750)
+      const updateProject = {
+        projectId: this.$route.params.id,
+        project: this.form
+      }
+      if (this.$route.params.id) {
+        this.$store.dispatch('projects/updateProject', updateProject)
+      } else {
+        this.$store.dispatch('projects/createProject', newProject)
+      }
     }
   }
 })

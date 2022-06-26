@@ -42,6 +42,17 @@ export default {
         console.error(error)
       }
     },
+    async updateProject ({ commit }, payload) {
+      try {
+        await $http.Api({
+          method: 'PUT',
+          url: `/projects/${payload.projectId}`,
+          data: payload.project
+        })
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async deleteProject ({ commit }, payload) {
       try {
         await $http.Api({

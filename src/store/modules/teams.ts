@@ -38,6 +38,17 @@ export default {
         console.error(error)
       }
     },
+    async updateTeam ({ commit }, payload) {
+      try {
+        await $http.Api({
+          method: 'PUT',
+          url: `/teams/${payload.teamId}`,
+          data: payload.team
+        })
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async deleteTeam ({ commit }, payload) {
       try {
         await $http.Api({

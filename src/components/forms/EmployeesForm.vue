@@ -275,17 +275,15 @@ export default defineComponent({
         phoneNumber: this.form.phoneNumber,
         password: this.form.password
       }
-      this.$store.dispatch('employees/createEmployee', newEmployee)
-      this.isLoading = true
-
-      setTimeout(() => {
-        this.isLoading = false
-
-        this.$buefy.snackbar.open({
-          message: 'Create employee notification',
-          queue: false
-        })
-      }, 750)
+      const updateEmployee = {
+        employeeId: this.$route.params.id,
+        employee: this.form
+      }
+      if (this.$route.params.id) {
+        this.$store.dispatch('employees/updateEmployee', updateEmployee)
+      } else {
+        this.$store.dispatch('employees/createEmployee', newEmployee)
+      }
     }
   }
 })

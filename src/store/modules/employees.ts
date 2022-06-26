@@ -38,6 +38,17 @@ export default {
         console.error(error)
       }
     },
+    async updateEmployee ({ commit }, payload) {
+      try {
+        await $http.Api({
+          method: 'PUT',
+          url: `/users/${payload.userId}`,
+          data: payload.user
+        })
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async deleteEmployee ({ commit }, payload) {
       try {
         await $http.Api({
