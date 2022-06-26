@@ -144,7 +144,7 @@ const routes = [{
       role: 'admin',
       requiresAuth: true
     },
-    path: '/admin-employee/:id',
+    path: '/admin-employee/edit/:id',
     name: 'admin-employee.edit',
     component: () =>
       import(
@@ -261,7 +261,7 @@ const routes = [{
       requiresAuth: true
       // role: ['employee', 'admin']
     },
-    path: '/project/:id',
+    path: '/project/edit/:id',
     name: 'project.edit',
     component: () =>
       import(
@@ -285,7 +285,7 @@ const routes = [{
     }
   },
   {
-    path: '/team/:id',
+    path: '/team/edit/:id',
     name: 'team.edit',
     component: () =>
       import(
@@ -319,7 +319,7 @@ const routes = [{
       requiresAuth: true
       // role: 'employee'
     },
-    path: '/task/:id',
+    path: '/task/edit/:id',
     name: 'task.edit',
     component: () =>
       import(

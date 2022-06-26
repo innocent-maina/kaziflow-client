@@ -134,6 +134,7 @@
             </b-field>
           </form>
         </card-component>
+
         <card-component
           v-if="isProfileExists"
           title="Task Overview"
@@ -212,7 +213,7 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-import find from 'lodash/find'
+// import find from 'lodash/find'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 import Tiles from '@/components/Tiles.vue'
@@ -299,18 +300,14 @@ export default defineComponent({
       }
     }
   },
-  created () {
+  mounted () {
     this.getData()
   },
   methods: {
     getData () {
-      if (this.id) {
-        const item = find(
-          this.tasks,
-          (item) => item.id === parseInt(this.id)
-        )
-        console.log('below is item')
-        console.log(item.id)
+      if (this.$route.params.id) {
+        const item = this.tasks.find((task) => task._id === this.$route.params.id)
+
         if (item) {
           this.isProfileExists = true
           this.form.id = item.id
@@ -324,9 +321,9 @@ export default defineComponent({
           this.form.progress = item.progress
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
-        } else {
-          this.$router.push({ name: 'task.new' })
         }
+      } else {
+        this.$router.push({ name: 'task.new' })
       }
     },
     dateInput (v) {

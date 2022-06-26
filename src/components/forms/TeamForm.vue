@@ -164,7 +164,7 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-import find from 'lodash/find'
+// import find from 'lodash/find'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 import Tiles from '@/components/Tiles.vue'
@@ -245,18 +245,13 @@ export default defineComponent({
       }
     }
   },
-  created () {
+  mounted () {
     this.getData()
-    console.log(this.teams)
   },
   methods: {
     getData () {
-      if (this.id) {
-        const item = find(
-          this.teams,
-          (item) => item._id === parseInt(this.id)
-
-        )
+      if (this.$route.params.id) {
+        const item = this.teams.find((team) => team._id === this.$route.params.id)
 
         if (item) {
           this.isProfileExists = true
@@ -268,9 +263,9 @@ export default defineComponent({
           this.form.responsibilities = item.responsibilities
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
-        } else {
-          this.$router.push({ name: 'team.new' })
         }
+      } else {
+        this.$router.push({ name: 'team.new' })
       }
     },
     dateInput (v) {

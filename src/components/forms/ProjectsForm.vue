@@ -210,7 +210,6 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-import find from 'lodash/find'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 import Tiles from '@/components/Tiles.vue'
@@ -247,7 +246,7 @@ export default defineComponent({
         leader: '',
         status: '',
         team: '',
-        endDate: '',
+        endDate: null,
         progress: ''
 
       },
@@ -274,7 +273,7 @@ export default defineComponent({
       return this.isProfileExists ? 'Edit Project' : 'Create Project'
     },
     ...mapState({
-      clients: state => state.system.clients
+      projects: state => state.projects.projects
     })
   },
   watch: {
@@ -289,7 +288,7 @@ export default defineComponent({
         this.form.leader = ''
         this.form.team = ''
         this.form.status = ''
-        this.form.endDate = ''
+        this.form.endDate = null
         this.form.progress = 0
         this.createdReadable = new Date().toLocaleDateString()
       } else {
@@ -297,22 +296,13 @@ export default defineComponent({
       }
     }
   },
-  created () {
+  mounted () {
     this.getData()
   },
   methods: {
-    // this is to reload to take in new data
-    // reloadPage () {
-    //   window.location.reload()
-    // },
     getData () {
-      // this.reloadPage()
-      if (this.id) {
-        const item = find(
-          this.clients,
-          (item) => item._id === parseInt(this.id)
-
-        )
+      if (this.$route.params.id) {
+        const item = this.projects.find((project) => project._id === this.$route.params.id)
 
         if (item) {
           this.isProfileExists = true
@@ -328,9 +318,9 @@ export default defineComponent({
           this.form.created_date = new Date(item.created_mm_dd_yyyy)
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
-        } else {
-          this.$router.push({ name: 'project.new' })
         }
+      } else {
+        this.$router.push({ name: 'project.new' })
       }
     },
     dateInput (v) {

@@ -158,7 +158,7 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-import find from 'lodash/find'
+// import find from 'lodash/find'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 import Tiles from '@/components/Tiles.vue'
@@ -219,7 +219,7 @@ export default defineComponent({
       return this.isProfileExists ? 'Edit Employee' : 'Create Employee'
     },
     ...mapState({
-      clients: state => state.system.clients
+      employees: state => state.employees.employees
     })
   },
   watch: {
@@ -239,17 +239,13 @@ export default defineComponent({
       }
     }
   },
-  created () {
+  mounted () {
     this.getData()
   },
   methods: {
     getData () {
-      if (this.id) {
-        const item = find(
-          this.clients,
-          (item) => item.id === parseInt(this.id)
-
-        )
+      if (this.$route.params.id) {
+        const item = this.employees.find((employee) => employee._id === this.$route.params.id)
 
         if (item) {
           this.isProfileExists = true
@@ -260,9 +256,9 @@ export default defineComponent({
           this.form.phoneNumber = item.phoneNumber
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
-        } else {
-          this.$router.push({ name: 'admin-employee.new' })
         }
+      } else {
+        this.$router.push({ name: 'admin-employee.new' })
       }
     },
     dateInput (v) {
