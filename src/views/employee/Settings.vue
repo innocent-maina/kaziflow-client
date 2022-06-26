@@ -23,7 +23,7 @@
           <hr>
           <b-field label="Name">
             <b-input
-              :value="userName"
+              :value="firstName + ' ' + lastName"
               custom-class="is-static"
               readonly
             />
@@ -67,13 +67,14 @@ export default defineComponent({
   },
   data () {
     return {
-      titleStack: ['Admin', 'Profile']
+      titleStack: ['Employee', 'Settings']
     }
   },
   computed: {
     ...mapState({
-      userName: state => state.system.userName,
-      userEmail: state => state.system.userEmail
+      firstName: state => state.authentication.firstName,
+      lastName: state => state.authentication.lastName,
+      userEmail: state => state.authentication.email
     })
   }
 })

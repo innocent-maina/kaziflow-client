@@ -45,7 +45,7 @@
         <nav-bar-menu class="has-divider has-user-avatar">
           <user-avatar />
           <div class="is-user-name">
-            <span>{{ userName }}</span>
+            <span>{{ firstName + ' ' + lastName }}</span>
           </div>
 
           <div
@@ -90,7 +90,7 @@
           </div>
         </nav-bar-menu>
         <a
-          href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
+          href=""
           class="navbar-item has-divider is-desktop-icon-only"
           title="GitHub"
         >
@@ -143,7 +143,9 @@ export default defineComponent({
     ...mapState({
       isAsideMobileExpanded: state => state.system.isAsideMobileExpanded,
       isNavBarVisible: state => state.system.isNavBarVisible,
-      userName: state => state.system.userName
+      firstName: state => state.authentication.firstName,
+      lastName: state => state.authentication.lastName,
+      userEmail: state => state.authentication.email
     })
   },
   mounted () {
