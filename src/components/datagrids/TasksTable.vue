@@ -65,7 +65,7 @@
         field="assignee"
         sortable
       >
-        {{ props.row.assignees }}
+        {{ props.row.assignee }}
       </b-table-column>
       <b-table-column
         v-slot="props"

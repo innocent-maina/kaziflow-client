@@ -80,12 +80,12 @@
               />
             </b-field>
             <b-field
-              label="Assignees"
+              label="Assignee"
               message="Individual working on the task"
               horizontal
             >
               <b-input
-                v-model="form.assignees"
+                v-model="form.assignee"
                 placeholder="e.g. Karen Nduta"
                 required
               />
@@ -174,7 +174,7 @@
               readonly
             />
           </b-field>
-          <b-field label="Assignees">
+          <b-field label="Assignee">
             <b-input
               :value="createdReadable"
               custom-class="is-static"
@@ -249,7 +249,7 @@ export default defineComponent({
         description: '',
         project: '',
         reporter: '',
-        assignees: '',
+        assignee: '',
         status: '',
         dueDate: null,
         progress: 0
@@ -290,7 +290,7 @@ export default defineComponent({
         this.form.description = ''
         this.form.reporter = ''
         this.form.project = ''
-        this.form.assignees = ''
+        this.form.assignee = ''
         this.form.status = ''
         this.form.progress = 0
         this.form.dueDate = null
@@ -315,7 +315,7 @@ export default defineComponent({
           this.form.description = item.description
           this.form.project = item.project
           this.form.reporter = item.reporter[0]
-          this.form.assignees = item.assignees[0]
+          this.form.assignee = item.assignee[0]
           this.form.status = item.status
           this.form.dueDate = item.dueDate
           this.form.progress = item.progress
@@ -335,7 +335,7 @@ export default defineComponent({
         description: this.form.description,
         reporter: this.form.reporter,
         project: this.form.project,
-        assignees: this.form.assignees,
+        assignee: this.form.assignee,
         status: this.form.status,
         progress: this.form.progress,
         dueDate: this.form.dueDate
