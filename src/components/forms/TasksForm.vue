@@ -314,8 +314,8 @@ export default defineComponent({
           this.form.name = item.name
           this.form.description = item.description
           this.form.project = item.project
-          this.form.reporter = item.reporter[0]
-          this.form.assignee = item.assignee[0]
+          this.form.reporter = item.reporter
+          this.form.assignee = item.assignee
           this.form.status = item.status
           this.form.dueDate = item.dueDate
           this.form.progress = item.progress

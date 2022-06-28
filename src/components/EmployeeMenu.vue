@@ -40,9 +40,9 @@
         </b-menu-list>
         <b-menu-list>
           <b-menu-item
-            label="Settings"
+            label="Profile"
             icon="link"
-            href="/employee/settings"
+            href="/employee/profile"
           />
         </b-menu-list>
         <!-- <b-menu-list label="Extensions">

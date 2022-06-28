@@ -76,9 +76,16 @@
               message=""
               horizontal
             >
-              <b-input
+              <!-- <b-input
                 v-model="form.category"
-              />
+              /> -->
+              <div class="select">
+                <select>
+                  <option>Blockchain</option>
+                  <option>Website</option>
+                  <option>Application</option>
+                </select>
+              </div>
             </b-field>
             <b-field
               label="Team"
@@ -229,6 +236,7 @@ export default defineComponent({
     TitleBar,
     Notification
   },
+
   props: {
     id: {
       type: [String, Number],
@@ -248,7 +256,6 @@ export default defineComponent({
         team: '',
         endDate: null,
         progress: ''
-
       },
       createdReadable: null
     }

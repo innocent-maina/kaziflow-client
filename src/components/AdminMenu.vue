@@ -45,9 +45,9 @@
         </b-menu-list>
         <b-menu-list>
           <b-menu-item
-            label="Settings"
+            label="Profile"
             icon="link"
-            href="/admin/settings"
+            href="/admin/profile"
           />
         </b-menu-list>
         <!-- <b-menu-list label="Extensions">
