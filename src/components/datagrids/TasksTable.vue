@@ -104,7 +104,9 @@
         custom-key="actions"
         cell-class="is-actions-cell"
       >
-        <div class="buttons is-right no-wrap">
+        <div
+          class="buttons is-right no-wrap"
+        >
           <router-link
             :to="{name:'task.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
@@ -115,6 +117,7 @@
             />
           </router-link>
           <b-button
+            v-if="userRole == 'admin'"
             type="is-danger"
             size="is-small"
             @click.prevent="trashModalOpen(props.row)"
@@ -164,6 +167,7 @@ export default defineComponent({
   },
   data () {
     return {
+      userRole: this.$store.state.authentication.role,
       checkedRows: [],
       isModalActive: false,
       trashObject: null
