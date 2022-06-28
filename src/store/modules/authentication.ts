@@ -13,7 +13,9 @@ export default {
     email: localStorage.getItem('email') || '',
     accessToken: localStorage.getItem('accessToken') || ''
   },
+
   getters: {},
+
   mutations: {
     SET_USER_ID (state, payload) {
       localStorage.setItem('userId', payload)
@@ -53,6 +55,22 @@ export default {
           data: payload
         })
         // console.log(response)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async logout ({ commit }) {
+      try {
+        localStorage.clear()
+        window.localStorage.clear()
+        commit('SET_ACCESS_TOKEN', '')
+        commit('SET_USER_ID', ''),
+        commit('SET_FIRST_NAME', ''),
+        commit('SET_PHONE_NUMBER', ''),
+        commit('SET_LAST_NAME', ''),
+        commit('SET_EMAIL', ''),
+        commit('SET_ROLE', '')
       } catch (error) {
         console.error(error)
       }

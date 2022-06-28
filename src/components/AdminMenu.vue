@@ -50,7 +50,7 @@
             href="/admin/settings"
           />
         </b-menu-list>
-        <b-menu-list label="Extensions">
+        <!-- <b-menu-list label="Extensions">
           <b-menu-item
             icon="logout"
             label="Slack"
@@ -66,11 +66,13 @@
             label="Trello"
             href="https://trello.com/"
           />
-        </b-menu-list>
+        </b-menu-list> -->
         <b-menu-list label="Actions">
           <b-menu-item
             icon="logout"
             label="Logout"
+            href="/"
+            @click="logout()"
           />
         </b-menu-list>
       </b-menu>
@@ -98,6 +100,10 @@ export default defineComponent({
   methods: {
     asideToggleDesktopOnly () {
       this.$store.dispatch('system/asideDesktopOnlyToggle')
+    },
+    logout () {
+      console.log('logout button clicked')
+      this.$store.dispatch('authentication/logout')
     },
     menuClick (item) {
       //

@@ -113,19 +113,6 @@ const routes = [{
     }
   },
   {
-    path: 'settings',
-    name: 'AdminSettings',
-    component: () =>
-      import(
-        /* webpackChunkName: "dashboard" */
-        '../views/admin/Settings.vue'
-      ),
-    meta: {
-      requiresAuth: true,
-      role: 'admin'
-    }
-  },
-  {
     path: 'teams',
     name: 'AdminTeams',
     component: () =>
@@ -223,19 +210,6 @@ const routes = [{
       import(
         /* webpackChunkName: "dashboard" */
         '../views/employee/Tasks.vue'
-      ),
-    meta: {
-      requiresAuth: true,
-      role: 'employee'
-    }
-  },
-  {
-    path: 'settings',
-    name: 'Settings',
-    component: () =>
-      import(
-        /* webpackChunkName: "dashboard" */
-        '../views/employee/Settings.vue'
       ),
     meta: {
       requiresAuth: true,
@@ -397,20 +371,20 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem('accessToken')
-  const role = localStorage.getItem('role')
-  // test for authentication
-  if (to.meta.requiresAuth && isAuthenticated === '') {
-    next({
-      name: 'Unauthorized'
-    })
-  } else if (to.meta.role && to.meta.role.toString() !== role) {
-    next({
-      name: 'Forbidden'
-    })
-  }
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   const isAuthenticated = localStorage.getItem('accessToken')
+//   const role = localStorage.getItem('role')
+//   // test for authentication
+//   if (to.meta.requiresAuth && isAuthenticated === '') {
+//     next({
+//       name: 'Unauthorized'
+//     })
+//   } else if (to.meta.role && to.meta.role.toString() !== role) {
+//     next({
+//       name: 'Forbidden'
+//     })
+//   }
+//   next()
+// })
 
 export default router

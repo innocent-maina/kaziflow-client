@@ -57,7 +57,7 @@
         field="reporter"
         sortable
       >
-        {{ props.row.reporter[0] }}
+        {{ props.row.reporter }}
       </b-table-column>
       <b-table-column
         v-slot="props"
@@ -65,7 +65,7 @@
         field="assignee"
         sortable
       >
-        {{ props.row.assignees[0] }}
+        {{ props.row.assignees }}
       </b-table-column>
       <b-table-column
         v-slot="props"
