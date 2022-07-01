@@ -1,28 +1,36 @@
-import axios from 'axios'
+// import axios from 'axios'
 import $http from '@/plugins/axios'
 
 export default {
   namespaced: true,
 
   state: {
-    teams: []
+    teams: [],
+    teamsCount: ''
 
   },
   getters: {
+    getTeamsCount: state => {
+      return state.teamsCount
+    },
   },
   mutations: {
     SET_TEAMS (state, payload) {
       state.teams = payload
-    }
+    },
+    SET_TEAMS_COUNT (state, payload) {
+      state.teamsCount = payload
+    },
   },
   actions: {
-    async getAllTeams ({ commit }, state) {
+    async getAllTeams ({ commit }) {
       try {
         const response = await $http.Api({
           method: 'GET',
           url: '/teams'
         })
         commit('SET_TEAMS', response.data?.data)
+        commit('SET_TEAMS_COUNT', response.data?.data.length)
       } catch (error) {
         console.error(error)
       }

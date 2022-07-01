@@ -81,6 +81,7 @@
             <a class="navbar-item">
               <b-icon
                 icon="logout"
+                href="/"
                 custom-size="default"
               />
               <span>Log Out</span>
@@ -88,7 +89,7 @@
           </div>
         </nav-bar-menu>
         <a
-          href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
+          href="#"
           class="navbar-item has-divider is-desktop-icon-only"
           title="GitHub"
         >
@@ -162,6 +163,7 @@ export default defineComponent({
       this.isMenuActive = !this.isMenuActive
     },
     logout () {
+      this.$store.dispatch('authentication/logout')
       this.$buefy.snackbar.open({
         message: 'Log out clicked',
         queue: false

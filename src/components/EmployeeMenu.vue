@@ -97,8 +97,11 @@ export default defineComponent({
       this.$store.dispatch('system/asideDesktopOnlyToggle')
     },
     logout () {
-      console.log('logout button clicked')
       this.$store.dispatch('authentication/logout')
+      this.$buefy.snackbar.open({
+        message: 'Logged Out!',
+        queue: false
+      })
     },
     menuClick (item) {
       //

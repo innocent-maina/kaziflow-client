@@ -5,13 +5,18 @@ export default {
   namespaced: true,
 
   state: {
-    tasks: []
+    tasks: [],
+    tasksCount: ''
+
   },
   getters: {},
   mutations: {
     SET_TASKS (state, payload) {
       state.tasks = payload
-    }
+    },
+    SET_TASKS_COUNT (state, payload) {
+      state.tasksCount = payload
+    },
   },
   actions: {
     async getAllTasks ({ commit }) {
@@ -21,6 +26,7 @@ export default {
           url: '/tasks'
         })
         commit('SET_TASKS', response.data?.data)
+        commit('SET_TASKS_COUNT', response.data?.data.length)
       } catch (error) {
         console.error(error)
       }

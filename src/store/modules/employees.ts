@@ -5,7 +5,8 @@ export default {
   namespaced: true,
 
   state: {
-    employees: []
+    employees: [],
+    employeesCount: ''
 
   },
   getters: {
@@ -13,7 +14,10 @@ export default {
   mutations: {
     SET_EMPLOYEES (state, payload) {
       state.employees = payload
-    }
+    },
+    SET_EMPLOYEES_COUNT (state, payload) {
+      state.employeesCount = payload
+    },
   },
   actions: {
     async getAllEmployees ({ commit }, state) {
@@ -23,6 +27,7 @@ export default {
           url: '/users'
         })
         commit('SET_EMPLOYEES', response.data?.data)
+        commit('SET_EMPLOYEES_COUNT', response.data?.data.length)
       } catch (error) {
         console.error(error)
       }

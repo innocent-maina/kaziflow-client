@@ -17,7 +17,7 @@
         <div class="level-item">
           <div class="buttons is-right">
             <a
-              href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
+              href="#"
               target="_blank"
               class="button is-info"
             >

@@ -232,8 +232,8 @@ const routes = [{
   {
     meta: {
       title: 'Edit Project',
-      requiresAuth: true
-      // role: ['employee', 'admin']
+      requiresAuth: true,
+      role: 'admin'
     },
     path: '/project/edit/:id',
     name: 'project.edit',
@@ -254,8 +254,8 @@ const routes = [{
       ),
     meta: {
       title: 'New Project',
-      requiresAuth: true
-      // role: 'employee'
+      requiresAuth: true,
+      role: 'admin'
     }
   },
   {
@@ -268,16 +268,16 @@ const routes = [{
       ),
     meta: {
       title: 'Edit Team',
-      requiresAuth: true
-      // role: 'employee'
+      requiresAuth: true,
+      role: 'admin'
     },
     props: true
   },
   {
     meta: {
       title: 'New Team',
-      requiresAuth: true
-      // role: 'employee'
+      requiresAuth: true,
+      role: 'admin'
     },
     path: '/team/new',
     name: 'team.new',
@@ -318,8 +318,8 @@ const routes = [{
   }
   ],
   meta: {
-    requiresAuth: true,
-    role: 'employee'
+    requiresAuth: true
+    // role: 'employee'
   }
 },
 {

@@ -5,7 +5,9 @@ export default {
   namespaced: true,
 
   state: {
-    projects: []
+    projects: [],
+    projectsCount: ''
+
   },
   getters: {},
   mutations: {
@@ -18,6 +20,9 @@ export default {
     DELETE_PROJECT (state, payload) {
       state.projects.push(payload)
     },
+    SET_PROJECTS_COUNT (state, payload) {
+      state.projectsCount = payload
+    },
   },
   actions: {
     async getAllProjects ({ commit }) {
@@ -27,6 +32,7 @@ export default {
           url: '/projects'
         })
         commit('SET_PROJECTS', response.data?.data)
+        commit('SET_PROJECTS_COUNT', response.data?.data.length)
       } catch (error) {
         console.error(error)
       }

@@ -23,7 +23,7 @@
           <hr>
           <b-field label="Name">
             <b-input
-              :value="firstName + lastName"
+              :value="firstName + ' ' + lastName"
               custom-class="is-static"
               readonly
             />

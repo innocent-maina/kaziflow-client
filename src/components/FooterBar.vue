@@ -9,7 +9,7 @@
           <div class="level-item">
             <div class="footer-copyright">
               <b>&copy; {{ year }}, kaziflow.me</b>. <a
-                href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
+                href="#"
                 target="_blank"
               >GitHub</a>
             </div>

@@ -10,7 +10,7 @@
 
         <a
           slot="right"
-          href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
+          href="#"
           target="_blank"
           class="button is-white is-small"
         >
@@ -25,26 +25,31 @@
       <tiles>
         <card-widget
           class="tile is-child"
+          type="is-danger"
+          icon="chart-timeline-variant"
+          :number="$store.state.tasks.tasksCount"
+          label="Tasks"
+        />
+        <card-widget
+          class="tile is-child"
           type="is-primary"
           icon="account-multiple"
-          :number="12"
-          label="New Tasks Completed"
+          :number="$store.state.teams.teamsCount"
+          label="Teams"
         />
         <card-widget
           class="tile is-child"
           type="is-info"
-          icon="cart-outline"
-          :number="7770"
-          prefix="$"
-          label="Total Number of Projects"
+          icon="square-edit-outline"
+          :number="$store.state.projects.projectsCount"
+          label="Projects"
         />
         <card-widget
           class="tile is-child"
-          type="is-success"
-          icon="chart-timeline-variant"
-          :number="256"
-          suffix="%"
-          label="Employee Performance"
+          type="is-secondary"
+          icon="account-circle"
+          :number="$store.state.employees.employeesCount"
+          label="Employees"
         />
       </tiles>
 
