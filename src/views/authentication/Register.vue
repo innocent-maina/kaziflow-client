@@ -111,7 +111,7 @@ export default defineComponent({
     }
   },
   methods: {
-    register () {
+    async register () {
       const newUser = {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -119,8 +119,33 @@ export default defineComponent({
         email: this.email,
         password: this.password
       }
-      this.$store.dispatch('authentication/register', newUser)
-      this.$router.push('/')
+      await this.$store.dispatch('authentication/register', newUser)
+        .then((response) => {
+          if (response.status === 200) {
+            this.isLoading = true
+            setTimeout(() => {
+              this.isLoading = false
+              this.$buefy.snackbar.open(
+                {
+                  message: 'Registration successful! Please login to continue',
+                  queue: false
+                }
+              )
+            }, 750)
+            this.$router.push('/')
+          } else {
+            this.isLoading = true
+            setTimeout(() => {
+              this.isLoading = false
+              this.$buefy.snackbar.open(
+                {
+                  message: 'Registration failed! Please try again',
+                  queue: false
+                }
+              )
+            }, 750)
+          }
+        })
     }
   }
 })

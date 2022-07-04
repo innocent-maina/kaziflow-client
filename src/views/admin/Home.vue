@@ -10,7 +10,7 @@
 
         <a
           slot="right"
-          href="https://github.com/vikdiesel/kaziflow-vue-bulma-dashboard"
+          href="https://github.com/InnocentWahome/kaziflow-client.git"
           target="_blank"
           class="button is-white is-small"
         >
@@ -155,9 +155,9 @@ export default defineComponent({
       }
     }
   },
-  mounted () {
+  async mounted () {
     this.fillChartData()
-    this.$buefy.snackbar.open({
+    await this.$buefy.snackbar.open({
       message: 'Welcome back ' + this.$store.state.authentication.firstName,
       queue: false
     })

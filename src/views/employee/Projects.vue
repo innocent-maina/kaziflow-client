@@ -5,7 +5,7 @@
       Projects
       <router-link
         slot="right"
-        to="/"
+        to="/employee"
         class="button"
       >
         Dashboard

@@ -228,99 +228,99 @@ const routes = [{
       requiresAuth: true,
       role: 'employee'
     }
-  },
-  {
-    meta: {
-      title: 'Edit Project',
-      requiresAuth: true,
-      role: 'admin'
-    },
-    path: '/project/edit/:id',
-    name: 'project.edit',
-    component: () =>
-      import(
-        /* webpackChunkName: "client-form" */
-        '@/components/forms/ProjectsForm.vue'
-      ),
-    props: true
-  },
-  {
-    path: '/project/new',
-    name: 'project.new',
-    component: () =>
-      import(
-        /* webpackChunkName: "client-form" */
-        '@/components/forms/ProjectsForm.vue'
-      ),
-    meta: {
-      title: 'New Project',
-      requiresAuth: true,
-      role: 'admin'
-    }
-  },
-  {
-    path: '/team/edit/:id',
-    name: 'team.edit',
-    component: () =>
-      import(
-        /* webpackChunkName: "team-form" */
-        '@/components/forms/TeamForm.vue'
-      ),
-    meta: {
-      title: 'Edit Team',
-      requiresAuth: true,
-      role: 'admin'
-    },
-    props: true
-  },
-  {
-    meta: {
-      title: 'New Team',
-      requiresAuth: true,
-      role: 'admin'
-    },
-    path: '/team/new',
-    name: 'team.new',
-    component: () =>
-      import(
-        /* webpackChunkName: "team-form" */
-        '@/components/forms/TeamForm.vue'
-      )
-  },
-  {
-    meta: {
-      title: 'Edit Task',
-      requiresAuth: true
-      // role: 'employee'
-    },
-    path: '/task/edit/:id',
-    name: 'task.edit',
-    component: () =>
-      import(
-        /* webpackChunkName: "task-form" */
-        '@/components/forms/TasksForm.vue'
-      ),
-    props: true
-  },
-  {
-    meta: {
-      title: 'New Task',
-      requiresAuth: true
-      // role: 'employee'
-    },
-    path: '/task/new',
-    name: 'task.new',
-    component: () =>
-      import(
-        /* webpackChunkName: "task-form" */
-        '@/components/forms/TasksForm.vue'
-      )
   }
   ],
   meta: {
     requiresAuth: true
     // role: 'employee'
   }
+},
+{
+  meta: {
+    title: 'Edit Project',
+    requiresAuth: true,
+    role: 'admin'
+  },
+  path: '/project/edit/:id',
+  name: 'project.edit',
+  component: () =>
+    import(
+      /* webpackChunkName: "client-form" */
+      '@/components/forms/ProjectsForm.vue'
+    ),
+  props: true
+},
+{
+  path: '/project/new',
+  name: 'project.new',
+  component: () =>
+    import(
+      /* webpackChunkName: "client-form" */
+      '@/components/forms/ProjectsForm.vue'
+    ),
+  meta: {
+    title: 'New Project',
+    requiresAuth: true,
+    role: 'admin'
+  }
+},
+{
+  path: '/team/edit/:id',
+  name: 'team.edit',
+  component: () =>
+    import(
+      /* webpackChunkName: "team-form" */
+      '@/components/forms/TeamForm.vue'
+    ),
+  meta: {
+    title: 'Edit Team',
+    requiresAuth: true,
+    role: 'admin'
+  },
+  props: true
+},
+{
+  meta: {
+    title: 'New Team',
+    requiresAuth: true,
+    role: 'admin'
+  },
+  path: '/team/new',
+  name: 'team.new',
+  component: () =>
+    import(
+      /* webpackChunkName: "team-form" */
+      '@/components/forms/TeamForm.vue'
+    )
+},
+{
+  meta: {
+    title: 'Edit Task',
+    requiresAuth: true
+    // role: 'employee'
+  },
+  path: '/task/edit/:id',
+  name: 'task.edit',
+  component: () =>
+    import(
+      /* webpackChunkName: "task-form" */
+      '@/components/forms/TasksForm.vue'
+    ),
+  props: true
+},
+{
+  meta: {
+    title: 'New Task',
+    requiresAuth: true
+    // role: 'employee'
+  },
+  path: '/task/new',
+  name: 'task.new',
+  component: () =>
+    import(
+      /* webpackChunkName: "task-form" */
+      '@/components/forms/TasksForm.vue'
+    )
 },
 {
   path: '/',
@@ -371,20 +371,20 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   const isAuthenticated = localStorage.getItem('accessToken')
-//   const role = localStorage.getItem('role')
-//   // test for authentication
-//   if (to.meta.requiresAuth && isAuthenticated === '') {
-//     next({
-//       name: 'Unauthorized'
-//     })
-//   } else if (to.meta.role && to.meta.role.toString() !== role) {
-//     next({
-//       name: 'Forbidden'
-//     })
-//   }
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('accessToken')
+  const role = localStorage.getItem('role')
+  // test for authentication
+  if (to.meta.requiresAuth && isAuthenticated === '') {
+    next({
+      name: 'Unauthorized'
+    })
+  } else if (to.meta.role && to.meta.role.toString() !== role) {
+    next({
+      name: 'Forbidden'
+    })
+  }
+  next()
+})
 
 export default router

@@ -67,24 +67,28 @@
               message=""
               horizontal
             >
-              <b-input
-                v-model="form.leader"
-              />
+              <b-input v-model="form.leader" />
             </b-field>
             <b-field
               label="Category"
               message=""
               horizontal
             >
-              <!-- <b-input
-                v-model="form.category"
-              /> -->
               <div class="select">
-                <select>
-                  <option>Blockchain</option>
-                  <option>Website</option>
-                  <option>Application</option>
-                </select>
+                <b-select
+                  v-model="form.category"
+                  placeholder="Select a category"
+                >
+                  <option value="Blockchain">
+                    Blockchain
+                  </option>
+                  <option value="Website">
+                    Website
+                  </option>
+                  <option value="Application">
+                    Application
+                  </option>
+                </b-select>
               </div>
             </b-field>
             <b-field
@@ -92,19 +96,32 @@
               message=""
               horizontal
             >
-              <b-input
-                v-model="form.team"
-              />
+              <b-input v-model="form.team" />
             </b-field>
             <b-field
               label="Status"
               message=""
               horizontal
             >
-              <b-input
-                v-model="form.status"
-                placeholder="e.g. Berton & Steinway"
-              />
+              <div class="select">
+                <b-select
+                  v-model="form.status"
+                  placeholder="Select a status"
+                >
+                  <option value="Initiated">
+                    Initiated
+                  </option>
+                  <option value="In Progress">
+                    In Progress
+                  </option>
+                  <option value="Completed">
+                    Completed
+                  </option>
+                  <option value="Terminated">
+                    Terminated
+                  </option>
+                </b-select>
+              </div>
             </b-field>
             <b-field
               label="Estimated end date"
@@ -135,6 +152,13 @@
                 native-type="submit"
               >
                 Submit
+              </b-button>
+              <b-button
+                type=""
+                :loading="isLoading"
+                @click="$router.go(-1)"
+              >
+                Back
               </b-button>
             </b-field>
           </form>
@@ -255,7 +279,7 @@ export default defineComponent({
         status: '',
         team: '',
         endDate: null,
-        progress: ''
+        progress: 0
       },
       createdReadable: null
     }
@@ -271,7 +295,9 @@ export default defineComponent({
       return this.isProfileExists ? this.form.name : 'Create Project'
     },
     heroRouterLinkTo () {
-      return this.isProfileExists ? { name: 'project.new' } : { name: 'AdminProjects' }
+      return this.isProfileExists
+        ? { name: 'project.new' }
+        : { name: 'AdminProjects' }
     },
     heroRouterLinkLabel () {
       return this.isProfileExists ? 'New Project' : 'Dashboard'
@@ -280,7 +306,7 @@ export default defineComponent({
       return this.isProfileExists ? 'Edit Project' : 'Create Project'
     },
     ...mapState({
-      projects: state => state.projects.projects
+      projects: (state) => state.projects.projects
     })
   },
   watch: {
@@ -297,7 +323,7 @@ export default defineComponent({
         this.form.status = ''
         this.form.endDate = null
         this.form.progress = 0
-        this.createdReadable = new Date().toLocaleDateString()
+        // this.createdReadable = new Date().toLocaleDateString()
       } else {
         this.getData()
       }
@@ -309,7 +335,9 @@ export default defineComponent({
   methods: {
     getData () {
       if (this.$route.params.id) {
-        const item = this.projects.find((project) => project._id === this.$route.params.id)
+        const item = this.projects.find(
+          (project) => project._id === this.$route.params.id
+        )
 
         if (item) {
           this.isProfileExists = true
@@ -322,9 +350,9 @@ export default defineComponent({
           this.form.status = item.status
           this.form.endDate = item.endDate
           this.form.progress = item.progress
-          this.form.created_date = new Date(item.created_mm_dd_yyyy)
+          // this.form.created_date = new Date(item.created_mm_dd_yyyy)
 
-          this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
+          // this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
         }
       } else {
         this.$router.push({ name: 'project.new' })
@@ -349,9 +377,57 @@ export default defineComponent({
         project: this.form
       }
       if (this.$route.params.id) {
-        this.$store.dispatch('projects/updateProject', updateProject)
+        this.$store
+          .dispatch('projects/updateProject', updateProject)
+          .then((response) => {
+            if (response.status === 200) {
+              this.isLoading = true
+              setTimeout(() => {
+                this.isLoading = false
+                this.$buefy.snackbar.open({
+                  message: 'Successfully updated the project!',
+                  queue: false
+                })
+              }, 750)
+            } else {
+              this.isLoading = true
+              setTimeout(() => {
+                this.isLoading = false
+                this.$buefy.snackbar.open({
+                  message: 'Failed to update the project!',
+                  queue: false
+                })
+              }, 750)
+            }
+          })
       } else {
-        this.$store.dispatch('projects/createProject', newProject)
+        this.$store
+          .dispatch('projects/createProject', newProject)
+          .then((response) => {
+            console.log(response)
+            if (response.status === 200) {
+              this.isLoading = true
+              setTimeout(() => {
+                this.isLoading = false
+                this.$buefy.snackbar.open({
+                  message: 'Successfully created a project!',
+                  queue: false
+                })
+              }, 750)
+            } else if (response.status === 500) {
+              // this.isLoading = true
+              // setTimeout(() => {
+              //   this.isLoading = false
+              //   this.$buefy.snackbar.open(
+              //     {
+              //       message: 'Failed to create a project!',
+              //       queue: false
+              //     }
+              //   )
+              // }, 750)
+              alert('wahome')
+            }
+          })
       }
     }
   }

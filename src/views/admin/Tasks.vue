@@ -5,7 +5,7 @@
       Tasks Backlog
       <router-link
         slot="right"
-        to="/"
+        to="/admin"
         class="button"
       >
         Dashboard
@@ -30,13 +30,13 @@
         <tasks-table checkable />
       </card-component>
       <hr>
-      <card-component
+      <!-- <card-component
         class="has-table has-mobile-sort-spaced"
         title="My Tasks"
         icon="account-multiple"
       >
         <tasks-table checkable />
-      </card-component>
+      </card-component> -->
 
       <!-- <hr>
 

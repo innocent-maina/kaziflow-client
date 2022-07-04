@@ -55,6 +55,8 @@
         v-slot="props"
         label="Phone Number"
         field="phoneNumber"
+        maxlength="10"
+        minlength="7"
         sortable
       >
         {{ props.row.phoneNumber }}

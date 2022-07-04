@@ -95,11 +95,33 @@
               message="Task update"
               horizontal
             >
-              <b-input
+              <!-- <b-input
                 v-model="form.status"
                 placeholder="Select One"
                 required
-              />
+              /> -->
+              <div class="select">
+                <b-select
+                  v-model="form.status"
+                  placeholder="Select a status"
+                >
+                  <option value="Un-assigned">
+                    Un-assigned
+                  </option>
+                  <option value="To do">
+                    To do
+                  </option>
+                  <option value="In Progress">
+                    In Progress
+                  </option>
+                  <option value="In Review">
+                    In Review
+                  </option>
+                  <option value="Completed">
+                    Completed
+                  </option>
+                </b-select>
+              </div>
             </b-field>
             <b-field
               label="Due Date"

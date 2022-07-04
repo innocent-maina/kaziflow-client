@@ -21,7 +21,7 @@
         <div class="control">
           <input
             class="input"
-            placeholder="Search everywhere..."
+            placeholder="Search this page..."
           >
         </div>
       </div>
@@ -102,6 +102,7 @@
         <a
           class="navbar-item is-desktop-icon-only"
           title="Log out"
+          href="/"
           @click="logout"
         >
           <b-icon
@@ -165,7 +166,7 @@ export default defineComponent({
     logout () {
       this.$store.dispatch('authentication/logout')
       this.$buefy.snackbar.open({
-        message: 'Log out clicked',
+        message: 'Logged Out!',
         queue: false
       })
     }

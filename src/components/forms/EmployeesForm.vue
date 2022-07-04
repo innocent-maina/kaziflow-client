@@ -71,19 +71,20 @@
             >
               <b-input
                 v-model="form.email"
-                placeholder="e.g. karen@kaziflow.com"
+                placeholder="e.g. johndoe@kaziflow.com"
                 required
               />
             </b-field>
             <b-field
               label="Password"
-              message="password"
+              message="Confidential Password"
               horizontal
             >
               <b-input
                 v-model="form.password"
                 placeholder="e.g. K!22@ark_cd"
                 required
+                type="password"
               />
             </b-field>
             <b-field

@@ -5,7 +5,7 @@
       Profile
       <router-link
         slot="right"
-        to="/"
+        to="/admin"
         class="button"
       >
         Dashboard

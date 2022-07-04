@@ -32,7 +32,7 @@ export default {
         console.error(error)
       }
     },
-    async createEmployee (payload) {
+    async createEmployee ({ commit }, payload) {
       try {
         await $http.Api({
           method: 'POST',
@@ -47,8 +47,8 @@ export default {
       try {
         await $http.Api({
           method: 'PUT',
-          url: `/users/${payload.userId}`,
-          data: payload.user
+          url: `/users/${payload.employeeId}`,
+          data: payload.employee
         })
       } catch (error) {
         console.error(error)

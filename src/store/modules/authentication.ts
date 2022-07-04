@@ -49,11 +49,17 @@ export default {
   actions: {
     async register ({ commit }, payload) {
       try {
+        return new Promise(async (resolve, reject) => {
         const response = await $http.Authentication({
           method: 'POST',
           url: '/register',
           data: payload
+        }).then((response) => {
+          resolve(response)
+        })  .catch ((error) => {
+          reject(error)
         })
+      })
         // console.log(response)
       } catch (error) {
         console.error(error)
@@ -78,11 +84,12 @@ export default {
 
     async login ({ commit }, payload, state) {
       try {
-        const response = await $http.Authentication({
-          method: 'POST',
-          url: '/login',
-          data: payload
-        })
+        return new Promise(async (resolve, reject) => {
+          const response = await $http.Authentication({
+            method: 'POST',
+            url: '/login',
+            data: payload
+          })
         // console.log(response.data)
         // const { _id, firstName, lastName, phoneNumber, email, role } =
         //   response.data
@@ -93,6 +100,8 @@ export default {
         commit('SET_LAST_NAME', response.data.data.lastName),
         commit('SET_EMAIL', response.data.data.email),
         commit('SET_ROLE', response.data.data.role)
+
+        })
       } catch (error) {
         console.error(error)
       }

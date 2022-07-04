@@ -80,7 +80,7 @@ export default defineComponent({
   computed: {
     userName: {
       get: function () {
-        return this.$store.state.system.userName
+        return this.$store.state.authentication.firstName
       },
       set: function (name) {
         this.$store.commit('system/user', { name })
@@ -88,7 +88,7 @@ export default defineComponent({
     },
     userEmail: {
       get: function () {
-        return this.$store.state.system.userEmail
+        return this.$store.state.authentication.email
       },
       set: function (email) {
         this.$store.commit('system/user', { email })

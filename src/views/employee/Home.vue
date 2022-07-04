@@ -109,6 +109,10 @@ export default defineComponent({
     return {
       titleStack: ['Employee', 'Dashboard'],
       chartData: null,
+      teamsNumber: parseInt(this.$store.state.teams.teamsCount),
+      tasksNumber: parseInt(this.$store.state.tasks.tasksCount),
+      employeesNumber: parseInt(this.$store.state.employees.employeesCount),
+      projectsNumber: parseInt(this.$store.state.projects.projectsCount),
       chartOptions: {
         responsive: true,
         maintainAspectRatio: true,
@@ -128,13 +132,18 @@ export default defineComponent({
       }
     }
   },
-  mounted () {
+  async mounted () {
     this.fillChartData()
-
-    this.$buefy.snackbar.open({
-      message: 'Welcome back',
+    await this.$buefy.snackbar.open({
+      message: 'Welcome back ' + this.$store.state.authentication.firstName,
       queue: false
     })
+  },
+  created () {
+    this.$store.dispatch('teams/getAllTeams')
+    this.$store.dispatch('tasks/getAllTasks')
+    this.$store.dispatch('projects/getAllProjects')
+    this.$store.dispatch('employees/getAllEmployees')
   },
   methods: {
     fillChartData () {

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import $http from '@/plugins/axios'
+import { reject } from 'lodash'
 
 export default {
   namespaced: true,
@@ -39,24 +40,38 @@ export default {
     },
     async createProject ({ commit }, payload) {
       try {
-        await $http.Api({
-          method: 'POST',
-          url: '/projects',
-          data: payload
+        return new Promise(async (resolve, reject) => {
+          await $http.Api({
+            method: 'POST',
+            url: '/projects',
+            data: payload
+          }).then((response) => {
+            resolve(response)
+          }) .catch ((error) => {
+            reject(error)
+          })
         })
       } catch (error) {
         console.error(error)
+        reject(error)
       }
     },
     async updateProject ({ commit }, payload) {
       try {
-        await $http.Api({
-          method: 'PUT',
-          url: `/projects/${payload.projectId}`,
-          data: payload.project
+        return new Promise(async (resolve, reject) => {
+          await $http.Api({
+            method: 'PUT',
+            url: `/projects/${payload.projectId}`,
+            data: payload.project
+          }).then((response) => {
+            resolve(response)
+          }) .catch ((error) => {
+            reject(error)
+          })
         })
       } catch (error) {
         console.error(error)
+        // reject(error)
       }
     },
     async deleteProject ({ commit }, payload) {

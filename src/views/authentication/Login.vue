@@ -67,14 +67,13 @@
       <!-- <hr> -->
       <b-field grouped>
         <div class="level">
-          <p class="level-item">
-            Don't have an account? &nbsp;
+          <p class="level-item is-underlined">
             <router-link
               to="/register"
               class="has-text-dark"
             >
               Sign up
-            </router-link>&nbsp; for one
+            </router-link>
           </p>
         </div>
       </b-field>
@@ -104,41 +103,35 @@ export default defineComponent({
         email: this.email,
         password: this.password
       }
-      await this.$store.dispatch('authentication/login', user)
-        .then((async) => {
+      await this.$store.dispatch('authentication/login', user).then(() => {
+        if (this.$store.state.authentication.accessToken === '') {
+          this.isLoading = true
+          setTimeout(() => {
+            this.isLoading = false
+            this.$buefy.snackbar.open({
+              message: 'Invalid credentials!',
+              queue: false
+            })
+          }, 750)
+        } else {
+          this.isLoading = true
+          setTimeout(() => {
+            this.isLoading = false
+            this.$buefy.snackbar.open({
+              message: 'Login successful!',
+              queue: false
+            })
+          }, 750)
           if (
             this.$store.state.authentication.accessToken !== '' &&
-        this.$store.state.authentication.role === 'admin'
+            this.$store.state.authentication.role === 'admin'
           ) {
             this.$router.push('/admin')
           } else if (this.$store.state.authentication.role === 'employee') {
             this.$router.push('/employee')
           }
-        })
-      // set notification for either wrong credentials or successful login
-      // if (this.$store.state.authentication.accessToken === '') {
-      //   this.isLoading = true
-      //   setTimeout(() => {
-      //     this.isLoading = false
-      //     this.$buefy.snackbar.open(
-      //       {
-      //         message: 'Invalid credentials!',
-      //         queue: false
-      //       }
-      //     )
-      //   }, 750)
-      // } else {
-      //   this.isLoading = true
-      //   setTimeout(() => {
-      //     this.isLoading = false
-      //     this.$buefy.snackbar.open(
-      //       {
-      //         message: 'Login successful!',
-      //         queue: false
-      //       }
-      //     )
-      //   }, 750)
-      // }
+        }
+      })
     }
   }
 })

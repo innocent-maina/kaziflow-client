@@ -21,7 +21,7 @@
         <div class="control">
           <input
             class="input"
-            placeholder="Search everywhere..."
+            placeholder="Search this page..."
           >
         </div>
       </div>
