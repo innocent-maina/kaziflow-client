@@ -239,7 +239,7 @@ const routes = [{
 {
   path: '/forms',
   component: () =>
-    import(/* webpackChunkName: "forms" */ '../components/forms/Index.vue'),
+    import(/* webpackChunkName: "forms" */ '../views/admin/Index.vue'),
   children: [{
     meta: {
       title: 'Edit Project',

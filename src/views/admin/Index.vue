@@ -1,16 +1,16 @@
 <template>
-  <admin-layout>
+  <page-layout>
     <router-view />
-  </admin-layout>
+  </page-layout>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import AdminLayout from '../../layouts/AdminLayout.vue'
+import PageLayout from '../../layouts/PageLayout.vue'
 export default defineComponent({
   name: 'Home',
   components: {
-    AdminLayout
+    PageLayout
   }
 })
 </script>

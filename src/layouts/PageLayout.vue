@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <employee-navbar />
-    <employee-menu />
+    <Navbar />
+    <Menu />
     <router-view />
     <footer-bar />
   </div>
@@ -9,16 +9,16 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import EmployeeNavbar from '@/components/EmployeeNavbar.vue'
-import EmployeeMenu from '@/components/EmployeeMenu.vue'
+import Navbar from '@/components/Navbar.vue'
+import Menu from '@/components/Menu.vue'
 import FooterBar from '@/components/FooterBar.vue'
 
 export default defineComponent({
-  name: 'EmployeeLayout',
+  name: 'AdminLayout',
   components: {
     FooterBar,
-    EmployeeMenu,
-    EmployeeNavbar
+    Menu,
+    Navbar
   }
 })
 </script>

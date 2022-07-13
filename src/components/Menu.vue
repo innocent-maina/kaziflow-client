@@ -11,35 +11,85 @@
         <b-icon icon="menu" />
       </a>
       <div class="aside-tools-label">
-        <span>My Workspace</span>
+        <span v-if="userRole == 'Admin'">Dashboard</span>
+        <span v-if="userRole == 'Employee'">My Workspace</span>
       </div>
     </div>
     <div class="menu is-menu-main">
       <b-menu class="is-custom-mobile">
         <b-menu-list label="General">
+          <!-- Home pages -->
           <b-menu-item
+            v-if="userRole == 'Admin'"
+            icon="desktop-mac"
+            label="Dashboard"
+            href="/admin/"
+          />
+          <b-menu-item
+            v-if="userRole == 'Employee'"
             icon="desktop-mac"
             label="Dashboard"
             href="/employee/"
           />
+          <!-- Employee page -->
           <b-menu-item
-            href="/employee/projects"
+            v-if="userRole == 'Admin'"
+            icon="table"
+            label="Employees"
+            href="/admin/employees"
+          />
+          <!-- Projects page -->
+          <b-menu-item
+            v-if="userRole == 'Admin'"
+            href="/admin/projects"
             icon="square-edit-outline"
             label="Projects"
           />
           <b-menu-item
+            v-if="userRole == 'Employee'"
+            href="/employee/projects"
+            icon="square-edit-outline"
+            label="Projects"
+          />
+          <!-- Teams page -->
+          <b-menu-item
+            v-if="userRole == 'Admin'"
+            icon="account-circle"
+            label="Teams"
+            href="/admin/teams"
+          />
+          <b-menu-item
+            v-if="userRole == 'Employee'"
             icon="account-circle"
             label="Teams"
             href="/employee/teams"
           />
+          <!-- Tasks page -->
           <b-menu-item
+            v-if="userRole == 'Admin'"
+            icon="lock"
+            label="Tasks"
+            href="/admin/tasks"
+          />
+          <b-menu-item
+            v-if="userRole == 'Employee'"
             icon="lock"
             label="Tasks"
             href="/employee/tasks"
           />
         </b-menu-list>
+        <!-- Profile page -->
         <b-menu-list>
           <b-menu-item
+            v-if="userRole == 'Admin'"
+            label="Profile"
+            icon="link"
+            href="/admin/profile"
+          />
+        </b-menu-list>
+        <b-menu-list>
+          <b-menu-item
+            v-if="userRole == 'Employee'"
             label="Profile"
             icon="link"
             href="/employee/profile"
@@ -60,6 +110,11 @@ export default defineComponent({
     menu: {
       type: Array,
       default: () => []
+    }
+  },
+  data: function () {
+    return {
+      userRole: this.$store.state.authentication.role
     }
   },
   computed: {
