@@ -18,7 +18,7 @@
             icon="buffer"
             custom-size="default"
           />
-          <b>Teams has been updated, you can now view team members </b>
+          <b>See what the teams have been working on </b>
         </div>
       </notification>
 

@@ -6,7 +6,7 @@
     </hero-bar>
     <section class="section is-main-section">
       <notification class="is-info">
-        New Github updates
+        See what's happening on Github
 
         <a
           slot="right"
@@ -71,33 +71,12 @@
         </div>
       </card-component>
 
-      <!-- <card-component
-        title="Performance"
-        icon="finance"
-        header-icon="reload"
-        @header-icon-click="fillChartData"
-      >
-        <div
-          v-if="chartData"
-          class="chart-area"
-        >
-          <bar-chart
-            :chart-data="chartData"
-            :chart-options="chartOptions"
-            :style="{ height: '100%' }"
-          />
-        </div>
-      </card-component> -->
-
       <card-component
-        title="Recently Completed Tasks"
+        title="Have a quick peek at the tasks"
         class="has-table has-mobile-sort-spaced"
       >
         <tasks-table />
       </card-component>
-      <!-- <div>
-        <bar-chart />
-      </div> -->
     </section>
   </div>
 </template>
@@ -126,7 +105,6 @@ export default defineComponent({
     HeroBar,
     TitleBar,
     Notification
-    // BarChart
   },
   data () {
     return {

@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>change me.</b> No data will be saved/updated</span>
+          <span><b>Quick tip:</b> To mark a project as completely done, use the "Terminated" option</span>
         </div>
       </notification>
       <tiles>

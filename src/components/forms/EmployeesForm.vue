@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>change me.</b> change me</span>
+          <span><b>Update Employee info.</b> Employees will be notified whenever their data changes</span>
         </div>
       </notification>
       <tiles>

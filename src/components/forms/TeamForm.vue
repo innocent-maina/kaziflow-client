@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>change me.</b> change me</span>
+          <span><b>Efficient teams are made of 5 or less members.</b>Team work makes the dream work!</span>
         </div>
       </notification>
       <tiles>

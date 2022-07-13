@@ -6,7 +6,7 @@
     </hero-bar>
     <section class="section is-main-section">
       <notification class="is-info">
-        New Github updates
+        See what's happening on Github
 
         <a
           slot="right"
@@ -72,7 +72,7 @@
       </card-component>
 
       <card-component
-        title="Recently Completed Tasks"
+        title="Have a quick peek at the tasks"
         class="has-table has-mobile-sort-spaced"
       >
         <tasks-table />

@@ -18,7 +18,7 @@
             icon="buffer"
             custom-size="default"
           />
-          <b>Done with a project? You can now mark it as complete </b>
+          <b>Done with a project?</b> You can now mark it as Complete or Terminated if you're completely done with it
         </div>
       </notification>
 

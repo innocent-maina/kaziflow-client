@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>Employees can now create their own tasks!</b> Try it now</span>
+          <span><b>More tasks!</b> Anyone can create a task or assign themselves a task</span>
         </div>
       </notification>
       <tiles>

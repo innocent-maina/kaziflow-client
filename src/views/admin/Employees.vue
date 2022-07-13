@@ -18,7 +18,7 @@
             icon="buffer"
             custom-size="default"
           />
-          <b>Add to your team </b>
+          <b>Add to your organization better team members  </b>
         </div>
       </notification>
 

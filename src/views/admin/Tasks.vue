@@ -18,7 +18,7 @@
             icon="buffer"
             custom-size="default"
           />
-          <b>Tasks have been updated since you were last here </b>
+          <b>Hurray! </b> Anyone can now assign a task to themselves!
         </div>
       </notification>
 
@@ -30,47 +30,6 @@
         <tasks-table checkable />
       </card-component>
       <hr>
-      <!-- <card-component
-        class="has-table has-mobile-sort-spaced"
-        title="My Tasks"
-        icon="account-multiple"
-      >
-        <tasks-table checkable />
-      </card-component> -->
-
-      <!-- <hr>
-
-      <notification class="is-info">
-        <div>
-          <b-icon
-            icon="buffer"
-            custom-size="default"
-          />
-          <b>Tightly wrapped</b> &mdash; table header becomes card header
-        </div>
-      </notification>
-
-      <card-component class="has-table has-mobile-sort-spaced">
-        <tasks-table
-          checkable
-        />
-      </card-component>
-
-      <hr>
-
-      <notification class="is-info">
-        <div>
-          <b-icon
-            icon="buffer"
-            custom-size="default"
-          />
-          <b>Empty table.</b> When there's nothing to show
-        </div>
-      </notification>
-
-      <card-component class="has-table has-thead-hidden">
-        <tasks-table is-empty />
-      </card-component> -->
     </section>
   </div>
 </template>
