@@ -11,7 +11,7 @@
         <b-icon icon="menu" />
       </a>
       <div class="aside-tools-label">
-        <span>Kaziflow employee</span>
+        <span>My Workspace</span>
       </div>
     </div>
     <div class="menu is-menu-main">
@@ -43,31 +43,6 @@
             label="Profile"
             icon="link"
             href="/employee/profile"
-          />
-        </b-menu-list>
-        <!-- <b-menu-list label="Extensions">
-          <b-menu-item
-            icon="logout"
-            label="Slack"
-            href="https://slack.com"
-          />
-          <b-menu-item
-            icon="logout"
-            label="Ms Teams"
-            href="https://teams.microsoft.com/"
-          />
-          <b-menu-item
-            icon="logout"
-            label="Trello"
-            href="https://trello.com/"
-          />
-        </b-menu-list> -->
-        <b-menu-list label="Actions">
-          <b-menu-item
-            icon="logout"
-            label="Logout"
-            href="/"
-            @click="logout()"
           />
         </b-menu-list>
       </b-menu>

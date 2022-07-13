@@ -9,7 +9,6 @@
     <!-- {{ teams }} -->
     <b-table
       :checked-rows.sync="checkedRows"
-      :checkable="checkable"
       :paginated="paginated"
       :per-page="perPage"
       :data="teams"
@@ -74,7 +73,7 @@
         cell-class="is-actions-cell"
       >
         <div
-          v-if="userRole == 'admin'"
+          v-if="userRole == 'Admin'"
           class="buttons is-right no-wrap"
         >
           <router-link

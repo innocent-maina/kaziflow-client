@@ -285,8 +285,16 @@ export default defineComponent({
       }
       if (this.$route.params.id) {
         this.$store.dispatch('teams/updateTeam', updateTeam)
+        this.$buefy.snackbar.open({
+          message: 'Successfully updated the team',
+          queue: true
+        })
       } else {
         this.$store.dispatch('teams/createTeam', teamData)
+        this.$buefy.snackbar.open({
+          message: 'Successfully created the team',
+          queue: true
+        })
       }
     }
   }

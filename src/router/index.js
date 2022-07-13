@@ -59,7 +59,7 @@ const routes = [{
       import(/* webpackChunkName: "dashboard" */ '../views/admin/Home.vue'),
     meta: {
       requiresAuth: true,
-      role: 'admin'
+      role: 'Admin'
     }
   },
   {
@@ -69,7 +69,7 @@ const routes = [{
       import(/* webpackChunkName: "users" */ '../views/admin/Profile.vue'),
     meta: {
       requiresAuth: true,
-      role: 'admin'
+      role: 'Admin'
     }
   },
   {
@@ -82,7 +82,7 @@ const routes = [{
       ),
     meta: {
       requiresAuth: true,
-      role: 'admin'
+      role: 'Admin'
     }
   },
   {
@@ -95,7 +95,7 @@ const routes = [{
       ),
     meta: {
       requiresAuth: true,
-      role: 'admin'
+      role: 'Admin'
     }
 
   },
@@ -109,7 +109,7 @@ const routes = [{
       ),
     meta: {
       requiresAuth: true,
-      role: 'admin'
+      role: 'Admin'
     }
   },
   {
@@ -122,13 +122,13 @@ const routes = [{
       ),
     meta: {
       requiresAuth: true,
-      role: 'admin'
+      role: 'Admin'
     }
   },
   {
     meta: {
       title: 'Edit Employee',
-      role: 'admin',
+      role: 'Admin',
       requiresAuth: true
     },
     path: '/admin-employee/edit/:id',
@@ -144,7 +144,7 @@ const routes = [{
     meta: {
       title: 'New Employee',
       requiresAuth: true,
-      role: 'admin'
+      role: 'Admin'
     },
     path: '/admin-employee/new',
     name: 'admin-employee.new',
@@ -157,7 +157,7 @@ const routes = [{
   ],
   meta: {
     requiresAuth: true,
-    role: 'admin'
+    role: 'Admin'
   }
 },
 {
@@ -174,7 +174,7 @@ const routes = [{
       ),
     meta: {
       requiresAuth: true,
-      role: 'employee'
+      role: 'Employee'
     }
   },
   {
@@ -187,7 +187,7 @@ const routes = [{
       ),
     meta: {
       requiresAuth: true,
-      role: 'employee'
+      role: 'Employee'
     }
   },
   {
@@ -200,7 +200,7 @@ const routes = [{
       ),
     meta: {
       requiresAuth: true,
-      role: 'employee'
+      role: 'Employee'
     }
   },
   {
@@ -213,7 +213,7 @@ const routes = [{
       ),
     meta: {
       requiresAuth: true,
-      role: 'employee'
+      role: 'Employee'
     }
   },
   {
@@ -226,101 +226,107 @@ const routes = [{
       ),
     meta: {
       requiresAuth: true,
-      role: 'employee'
+      role: 'Employee'
     }
   }
   ],
   meta: {
     requiresAuth: true
-    // role: 'employee'
+    // role: 'Employee'
   }
 },
+
 {
-  meta: {
-    title: 'Edit Project',
-    requiresAuth: true,
-    role: 'admin'
+  path: '/forms',
+  component: () =>
+    import(/* webpackChunkName: "forms" */ '../components/forms/Index.vue'),
+  children: [{
+    meta: {
+      title: 'Edit Project',
+      requiresAuth: true,
+      role: 'Admin'
+    },
+    path: '/project/edit/:id',
+    name: 'project.edit',
+    component: () =>
+      import(
+        /* webpackChunkName: "client-form" */
+        '@/components/forms/ProjectsForm.vue'
+      ),
+    props: true
   },
-  path: '/project/edit/:id',
-  name: 'project.edit',
-  component: () =>
-    import(
-      /* webpackChunkName: "client-form" */
-      '@/components/forms/ProjectsForm.vue'
-    ),
-  props: true
-},
-{
-  path: '/project/new',
-  name: 'project.new',
-  component: () =>
-    import(
-      /* webpackChunkName: "client-form" */
-      '@/components/forms/ProjectsForm.vue'
-    ),
-  meta: {
-    title: 'New Project',
-    requiresAuth: true,
-    role: 'admin'
-  }
-},
-{
-  path: '/team/edit/:id',
-  name: 'team.edit',
-  component: () =>
-    import(
-      /* webpackChunkName: "team-form" */
-      '@/components/forms/TeamForm.vue'
-    ),
-  meta: {
-    title: 'Edit Team',
-    requiresAuth: true,
-    role: 'admin'
+  {
+    path: '/project/new',
+    name: 'project.new',
+    component: () =>
+      import(
+        /* webpackChunkName: "client-form" */
+        '@/components/forms/ProjectsForm.vue'
+      ),
+    meta: {
+      title: 'New Project',
+      requiresAuth: true,
+      role: 'Admin'
+    }
   },
-  props: true
-},
-{
-  meta: {
-    title: 'New Team',
-    requiresAuth: true,
-    role: 'admin'
+  {
+    path: '/team/edit/:id',
+    name: 'team.edit',
+    component: () =>
+      import(
+        /* webpackChunkName: "team-form" */
+        '@/components/forms/TeamForm.vue'
+      ),
+    meta: {
+      title: 'Edit Team',
+      requiresAuth: true,
+      role: 'Admin'
+    },
+    props: true
   },
-  path: '/team/new',
-  name: 'team.new',
-  component: () =>
-    import(
-      /* webpackChunkName: "team-form" */
-      '@/components/forms/TeamForm.vue'
-    )
-},
-{
-  meta: {
-    title: 'Edit Task',
-    requiresAuth: true
-    // role: 'employee'
+  {
+    meta: {
+      title: 'New Team',
+      requiresAuth: true,
+      role: 'Admin'
+    },
+    path: '/team/new',
+    name: 'team.new',
+    component: () =>
+      import(
+        /* webpackChunkName: "team-form" */
+        '@/components/forms/TeamForm.vue'
+      )
   },
-  path: '/task/edit/:id',
-  name: 'task.edit',
-  component: () =>
-    import(
-      /* webpackChunkName: "task-form" */
-      '@/components/forms/TasksForm.vue'
-    ),
-  props: true
-},
-{
-  meta: {
-    title: 'New Task',
-    requiresAuth: true
-    // role: 'employee'
+  {
+    meta: {
+      title: 'Edit Task',
+      requiresAuth: true
+      // role: 'Employee'
+    },
+    path: '/task/edit/:id',
+    name: 'task.edit',
+    component: () =>
+      import(
+        /* webpackChunkName: "task-form" */
+        '@/components/forms/TasksForm.vue'
+      ),
+    props: true
   },
-  path: '/task/new',
-  name: 'task.new',
-  component: () =>
-    import(
-      /* webpackChunkName: "task-form" */
-      '@/components/forms/TasksForm.vue'
-    )
+  {
+    meta: {
+      title: 'New Task',
+      requiresAuth: true
+      // role: 'Employee'
+    },
+    path: '/task/new',
+    name: 'task.new',
+    component: () =>
+      import(
+        /* webpackChunkName: "task-form" */
+        '@/components/forms/TasksForm.vue'
+      )
+  }]
 },
 {
   path: '/',

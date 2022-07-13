@@ -80,13 +80,13 @@
               <span>Messages</span>
             </a>
             <hr class="navbar-divider">
-            <a class="navbar-item">
+            <!-- <a class="navbar-item">
               <b-icon
                 icon="logout"
                 custom-size="default"
               />
               <span>Log Out</span>
-            </a>
+            </a> -->
           </div>
         </nav-bar-menu>
         <a

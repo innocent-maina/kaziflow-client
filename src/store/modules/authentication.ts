@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import $http from '@/plugins/axios'
 
 export default {
@@ -49,17 +49,18 @@ export default {
   actions: {
     async register ({ commit }, payload) {
       try {
+        // eslint-disable-next-line no-async-promise-executor
         return new Promise(async (resolve, reject) => {
-        const response = await $http.Authentication({
-          method: 'POST',
-          url: '/register',
-          data: payload
-        }).then((response) => {
-          resolve(response)
-        })  .catch ((error) => {
-          reject(error)
+          await $http.Authentication({
+            method: 'POST',
+            url: '/register',
+            data: payload
+          }).then((response) => {
+            resolve(response)
+          }).catch((error) => {
+            reject(error)
+          })
         })
-      })
         // console.log(response)
       } catch (error) {
         console.error(error)
@@ -71,11 +72,11 @@ export default {
         localStorage.clear()
         window.localStorage.clear()
         commit('SET_ACCESS_TOKEN', '')
-        commit('SET_USER_ID', ''),
-        commit('SET_FIRST_NAME', ''),
-        commit('SET_PHONE_NUMBER', ''),
-        commit('SET_LAST_NAME', ''),
-        commit('SET_EMAIL', ''),
+        commit('SET_USER_ID', '')
+        commit('SET_FIRST_NAME', '')
+        commit('SET_PHONE_NUMBER', '')
+        commit('SET_LAST_NAME', '')
+        commit('SET_EMAIL', '')
         commit('SET_ROLE', '')
       } catch (error) {
         console.error(error)
@@ -84,23 +85,23 @@ export default {
 
     async login ({ commit }, payload, state) {
       try {
+        // eslint-disable-next-line no-async-promise-executor
         return new Promise(async (resolve, reject) => {
           const response = await $http.Authentication({
             method: 'POST',
             url: '/login',
             data: payload
           })
-        // console.log(response.data)
-        // const { _id, firstName, lastName, phoneNumber, email, role } =
-        //   response.data
-        commit('SET_ACCESS_TOKEN', response.data.authToken)
-        commit('SET_USER_ID', response.data.data._id),
-        commit('SET_FIRST_NAME', response.data.data.firstName),
-        commit('SET_PHONE_NUMBER', response.data.data.phoneNumber),
-        commit('SET_LAST_NAME', response.data.data.lastName),
-        commit('SET_EMAIL', response.data.data.email),
-        commit('SET_ROLE', response.data.data.role)
-
+          // console.log(response.data)
+          // const { _id, firstName, lastName, phoneNumber, email, role } =
+          //   response.data
+          commit('SET_ACCESS_TOKEN', response.data.authToken)
+          commit('SET_USER_ID', response.data.data._id)
+          commit('SET_FIRST_NAME', response.data.data.firstName)
+          commit('SET_PHONE_NUMBER', response.data.data.phoneNumber)
+          commit('SET_LAST_NAME', response.data.data.lastName)
+          commit('SET_EMAIL', response.data.data.email)
+          commit('SET_ROLE', response.data.data.role)
         })
       } catch (error) {
         console.error(error)

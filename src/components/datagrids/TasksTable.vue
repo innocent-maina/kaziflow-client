@@ -8,7 +8,6 @@
     />
     <b-table
       :checked-rows.sync="checkedRows"
-      :checkable="checkable"
       :paginated="paginated"
       :per-page="perPage"
       :data="tasks"
@@ -117,7 +116,7 @@
             />
           </router-link>
           <b-button
-            v-if="userRole == 'admin'"
+            v-if="userRole == 'Admin'"
             type="is-danger"
             size="is-small"
             @click.prevent="trashModalOpen(props.row)"

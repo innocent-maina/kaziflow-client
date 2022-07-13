@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>change me.</b> changed</span>
+          <span><b>Employees can now create their own tasks!</b> Try it now</span>
         </div>
       </notification>
       <tiles>
@@ -105,10 +105,10 @@
                   v-model="form.status"
                   placeholder="Select a status"
                 >
-                  <option value="Un-assigned">
+                  <option value="Un-Assigned">
                     Un-assigned
                   </option>
-                  <option value="To do">
+                  <option value="To-Do">
                     To do
                   </option>
                   <option value="In Progress">
@@ -316,9 +316,22 @@ export default defineComponent({
         this.form.status = ''
         this.form.progress = 0
         this.form.dueDate = null
-        this.createdReadable = new Date().toLocaleDateString()
+        // this.createdReadable = new Date().toLocaleDateString()
       } else {
         this.getData()
+      }
+    },
+    'form.status' (newValue) {
+      if (newValue === 'Un-Assigned') {
+        this.form.progress = 0
+      } else if (newValue === 'To-Do') {
+        this.form.progress = 25
+      } else if (newValue === 'In Progress') {
+        this.form.progress = 50
+      } else if (newValue === 'In Review') {
+        this.form.progress = 75
+      } else if (newValue === 'Completed') {
+        this.form.progress = 100
       }
     }
   },
@@ -342,7 +355,7 @@ export default defineComponent({
           this.form.dueDate = item.dueDate
           this.form.progress = item.progress
 
-          this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
+          // this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
         }
       } else {
         this.$router.push({ name: 'task.new' })
@@ -368,18 +381,17 @@ export default defineComponent({
       }
       if (this.$route.params.id) {
         this.$store.dispatch('tasks/updateTask', updateTask)
+        this.$buefy.snackbar.open({
+          message: 'Successfully updated the task',
+          queue: true
+        })
       } else {
         this.$store.dispatch('tasks/createTasks', taskData)
-      }
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-
         this.$buefy.snackbar.open({
-          message: 'Change response',
-          queue: false
+          message: 'Successfully created the task',
+          queue: true
         })
-      }, 750)
+      }
     }
   }
 })

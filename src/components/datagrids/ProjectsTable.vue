@@ -10,7 +10,6 @@
     <!-- {{ projects }} -->
     <b-table
       :checked-rows.sync="checkedRows"
-      :checkable="checkable"
       :paginated="paginated"
       :per-page="perPage"
       :data="projects"
@@ -98,7 +97,7 @@
         cell-class="is-actions-cell"
       >
         <div
-          v-if="userRole == 'admin'"
+          v-if="userRole == 'Admin'"
           class="buttons is-right no-wrap"
         >
           <router-link
@@ -113,8 +112,7 @@
           <b-button
             type="is-danger"
             size="is-small"
-            @click.prevent="trashModalOpen(props.row)"
-            @click="remove(props.row._id)"
+            @click="trashModalOpen(props.row)"
           >
             <b-icon
               icon="trash-can"
@@ -185,20 +183,24 @@ export default defineComponent({
       this.$store.dispatch('projects/getAllProjects')
     },
     trashModalOpen (obj) {
-      this.trashObject = obj
       this.isModalActive = true
+      this.trashObject = obj
+      this.trashConfirm(obj._id)
     },
-    trashConfirm () {
-      this.isModalActive = false
-
-      this.$buefy.snackbar.open({
-        message: 'Confirmed',
-        queue: false
-      })
-    },
-    remove (id) {
+    trashConfirm (id) {
+      console.log(id)
       this.$store.dispatch('projects/deleteProject', id)
+      this.$buefy.snackbar.open({
+        message: 'Deleted Project',
+        queue: true
+      })
+      this.isModalActive = false
     },
+    // remove (_id) {
+    //   console.log('start dispatch')
+    //   this.$store.dispatch('projects/deleteProject', _id)
+    //   console.log('end dispatch')
+    // },
     trashCancel () {
       this.isModalActive = false
     }

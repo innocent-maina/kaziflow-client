@@ -327,6 +327,17 @@ export default defineComponent({
       } else {
         this.getData()
       }
+    },
+    'form.status' (newValue) {
+      if (newValue === 'Initiated') {
+        this.form.progress = 25
+      } else if (newValue === 'In Progress') {
+        this.form.progress = 50
+      } else if (newValue === 'Completed') {
+        this.form.progress = 75
+      } else if (newValue === 'Terminated') {
+        this.form.progress = 100
+      }
     }
   },
   mounted () {
@@ -425,7 +436,6 @@ export default defineComponent({
               //     }
               //   )
               // }, 750)
-              alert('wahome')
             }
           })
       }

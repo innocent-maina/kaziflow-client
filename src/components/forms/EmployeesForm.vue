@@ -282,8 +282,16 @@ export default defineComponent({
       }
       if (this.$route.params.id) {
         this.$store.dispatch('employees/updateEmployee', updateEmployee)
+        this.$buefy.snackbar.open({
+          message: 'Successfully updated the Employee',
+          queue: true
+        })
       } else {
         this.$store.dispatch('employees/createEmployee', newEmployee)
+        this.$buefy.snackbar.open({
+          message: 'Successfully created the Employee',
+          queue: true
+        })
       }
     }
   }

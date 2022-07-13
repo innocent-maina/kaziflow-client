@@ -57,6 +57,15 @@
         />
       </b-field>
 
+      <b-field label="Confirm Password">
+        <b-input
+          v-model="confirmPassword"
+          type="password"
+          name="password"
+          required
+        />
+      </b-field>
+
       <!-- <b-field>
         <b-checkbox
           v-model="remember"
@@ -106,6 +115,7 @@ export default defineComponent({
       lastName: '',
       email: '',
       password: '',
+      confirmPassword: '',
       phoneNumber: '',
       error: ''
     }
@@ -119,33 +129,40 @@ export default defineComponent({
         email: this.email,
         password: this.password
       }
-      await this.$store.dispatch('authentication/register', newUser)
-        .then((response) => {
-          if (response.status === 200) {
-            this.isLoading = true
-            setTimeout(() => {
-              this.isLoading = false
-              this.$buefy.snackbar.open(
-                {
-                  message: 'Registration successful! Please login to continue',
-                  queue: false
-                }
-              )
-            }, 750)
-            this.$router.push('/')
-          } else {
-            this.isLoading = true
-            setTimeout(() => {
-              this.isLoading = false
-              this.$buefy.snackbar.open(
-                {
-                  message: 'Registration failed! Please try again',
-                  queue: false
-                }
-              )
-            }, 750)
-          }
+      if (this.password !== this.confirmPassword) {
+        this.$buefy.snackbar.open({
+          message: 'Passwords do not match!',
+          queue: true
         })
+      } else {
+        await this.$store.dispatch('authentication/register', newUser)
+          .then((response) => {
+            if (response.status === 200) {
+              this.isLoading = true
+              setTimeout(() => {
+                this.isLoading = false
+                this.$buefy.snackbar.open(
+                  {
+                    message: 'Registration successful! Please login to continue',
+                    queue: false
+                  }
+                )
+              }, 750)
+              this.$router.push('/')
+            } else {
+              this.isLoading = true
+              setTimeout(() => {
+                this.isLoading = false
+                this.$buefy.snackbar.open(
+                  {
+                    message: 'Registration failed! Please try again',
+                    queue: false
+                  }
+                )
+              }, 750)
+            }
+          })
+      }
     }
   }
 })

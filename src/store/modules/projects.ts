@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import $http from '@/plugins/axios'
 import { reject } from 'lodash'
 
@@ -23,7 +23,7 @@ export default {
     },
     SET_PROJECTS_COUNT (state, payload) {
       state.projectsCount = payload
-    },
+    }
   },
   actions: {
     async getAllProjects ({ commit }) {
@@ -40,6 +40,7 @@ export default {
     },
     async createProject ({ commit }, payload) {
       try {
+        // eslint-disable-next-line no-async-promise-executor
         return new Promise(async (resolve, reject) => {
           await $http.Api({
             method: 'POST',
@@ -47,7 +48,7 @@ export default {
             data: payload
           }).then((response) => {
             resolve(response)
-          }) .catch ((error) => {
+          }).catch((error) => {
             reject(error)
           })
         })
@@ -58,6 +59,7 @@ export default {
     },
     async updateProject ({ commit }, payload) {
       try {
+        // eslint-disable-next-line no-async-promise-executor
         return new Promise(async (resolve, reject) => {
           await $http.Api({
             method: 'PUT',
@@ -65,7 +67,7 @@ export default {
             data: payload.project
           }).then((response) => {
             resolve(response)
-          }) .catch ((error) => {
+          }).catch((error) => {
             reject(error)
           })
         })
@@ -83,6 +85,6 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    },
+    }
   }
 }

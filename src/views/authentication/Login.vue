@@ -66,7 +66,7 @@
       </b-field>
       <!-- <hr> -->
       <b-field grouped>
-        <div class="level">
+        <!-- <div class="level">
           <p class="level-item is-underlined">
             <router-link
               to="/register"
@@ -75,7 +75,7 @@
               Sign up
             </router-link>
           </p>
-        </div>
+        </div> -->
       </b-field>
     </form>
   </card-component>
@@ -124,10 +124,10 @@ export default defineComponent({
           }, 750)
           if (
             this.$store.state.authentication.accessToken !== '' &&
-            this.$store.state.authentication.role === 'admin'
+            this.$store.state.authentication.role === 'Admin'
           ) {
             this.$router.push('/admin')
-          } else if (this.$store.state.authentication.role === 'employee') {
+          } else if (this.$store.state.authentication.accessToken !== '' && this.$store.state.authentication.role === 'Employee') {
             this.$router.push('/employee')
           }
         }

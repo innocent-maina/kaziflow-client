@@ -2,7 +2,7 @@
   <div>
     <title-bar :title-stack="titleStack" />
     <hero-bar>
-      Tasks Backlog
+      Tasks
       <router-link
         slot="right"
         to="/admin"

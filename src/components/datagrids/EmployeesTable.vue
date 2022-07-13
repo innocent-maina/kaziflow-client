@@ -6,9 +6,9 @@
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
+    <!-- :checkable="checkable" -->
     <b-table
       :checked-rows.sync="checkedRows"
-      :checkable="checkable"
       :paginated="paginated"
       :per-page="perPage"
       :data="employees"
