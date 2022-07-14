@@ -1,6 +1,13 @@
 <template>
   <div>
-    <title-bar :title-stack="titleStack" />
+    <title-bar
+      v-if="userRole == 'Employee'"
+      :title-stack="titleStackEmployee"
+    />
+    <title-bar
+      v-if="userRole == 'Admin'"
+      :title-stack="titleStackAdmin"
+    />
     <hero-bar :has-right-visible="false">
       Dashboard
     </hero-bar>
@@ -27,28 +34,28 @@
           class="tile is-child"
           type="is-danger"
           icon="chart-timeline-variant"
-          :number="$store.state.tasks.tasksCount"
+          :number="$store.state.tasks.tasksCount.toString()"
           label="Tasks"
         />
         <card-widget
           class="tile is-child"
           type="is-primary"
           icon="account-multiple"
-          :number="$store.state.teams.teamsCount"
+          :number="$store.state.teams.teamsCount.toString()"
           label="Teams"
         />
         <card-widget
           class="tile is-child"
           type="is-info"
           icon="square-edit-outline"
-          :number="$store.state.projects.projectsCount"
+          :number="$store.state.projects.projectsCount.toString()"
           label="Projects"
         />
         <card-widget
           class="tile is-child"
           type="is-secondary"
           icon="account-circle"
-          :number="$store.state.employees.employeesCount"
+          :number="$store.state.employees.employeesCount.toString()"
           label="Employees"
         />
       </tiles>
@@ -68,7 +75,7 @@
                 :chart-data="pieChartData"
                 class=""
                 :chart-options="chartOptions"
-                :style="{ height: '40%', width: '60%' }"
+                :style="{ height: '50%', width: '50%' }"
               />
             </div>
           </card-component>
@@ -82,13 +89,12 @@
           >
             <div
               v-if="lineChartData"
-              class="chart-area mediaWahome"
+              class="chart-area"
             >
               <line-chart
-                class="mediaWahome"
+                class=""
                 :chart-data="lineChartData"
                 :chart-options="chartOptions"
-                :style="{ height: '100%', width: '80%' }"
               />
             </div>
           </card-component>
@@ -148,14 +154,16 @@ export default defineComponent({
   },
   data () {
     return {
-      titleStack: ['Admin', 'Dashboard'],
+      userRole: this.$store.state.authentication.role,
+      titleStackEmployee: ['Employee', 'Dashboard'],
+      titleStackAdmin: ['Admin', 'Dashboard'],
       lineChartData: null,
-      barChartData: null,
+      barChartData: chartConfig.barChartData(),
       pieChartData: null,
-      teamsNumber: parseInt(this.$store.state.teams.teamsCount),
-      tasksNumber: parseInt(this.$store.state.tasks.tasksCount),
-      employeesNumber: parseInt(this.$store.state.employees.employeesCount),
-      projectsNumber: parseInt(this.$store.state.projects.projectsCount),
+      // teamsNumber: this.$store.state.teams.teamsCount,
+      // tasksNumber: this.$store.state.tasks.tasksCount,
+      // employeesNumber: this.$store.state.employees.employeesCount,
+      // projectsNumber: this.$store.state.projects.projectsCount,
       chartOptions: {
         responsive: true,
         maintainAspectRatio: true,

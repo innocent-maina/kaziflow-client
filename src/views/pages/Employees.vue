@@ -2,10 +2,10 @@
   <div>
     <title-bar :title-stack="titleStack" />
     <hero-bar>
-      Teams
+      Employees
       <router-link
         slot="right"
-        to="/admin"
+        to="/dashboard"
         class="button"
       >
         Dashboard
@@ -18,16 +18,16 @@
             icon="buffer"
             custom-size="default"
           />
-          <b>See what the teams have been working on </b>
+          <b>Add to your organization better team members  </b>
         </div>
       </notification>
 
       <card-component
         class="has-table has-mobile-sort-spaced"
-        title="All Teams"
+        title="All Users"
         icon="account-multiple"
       >
-        <teams-table checkable />
+        <employees-table checkable />
       </card-component>
     </section>
   </div>
@@ -36,23 +36,23 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import Notification from '@/components/Notification.vue'
-import TeamsTable from '@/components/datagrids/TeamsTable.vue'
+import EmployeesTable from '@/components/datagrids/EmployeesTable.vue'
 import CardComponent from '@/components/CardComponent.vue'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 
 export default defineComponent({
-  name: 'EmployeeTeams',
+  name: 'AdminEmployees',
   components: {
     HeroBar,
     TitleBar,
     CardComponent,
-    TeamsTable,
+    EmployeesTable,
     Notification
   },
   data () {
     return {
-      titleStack: ['Employee', 'Teams']
+      titleStack: ['Admin', 'Employees']
     }
   }
 })

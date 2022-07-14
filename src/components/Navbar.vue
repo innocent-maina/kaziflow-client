@@ -53,7 +53,7 @@
             class="navbar-dropdown"
           >
             <router-link
-              to="/admin/profile"
+              to="/dashboard/profile"
               class="navbar-item"
               exact-active-class="is-active"
             >
@@ -67,7 +67,7 @@
               <b-icon
                 icon="settings"
                 custom-size="default"
-                href="/admin/settings"
+                href="/dashboard/settings"
               />
               <span>Settings</span>
             </a>

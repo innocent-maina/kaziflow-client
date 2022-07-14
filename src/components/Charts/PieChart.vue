@@ -50,11 +50,11 @@ export default {
     },
     width: {
       type: Number,
-      default: 100
+      default: 400
     },
     height: {
       type: Number,
-      default: 100
+      default: 400
     },
     cssClasses: {
       default: '',

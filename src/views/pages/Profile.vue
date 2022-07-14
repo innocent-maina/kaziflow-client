@@ -1,11 +1,18 @@
 <template>
   <div>
-    <title-bar :title-stack="titleStack" />
+    <title-bar
+      v-if="userRole == 'Employee'"
+      :title-stack="titleStackEmployee"
+    />
+    <title-bar
+      v-if="userRole == 'Admin'"
+      :title-stack="titleStackAdmin"
+    />
     <hero-bar>
       Profile
       <router-link
         slot="right"
-        to="/admin"
+        to="/dashboard"
         class="button"
       >
         Dashboard
@@ -67,7 +74,9 @@ export default defineComponent({
   },
   data () {
     return {
-      titleStack: ['Admin', 'Profile']
+      userRole: this.$store.state.authentication.role,
+      titleStackEmployee: ['Employee', 'Profile'],
+      titleStackAdmin: ['Admin', 'Profile']
     }
   },
   computed: {

@@ -23,31 +23,31 @@
             v-if="userRole == 'Admin'"
             icon="desktop-mac"
             label="Dashboard"
-            href="/admin/"
+            href="/dashboard"
           />
           <b-menu-item
             v-if="userRole == 'Employee'"
             icon="desktop-mac"
             label="Dashboard"
-            href="/employee/"
+            href="/dashboard"
           />
           <!-- Employee page -->
           <b-menu-item
             v-if="userRole == 'Admin'"
             icon="table"
             label="Employees"
-            href="/admin/employees"
+            href="/dashboard/employees"
           />
           <!-- Projects page -->
           <b-menu-item
             v-if="userRole == 'Admin'"
-            href="/admin/projects"
+            href="/dashboard/projects"
             icon="square-edit-outline"
             label="Projects"
           />
           <b-menu-item
             v-if="userRole == 'Employee'"
-            href="/employee/projects"
+            href="/dashboard/projects"
             icon="square-edit-outline"
             label="Projects"
           />
@@ -56,26 +56,26 @@
             v-if="userRole == 'Admin'"
             icon="account-circle"
             label="Teams"
-            href="/admin/teams"
+            href="/dashboard/teams"
           />
           <b-menu-item
             v-if="userRole == 'Employee'"
             icon="account-circle"
             label="Teams"
-            href="/employee/teams"
+            href="/dashboard/teams"
           />
           <!-- Tasks page -->
           <b-menu-item
             v-if="userRole == 'Admin'"
             icon="lock"
             label="Tasks"
-            href="/admin/tasks"
+            href="/dashboard/tasks"
           />
           <b-menu-item
             v-if="userRole == 'Employee'"
             icon="lock"
             label="Tasks"
-            href="/employee/tasks"
+            href="/dashboard/tasks"
           />
         </b-menu-list>
         <!-- Profile page -->
@@ -84,7 +84,7 @@
             v-if="userRole == 'Admin'"
             label="Profile"
             icon="link"
-            href="/admin/profile"
+            href="/dashboard/profile"
           />
         </b-menu-list>
         <b-menu-list>
@@ -92,7 +92,7 @@
             v-if="userRole == 'Employee'"
             label="Profile"
             icon="link"
-            href="/employee/profile"
+            href="/dashboard/profile"
           />
         </b-menu-list>
       </b-menu>

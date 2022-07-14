@@ -87,63 +87,45 @@ export default defineComponent({
     }
   },
   watch: {
-    isLoggedIn: {
-      handler (newValue) {
-        if (newValue) {
-          if (this.$store.state.authentication.role === 'Employee') {
-            this.$router.push('/employee')
-          } else if (this.$store.state.authentication.role === 'Admin') {
-            this.$router.push('/admin')
-          }
-        }
-      },
-      deep: true
+    isLoggedIn (newValue) {
+      if (newValue) {
+        this.$router.push('/dashboard')
+      }
     }
   },
-  // mounted () {
-  //   if (this.$store.state.authentication.role === 'Employee') {
-  //     this.$router.push('/employee')
-  //   } else if (this.$store.state.authentication.role === 'Admin') {
-  //     this.$router.push('/admin')
-  //   }
-  // },
+  mounted () {
+    this.isLoggedIn = false
+    if (this.$store.state.authentication.role !== '') {
+      this.$router.push('/dashboard')
+    }
+  },
   methods: {
     async login () {
       const user = {
         email: this.email,
         password: this.password
       }
-      await this.$store.dispatch('authentication/login', user).then(() => {
-        if (this.$store.state.authentication.accessToken === '') {
-          console.log('bad luck')
-          this.isLoading = true
-          setTimeout(() => {
-            this.isLoading = false
-            this.$buefy.snackbar.open({
-              message: 'Invalid credentials!',
-              queue: false
-            })
-          }, 750)
-        } else {
-          // if (
-          //   this.$store.state.authentication.accessToken !== '' &&
-          //   this.$store.state.authentication.role === 'Admin'
-          // ) {
-          //   this.$router.push('/admin')
-          // } else if (this.$store.state.authentication.accessToken !== '' && this.$store.state.authentication.role === 'Employee') {
-          //   this.$router.push('/employee')
-          // }
-          this.isLoggedIn = true
-          console.log('it has been set')
-          setTimeout(() => {
-            this.isLoading = false
-            this.$buefy.snackbar.open({
-              message: 'Login successful!',
-              queue: false
-            })
-          }, 750)
-        }
-      })
+      await this.$store.dispatch('authentication/login', user)
+      if (this.$store.state.authentication.accessToken === '') {
+        this.isLoading = true
+        setTimeout(() => {
+          this.isLoading = false
+          this.$buefy.snackbar.open({
+            message: 'Invalid credentials!',
+            queue: false
+          })
+        }, 750)
+      } else {
+        this.isLoggedIn = true
+        this.$router.push('/dashboard')
+        setTimeout(() => {
+          this.isLoading = false
+          this.$buefy.snackbar.open({
+            message: 'Login successful!',
+            queue: false
+          })
+        }, 750)
+      }
     }
   }
 })

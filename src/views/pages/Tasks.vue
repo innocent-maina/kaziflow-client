@@ -1,11 +1,18 @@
 <template>
   <div>
-    <title-bar :title-stack="titleStack" />
+    <title-bar
+      v-if="userRole == 'Employee'"
+      :title-stack="titleStackEmployee"
+    />
+    <title-bar
+      v-if="userRole == 'Admin'"
+      :title-stack="titleStackAdmin"
+    />
     <hero-bar>
-      Teams
+      Tasks
       <router-link
         slot="right"
-        to="/employee"
+        to="/dashboard"
         class="button"
       >
         Dashboard
@@ -18,17 +25,18 @@
             icon="buffer"
             custom-size="default"
           />
-          <b>See what the teams have been working on </b>
+          <b>Hurray! </b> Anyone can now assign a task to themselves!
         </div>
       </notification>
 
       <card-component
         class="has-table has-mobile-sort-spaced"
-        title="All Teams"
+        title="All Available Tasks"
         icon="account-multiple"
       >
-        <teams-table checkable />
+        <tasks-table checkable />
       </card-component>
+      <hr>
     </section>
   </div>
 </template>
@@ -36,23 +44,25 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import Notification from '@/components/Notification.vue'
-import TeamsTable from '@/components/datagrids/TeamsTable.vue'
+import TasksTable from '@/components/datagrids/TasksTable.vue'
 import CardComponent from '@/components/CardComponent.vue'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 
 export default defineComponent({
-  name: 'EmployeeTeams',
+  name: 'EmployeeTasks',
   components: {
     HeroBar,
     TitleBar,
     CardComponent,
-    TeamsTable,
+    TasksTable,
     Notification
   },
   data () {
     return {
-      titleStack: ['Employee', 'Teams']
+      userRole: this.$store.state.authentication.role,
+      titleStackEmployee: ['Employee', 'Tasks'],
+      titleStackAdmin: ['Admin', 'Tasks']
     }
   }
 })

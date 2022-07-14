@@ -19,8 +19,6 @@ const myChartData = n => {
 const datasetObject = (color, points) => {
   return {
     fill: true,
-    fillStyle: chartColors.default[color],
-    fillColor: chartColors.default[color],
     borderColor: chartColors.default[color],
     borderWidth: 2,
     borderDash: [],

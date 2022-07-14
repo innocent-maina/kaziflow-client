@@ -1,11 +1,18 @@
 <template>
   <div>
-    <title-bar :title-stack="titleStack" />
+    <title-bar
+      v-if="userRole == 'Employee'"
+      :title-stack="titleStackEmployee"
+    />
+    <title-bar
+      v-if="userRole == 'Admin'"
+      :title-stack="titleStackAdmin"
+    />
     <hero-bar>
-      Projects
+      Teams
       <router-link
         slot="right"
-        to="/admin"
+        to="/dashboard"
         class="button"
       >
         Dashboard
@@ -18,16 +25,16 @@
             icon="buffer"
             custom-size="default"
           />
-          <b>Done with a project?</b> You can now mark it as Complete or Terminated if you're completely done with it
+          <b>See what the teams have been working on </b>
         </div>
       </notification>
 
       <card-component
         class="has-table has-mobile-sort-spaced"
-        title="All Projects"
+        title="All Teams"
         icon="account-multiple"
       >
-        <projects-table checkable />
+        <teams-table checkable />
       </card-component>
     </section>
   </div>
@@ -36,23 +43,25 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import Notification from '@/components/Notification.vue'
-import ProjectsTable from '@/components/datagrids/ProjectsTable.vue'
+import TeamsTable from '@/components/datagrids/TeamsTable.vue'
 import CardComponent from '@/components/CardComponent.vue'
 import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 
 export default defineComponent({
-  name: 'EmployeeProjects',
+  name: 'EmployeeTeams',
   components: {
     HeroBar,
     TitleBar,
     CardComponent,
-    ProjectsTable,
+    TeamsTable,
     Notification
   },
   data () {
     return {
-      titleStack: ['Employee', 'Projects']
+      userRole: this.$store.state.authentication.role,
+      titleStackEmployee: ['Employee', 'Teams'],
+      titleStackAdmin: ['Admin', 'Teams']
     }
   }
 })

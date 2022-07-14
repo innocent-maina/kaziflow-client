@@ -93,22 +93,28 @@ export default {
       try {
         // eslint-disable-next-line no-async-promise-executor
         return new Promise(async (resolve, reject) => {
-          const response = await $http.Authentication({
+          const returnValue = await $http.Authentication({
             method: 'POST',
             url: '/login',
             data: payload
           })
-          // console.log(response.data)
+
+          // console.log(returnValue.data)
           // const { _id, firstName, lastName, phoneNumber, email, role } =
-          //   response.data
-          commit('SET_ACCESS_TOKEN', response.data.authToken)
-          commit('SET_USER_ID', response.data.data._id)
-          commit('SET_FIRST_NAME', response.data.data.firstName)
-          commit('SET_PHONE_NUMBER', response.data.data.phoneNumber)
-          commit('SET_LAST_NAME', response.data.data.lastName)
-          commit('SET_EMAIL', response.data.data.email)
-          commit('SET_ROLE', response.data.data.role)
-          commit('SET_PASSWORD', response.data.data.password)
+          //   returnValue.data
+          commit('SET_ACCESS_TOKEN', returnValue.data.authToken)
+          commit('SET_USER_ID', returnValue.data.data._id)
+          commit('SET_FIRST_NAME', returnValue.data.data.firstName)
+          commit('SET_PHONE_NUMBER', returnValue.data.data.phoneNumber)
+          commit('SET_LAST_NAME', returnValue.data.data.lastName)
+          commit('SET_EMAIL', returnValue.data.data.email)
+          commit('SET_ROLE', returnValue.data.data.role)
+          commit('SET_PASSWORD', returnValue.data.data.password)
+            .then((response) => {
+              resolve(response)
+            }).catch((error) => {
+              reject(error)
+            })
         })
       } catch (error) {
         console.error(error)
