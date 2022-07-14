@@ -3,7 +3,7 @@
     title="Change Password"
     icon="lock"
   >
-    <form @submit.prevent="submit">
+    <form @submit.prevent="resetPassword">
       <b-field
         horizontal
         label="Current password"
@@ -73,26 +73,60 @@ export default defineComponent({
     return {
       isLoading: false,
       form: {
-        password_current: null,
-        password: null,
-        password_confirmation: null
+        password_current: '',
+        password: '',
+        password_confirmation: ''
       }
     }
   },
   methods: {
-    submit () {
-      this.isLoading = true
-
-      setTimeout(() => {
-        this.isLoading = false
-
-        this.$buefy.snackbar.open(
-          {
-            message: 'Demo only',
-            queue: false
-          }
-        )
-      }, 750)
+    async resetPassword () {
+      const updateInfo = {
+        firstName: this.$store.state.authentication.firstName,
+        lastName: this.$store.state.authentication.lastName,
+        phoneNumber: this.$store.state.authentication.phoneNumber,
+        email: this.$store.state.authentication.email,
+        role: this.$store.state.authentication.role,
+        password: this.password_confirmation
+      }
+      if (this.$store.state.authentication.password !== this.form.password_current) {
+        this.$buefy.snackbar.open({
+          message: 'Current Password is wrong!',
+          queue: true
+        })
+      } else if (this.form.password !== this.form.password_confirmation) {
+        this.$buefy.snackbar.open({
+          message: 'Passwords do not match!',
+          queue: true
+        })
+      } else {
+        await this.$store.dispatch('authentication/resetPassword', updateInfo)
+          .then((response) => {
+            if (response.status === 200) {
+              this.isLoading = true
+              setTimeout(() => {
+                this.isLoading = false
+                this.$buefy.snackbar.open(
+                  {
+                    message: 'Password reset was successful',
+                    queue: false
+                  }
+                )
+              }, 750)
+            } else {
+              this.isLoading = true
+              setTimeout(() => {
+                this.isLoading = false
+                this.$buefy.snackbar.open(
+                  {
+                    message: 'Password reset failed! Please try again',
+                    queue: false
+                  }
+                )
+              }, 750)
+            }
+          })
+      }
     }
   }
 })

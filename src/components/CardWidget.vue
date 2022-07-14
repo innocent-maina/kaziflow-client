@@ -45,8 +45,8 @@ export default defineComponent({
       default: null
     },
     number: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     },
     prefix: {
       type: String,

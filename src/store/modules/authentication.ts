@@ -11,7 +11,8 @@ export default {
     phoneNumber: localStorage.getItem('phoneNumber') || '',
     role: localStorage.getItem('role') || '',
     email: localStorage.getItem('email') || '',
-    accessToken: localStorage.getItem('accessToken') || ''
+    accessToken: localStorage.getItem('accessToken') || '',
+    password: localStorage.getItem('password') || ''
   },
 
   getters: {},
@@ -44,6 +45,10 @@ export default {
     SET_ACCESS_TOKEN (state, payload) {
       localStorage.setItem('accessToken', payload)
       state.accessToken = payload
+    },
+    SET_PASSWORD (state, payload) {
+      localStorage.setItem('password', payload)
+      state.password = payload
     }
   },
   actions: {
@@ -78,6 +83,7 @@ export default {
         commit('SET_LAST_NAME', '')
         commit('SET_EMAIL', '')
         commit('SET_ROLE', '')
+        commit('SET_PASSWORD', '')
       } catch (error) {
         console.error(error)
       }
@@ -102,7 +108,28 @@ export default {
           commit('SET_LAST_NAME', response.data.data.lastName)
           commit('SET_EMAIL', response.data.data.email)
           commit('SET_ROLE', response.data.data.role)
+          commit('SET_PASSWORD', response.data.data.password)
         })
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async resetPassword ({ commit }, payload) {
+      try {
+        // eslint-disable-next-line no-async-promise-executor
+        return new Promise(async (resolve, reject) => {
+          await $http.Authentication({
+            method: 'POST',
+            url: '/reset-password',
+            data: payload
+          }).then((response) => {
+            console.log(response)
+            resolve(response)
+          }).catch((error) => {
+            reject(error)
+          })
+        })
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }

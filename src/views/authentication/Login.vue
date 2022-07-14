@@ -65,18 +65,6 @@
         </div>
       </b-field>
       <!-- <hr> -->
-      <b-field grouped>
-        <!-- <div class="level">
-          <p class="level-item is-underlined">
-            <router-link
-              to="/register"
-              class="has-text-dark"
-            >
-              Sign up
-            </router-link>
-          </p>
-        </div> -->
-      </b-field>
     </form>
   </card-component>
 </template>
@@ -94,9 +82,31 @@ export default defineComponent({
       email: '',
       password: '',
       remember: false,
-      error: ''
+      error: '',
+      isLoggedIn: false
     }
   },
+  watch: {
+    isLoggedIn: {
+      handler (newValue) {
+        if (newValue) {
+          if (this.$store.state.authentication.role === 'Employee') {
+            this.$router.push('/employee')
+          } else if (this.$store.state.authentication.role === 'Admin') {
+            this.$router.push('/admin')
+          }
+        }
+      },
+      deep: true
+    }
+  },
+  // mounted () {
+  //   if (this.$store.state.authentication.role === 'Employee') {
+  //     this.$router.push('/employee')
+  //   } else if (this.$store.state.authentication.role === 'Admin') {
+  //     this.$router.push('/admin')
+  //   }
+  // },
   methods: {
     async login () {
       const user = {
@@ -105,6 +115,7 @@ export default defineComponent({
       }
       await this.$store.dispatch('authentication/login', user).then(() => {
         if (this.$store.state.authentication.accessToken === '') {
+          console.log('bad luck')
           this.isLoading = true
           setTimeout(() => {
             this.isLoading = false
@@ -114,7 +125,16 @@ export default defineComponent({
             })
           }, 750)
         } else {
-          this.isLoading = true
+          // if (
+          //   this.$store.state.authentication.accessToken !== '' &&
+          //   this.$store.state.authentication.role === 'Admin'
+          // ) {
+          //   this.$router.push('/admin')
+          // } else if (this.$store.state.authentication.accessToken !== '' && this.$store.state.authentication.role === 'Employee') {
+          //   this.$router.push('/employee')
+          // }
+          this.isLoggedIn = true
+          console.log('it has been set')
           setTimeout(() => {
             this.isLoading = false
             this.$buefy.snackbar.open({
@@ -122,14 +142,6 @@ export default defineComponent({
               queue: false
             })
           }, 750)
-          if (
-            this.$store.state.authentication.accessToken !== '' &&
-            this.$store.state.authentication.role === 'Admin'
-          ) {
-            this.$router.push('/admin')
-          } else if (this.$store.state.authentication.accessToken !== '' && this.$store.state.authentication.role === 'Employee') {
-            this.$router.push('/employee')
-          }
         }
       })
     }

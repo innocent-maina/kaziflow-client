@@ -204,7 +204,7 @@ export default defineComponent({
     titleStack () {
       return [
         'Employees',
-        this.isProfileExists ? this.form.name : 'New Employee'
+        this.isProfileExists ? this.form.firstName + ' ' + this.form.lastName : 'New Employee'
       ]
     },
     heroTitle () {

@@ -37,10 +37,10 @@ export default defineComponent({
       type: Object,
       default: null
     },
-    chartOptions: {
-      type: Object,
-      default: null
-    },
+    // chartOptions: {
+    //   type: Object,
+    //   default: null
+    // },
     width: {
       type: Number,
       default: 400
@@ -48,6 +48,27 @@ export default defineComponent({
     height: {
       type: Number,
       default: 150
+    }
+  },
+  data () {
+    return {
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          y: {
+            display: false
+          },
+          x: {
+            display: true
+          }
+        },
+        plugins: {
+          legend: {
+            display: true
+          }
+        }
+      }
     }
   }
 })

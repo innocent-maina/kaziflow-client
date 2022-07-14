@@ -52,30 +52,67 @@
           label="Employees"
         />
       </tiles>
-
-      <card-component
-        title="Performance"
-        icon="finance"
-        header-icon="reload"
-        @header-icon-click="fillChartData"
-      >
-        <div
-          v-if="chartData"
-          class="chart-area"
-        >
-          <line-chart
-            :chart-data="chartData"
-            :chart-options="chartOptions"
-            :style="{ height: '100%' }"
-          />
+      <div class="columns">
+        <div class="column">
+          <card-component
+            title="System Overlook (Totals)"
+            icon="finance"
+            header-icon="reload"
+            @header-icon-click="PieChartData"
+          >
+            <div
+              v-if="pieChartData"
+              class="chart-area mediaWahome"
+            >
+              <pie-chart
+                :chart-data="pieChartData"
+                class=""
+                :chart-options="chartOptions"
+                :style="{ height: '40%', width: '60%' }"
+              />
+            </div>
+          </card-component>
         </div>
-      </card-component>
-
+        <div class="column">
+          <card-component
+            title="Projects Performance"
+            icon="finance"
+            header-icon="reload"
+            @header-icon-click="LineChartData"
+          >
+            <div
+              v-if="lineChartData"
+              class="chart-area mediaWahome"
+            >
+              <line-chart
+                class="mediaWahome"
+                :chart-data="lineChartData"
+                :chart-options="chartOptions"
+                :style="{ height: '100%', width: '80%' }"
+              />
+            </div>
+          </card-component>
+        </div>
+      </div>
       <card-component
         title="Have a quick peek at the tasks"
         class="has-table has-mobile-sort-spaced"
       >
         <tasks-table />
+      </card-component>
+      <card-component
+        title="Yearly Productivity"
+        icon="finance"
+        header-icon="reload"
+        @header-icon-click="BarChartData"
+      >
+        <div class="chart-area">
+          <bar-chart
+            :chart-data="barChartData"
+            :chart-options="chartOptions"
+            :style="{ height: '100%' }"
+          />
+        </div>
       </card-component>
     </section>
   </div>
@@ -92,7 +129,8 @@ import CardComponent from '@/components/CardComponent.vue'
 import LineChart from '@/components/Charts/LineChart.vue'
 import TasksTable from '@/components/datagrids/TasksTable.vue'
 import Notification from '@/components/Notification.vue'
-// import BarChart from '../../components/Charts/BarChart.vue'
+import BarChart from '../../components/Charts/BarChart.vue'
+import PieChart from '../../components/Charts/PieChart.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -104,12 +142,16 @@ export default defineComponent({
     Tiles,
     HeroBar,
     TitleBar,
-    Notification
+    Notification,
+    BarChart,
+    PieChart
   },
   data () {
     return {
       titleStack: ['Admin', 'Dashboard'],
-      chartData: null,
+      lineChartData: null,
+      barChartData: null,
+      pieChartData: null,
       teamsNumber: parseInt(this.$store.state.teams.teamsCount),
       tasksNumber: parseInt(this.$store.state.tasks.tasksCount),
       employeesNumber: parseInt(this.$store.state.employees.employeesCount),
@@ -119,7 +161,7 @@ export default defineComponent({
         maintainAspectRatio: true,
         scales: {
           y: {
-            display: false
+            display: true
           },
           x: {
             display: true
@@ -127,14 +169,16 @@ export default defineComponent({
         },
         plugins: {
           legend: {
-            display: false
+            display: true
           }
         }
       }
     }
   },
   async mounted () {
-    this.fillChartData()
+    this.LineChartData()
+    this.BarChartData()
+    this.PieChartData()
     await this.$buefy.snackbar.open({
       message: 'Welcome back ' + this.$store.state.authentication.firstName,
       queue: false
@@ -147,9 +191,24 @@ export default defineComponent({
     this.$store.dispatch('employees/getAllEmployees')
   },
   methods: {
-    fillChartData () {
-      this.chartData = chartConfig.sampleChartData()
+    LineChartData () {
+      this.lineChartData = chartConfig.lineChartData()
+    },
+    BarChartData () {
+      this.barChartData = chartConfig.barChartData()
+    },
+    PieChartData () {
+      this.pieChartData = chartConfig.pieChartData()
     }
   }
 })
 </script>
+
+<style scoped>
+@media screen and (max-width: 992px) {
+  .mediaWahome {
+    width: '100%';
+    height: '100%';
+  }
+}
+</style>

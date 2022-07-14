@@ -1,48 +1,108 @@
 <template>
-  <div id="app">
-    <pie-chart
-      :data="chartData"
-      :options="chartOptions"
-    />
-  </div>
+  <Pie
+    :chart-options="chartOptions"
+    :chart-data="chartData"
+    :chart-id="chartId"
+    :dataset-id-key="datasetIdKey"
+    :plugins="plugins"
+    :css-classes="cssClasses"
+    :styles="styles"
+    :width="width"
+    :height="height"
+  />
 </template>
 
 <script>
-import PieChart from './pie.config.js'
+import { Pie } from 'vue-chartjs/legacy'
+
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  CategoryScale
+} from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
+
 export default {
-  name: 'App',
+  name: 'PieChart',
   components: {
-    PieChart
+    Pie
+  },
+  props: {
+    chartId: {
+      type: String,
+      default: 'line-chart'
+    },
+    chartData: {
+      type: Object,
+      default: null
+    },
+    // chartOptions: {
+    //   type: Object,
+    //   default: null
+    // },
+    datasetIdKey: {
+      type: String,
+      default: 'label'
+    },
+    width: {
+      type: Number,
+      default: 100
+    },
+    height: {
+      type: Number,
+      default: 100
+    },
+    cssClasses: {
+      default: '',
+      type: String
+    },
+    styles: {
+      type: Object,
+      default: () => {}
+    },
+    plugins: {
+      type: Array,
+      default: () => []
+    }
   },
   data () {
     return {
       chartOptions: {
-        hoverBorderWidth: 20
-      },
-      chartData: {
-        hoverBackgroundColor: 'red',
-        hoverBorderWidth: 10,
-        labels: ['Green', 'Red', 'Blue'],
-        datasets: [
-          {
-            label: 'Data One',
-            backgroundColor: ['#41B883', '#E46651', '#00D8FF'],
-            data: [1, 10, 5]
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          y: {
+            display: false
+          },
+          x: {
+            display: false
           }
-        ]
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom'
+          }
+        }
       }
+      //     chartData: {
+      //       labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+      //       datasets: [
+      //         {
+      //           backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+      //           data: [40, 20, 80, 10]
+      //         }
+      //       ]
+      //     },
+      //     chartOptions: {
+      //       responsive: true,
+      //       maintainAspectRatio: false
+      //     }
     }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

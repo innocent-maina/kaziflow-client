@@ -18,8 +18,8 @@ export default defineComponent({
       default: null
     },
     value: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     },
     duration: {
       type: Number,

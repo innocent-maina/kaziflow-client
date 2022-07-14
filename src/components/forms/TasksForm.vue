@@ -14,7 +14,7 @@
     <section class="section is-main-section">
       <notification class="is-info">
         <div>
-          <span><b>More tasks!</b> Anyone can create a task or assign themselves a task</span>
+          <span><b> can now create their own tasks!</b></span>
         </div>
       </notification>
       <tiles>
@@ -198,7 +198,7 @@
           </b-field>
           <b-field label="Assignee">
             <b-input
-              :value="createdReadable"
+              :value="form.assignee"
               custom-class="is-static"
               readonly
             />
@@ -212,7 +212,7 @@
           </b-field>
           <b-field label="Due date">
             <b-input
-              :value="createdReadable"
+              :value="form.dueDate"
               custom-class="is-static"
               readonly
             />

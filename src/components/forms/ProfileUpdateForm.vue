@@ -51,6 +51,7 @@
               type="is-info"
               native-type="button"
               outlined
+              @click="reset()"
             >
               Reset
             </b-button>
@@ -107,6 +108,9 @@ export default defineComponent({
           queue: false
         })
       }, 750)
+    },
+    reset () {
+      this.$store.state.system.userName = ''
     }
   }
 })

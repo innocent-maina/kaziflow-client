@@ -6,7 +6,7 @@ export const chartColors = {
   }
 }
 
-const randomChartData = n => {
+const myChartData = n => {
   const data = []
 
   for (let i = 0; i < n; i++) {
@@ -18,7 +18,9 @@ const randomChartData = n => {
 
 const datasetObject = (color, points) => {
   return {
-    fill: false,
+    fill: true,
+    fillStyle: chartColors.default[color],
+    fillColor: chartColors.default[color],
     borderColor: chartColors.default[color],
     borderWidth: 2,
     borderDash: [],
@@ -30,13 +32,13 @@ const datasetObject = (color, points) => {
     pointHoverRadius: 4,
     pointHoverBorderWidth: 15,
     pointRadius: 4,
-    data: randomChartData(points),
+    data: myChartData(points),
     tension: 0.5,
     cubicInterpolationMode: 'default'
   }
 }
 
-export const sampleChartData = (points = 9) => {
+export const lineChartData = (points = 6) => {
   const labels = []
 
   for (let i = 1; i <= points; i++) {
@@ -49,6 +51,38 @@ export const sampleChartData = (points = 9) => {
       datasetObject('primary', points),
       datasetObject('info', points),
       datasetObject('danger', points)
+    ]
+  }
+}
+
+export const barChartData = (points = 12) => {
+  const labels = []
+
+  for (let i = 1; i <= points; i++) {
+    labels.push(`0${i}`)
+  }
+
+  return {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    datasets: [
+      datasetObject('primary', points),
+      datasetObject('info', points),
+      datasetObject('danger', points)
+    ]
+  }
+}
+
+export const pieChartData = () => {
+  return {
+    labels: ['Project One', 'Project Two', 'Project Three', 'Other'],
+    datasets: [
+      {
+        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+        data: [4, 2, 14, 9]
+      }
+      // datasetObject('primary', 40),
+      // datasetObject('info', 20),
+      // datasetObject('danger', points)
     ]
   }
 }
