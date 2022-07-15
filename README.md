@@ -2,7 +2,7 @@
 
 > Task / Team / Project / Employee tracking tool
 
-## Installation
+## Quick Installation
 
 ```bash
 ### Clone the git repository

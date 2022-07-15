@@ -42,7 +42,7 @@ import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 
 export default defineComponent({
-  name: 'AdminEmployees',
+  name: 'Employees',
   components: {
     HeroBar,
     TitleBar,

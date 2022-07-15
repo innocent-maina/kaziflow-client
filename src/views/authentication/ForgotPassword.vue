@@ -13,7 +13,7 @@
 
     <form
       method="POST"
-      @submit.prevent="submit"
+      @submit.prevent="forgotPassword"
     >
       <b-field label="E-mail Address">
         <b-input
@@ -45,27 +45,51 @@ import { defineComponent } from '@vue/composition-api'
 import CardComponent from '@/components/CardComponent.vue'
 
 export default defineComponent({
-  name: 'Login',
+  name: 'ForgotPassword',
   components: { CardComponent },
   data () {
     return {
       isLoading: false,
       form: {
-        email: 'john.doe@example.com',
-        password: 'my-secret-password-9e9w',
-        remember: false
+        email: ''
       }
     }
   },
   methods: {
-    submit () {
-      this.isLoading = true
-
-      setTimeout(() => {
-        this.isLoading = false
-
-        this.$router.push('/')
-      }, 750)
+    async forgotPassword () {
+      const user = {
+        email: this.form.email
+      }
+      await this.$store.dispatch('authentication/forgotPassword', user)
+      // eslint-disable-next-line no-constant-condition
+        .then((response) => {
+          if (response.status === 404) {
+            setTimeout(() => {
+              this.isLoading = false
+              this.$buefy.snackbar.open({
+                message: 'User not found!',
+                queue: false
+              })
+            }, 750)
+          } else if (response.status === 200) {
+            this.$router.push('/reset-password')
+            setTimeout(() => {
+              this.isLoading = false
+              this.$buefy.snackbar.open({
+                message: 'Reset password email sent to ' + this.form.email,
+                queue: false
+              })
+            }, 750)
+          } else {
+            setTimeout(() => {
+              this.isLoading = false
+              this.$buefy.snackbar.open({
+                message: 'Error!',
+                queue: false
+              })
+            }, 750)
+          }
+        })
     }
   }
 })

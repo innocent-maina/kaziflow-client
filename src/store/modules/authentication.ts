@@ -120,6 +120,25 @@ export default {
         console.error(error)
       }
     },
+    async forgotPassword ({ commit }, payload, state) {
+      try {
+        // eslint-disable-next-line no-async-promise-executor
+        return new Promise(async (resolve, reject) => {
+          await $http.Authentication({
+            method: 'POST',
+            url: '/forgot-password',
+            data: payload
+          })
+            .then((response) => {
+              resolve(response)
+            }).catch((error) => {
+              reject(error)
+            })
+        })
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async resetPassword ({ commit }, payload) {
       try {
         // eslint-disable-next-line no-async-promise-executor

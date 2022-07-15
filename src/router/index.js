@@ -17,76 +17,70 @@ const routes = [
       component: () =>
         import(
           /* webpackChunkName: "pages" */
-          '../views/pages/Home.vue'
+          '../views/pages/Dashboard.vue'
         )
     },
     {
       path: 'profile',
-      name: 'AdminProfile',
+      name: 'Profile',
       component: () =>
         import(/* webpackChunkName: "users" */ '../views/pages/Profile.vue'),
       meta: {
         requiresAuth: true
-        // role: 'Admin'
       }
     },
     {
       path: 'employees',
-      name: 'AdminEmployees',
+      name: 'Employees',
       component: () =>
         import(
           /* webpackChunkName: "pages" */
-          '../views/pages/Employees.vue'
+          '../views/pages/Employees/ListEmployees.vue'
         ),
       meta: {
         requiresAuth: true
-        // role: 'Admin'
       }
     },
     {
       path: 'projects',
-      name: 'AdminProjects',
+      name: 'Projects',
       component: () =>
         import(
           /* webpackChunkName: "pages" */
-          '../views/pages/Projects.vue'
+          '../views/pages/Projects/ListProjects.vue'
         ),
       meta: {
         requiresAuth: true
-        // role: 'Admin'
       }
 
     },
     {
       path: 'tasks',
-      name: 'AdminTasks',
+      name: 'Tasks',
       component: () =>
         import(
           /* webpackChunkName: "pages" */
-          '../views/pages/Tasks.vue'
+          '../views/pages/Tasks/ListTasks.vue'
         ),
       meta: {
         requiresAuth: true
-        // role: 'Admin'
       }
     },
     {
       path: 'teams',
-      name: 'AdminTeams',
+      name: 'Teams',
       component: () =>
         import(
           /* webpackChunkName: "pages" */
-          '../views/pages/Teams.vue'
+          '../views/pages/Teams/ListTeams.vue'
         ),
       meta: {
         requiresAuth: true
-        // role: 'Admin'
       }
     },
     {
       meta: {
         title: 'Edit Employee',
-        // role: 'Admin',
         requiresAuth: true
       },
       path: '/admin-employee/edit/:id',
@@ -102,7 +96,6 @@ const routes = [
       meta: {
         title: 'New Employee',
         requiresAuth: true
-        // role: 'Admin'
       },
       path: '/admin-employee/new',
       name: 'admin-employee.new',
@@ -115,7 +108,6 @@ const routes = [
     ],
     meta: {
       requiresAuth: true
-      // role: 'Admin'
     }
   },
   {

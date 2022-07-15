@@ -7,7 +7,7 @@ export default {
 
   state: {
     projects: [],
-    projectsCount: ''
+    projectsCount: 0
 
   },
   getters: {},
