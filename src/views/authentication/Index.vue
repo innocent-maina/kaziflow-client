@@ -1,25 +1,17 @@
 <template>
-  <section class="section hero is-fullheight is-error-section">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-two-fifths">
-            <router-view />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="hero-foot has-text-centered">
-      <div class="logo" />
-    </div>
-  </section>
+  <authentication-layout>
+    <router-view />
+  </authentication-layout>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-
+import AuthenticationLayout from '../../layouts/AuthenticationLayout'
 export default defineComponent({
   name: 'Index',
+  components: {
+    AuthenticationLayout
+  },
   created () {
     this.$store.dispatch('system/toggleFullPage', true)
   },

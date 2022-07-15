@@ -23,7 +23,7 @@
                 target="_blank"
               >
                 <img
-                  src="../assets/justboil-logo.svg"
+                  src="../assets/kaziflow-logo.svg"
                   alt="kaziflow.me"
                 >
               </a>
