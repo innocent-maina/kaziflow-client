@@ -4,6 +4,7 @@ import '@/assets/scss/main.scss'
 /* Core */
 import Vue from 'vue'
 import Buefy from 'buefy'
+import './registerServiceWorker'
 
 /* Router & Store */
 import router from './router'
