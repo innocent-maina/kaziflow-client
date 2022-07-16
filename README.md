@@ -26,7 +26,7 @@ npm start
 - [Innocent Maina](mailto: innocentwahome@gmail.com)
 
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/40e3b3f3-adb4-4ed1-8a70-ab9db1444abc/deploy-status)](https://app.netlify.com/sites/cobenefitdashboard/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/40e3b3f3-adb4-4ed1-8a70-ab9db1444abc/deploy-status)](https://app.netlify.com/sites/kaziflow/deploys)
 
 ## Getting Started
 
