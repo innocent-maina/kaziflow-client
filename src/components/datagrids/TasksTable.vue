@@ -115,12 +115,22 @@
               size="is-small"
             />
           </router-link>
-          <b-button
+          <!-- <b-button
             v-if="userRole == 'Admin'"
             type="is-danger"
             size="is-small"
             @click.prevent="trashModalOpen(props.row)"
             @click="trashConfirm(props.row._id)"
+          >
+            <b-icon
+              icon="trash-can"
+              size="is-small"
+            />
+          </b-button> -->
+          <b-button
+            type="is-danger"
+            size="is-small"
+            @click="deleteItem(props.row)"
           >
             <b-icon
               icon="trash-can"
@@ -184,10 +194,10 @@ export default defineComponent({
 
   },
   created () {
-    this.getProducts()
+    this.getTasks()
   },
   methods: {
-    getProducts () {
+    getTasks () {
       this.$store.dispatch('tasks/getAllTasks')
     },
     trashModalOpen (obj) {
@@ -204,6 +214,14 @@ export default defineComponent({
     },
     trashCancel () {
       this.isModalActive = false
+    },
+    deleteItem (obj) {
+      this.$store.dispatch('tasks/deleteTask', obj._id)
+      this.$buefy.snackbar.open({
+        message: 'Deleted Task ' + obj.name,
+        queue: true
+      })
+      this.getTasks()
     }
   }
 })

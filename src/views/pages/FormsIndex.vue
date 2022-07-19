@@ -1,16 +1,16 @@
 <template>
-  <!-- <page-layout> -->
-  <router-view />
-  <!-- </page-layout> -->
+  <page-layout>
+    <router-view />
+  </page-layout>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-// import PageLayout from '../../layouts/PageLayout.vue'
+import PageLayout from '../../layouts/PageLayout.vue'
 export default defineComponent({
   name: 'Home',
   components: {
-    // PageLayout
+    PageLayout
   }
 })
 </script>

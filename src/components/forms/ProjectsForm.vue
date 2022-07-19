@@ -111,7 +111,7 @@
                   <option value="Initiated">
                     Initiated
                   </option>
-                  <option value="In Progress">
+                  <option value="In-Progress">
                     In Progress
                   </option>
                   <option value="Completed">
@@ -156,7 +156,7 @@
               <b-button
                 type=""
                 :loading="isLoading"
-                @click="$router.go(-1)"
+                @click="$router.push('/dashboard/projects')"
               >
                 Back
               </b-button>
@@ -279,7 +279,7 @@ export default defineComponent({
         status: '',
         team: '',
         endDate: null,
-        progress: 0
+        progress: ''
       },
       createdReadable: null
     }
@@ -322,7 +322,7 @@ export default defineComponent({
         this.form.team = ''
         this.form.status = ''
         this.form.endDate = null
-        this.form.progress = 0
+        this.form.progress = ''
         // this.createdReadable = new Date().toLocaleDateString()
       } else {
         this.getData()
@@ -331,7 +331,7 @@ export default defineComponent({
     'form.status' (newValue) {
       if (newValue === 'Initiated') {
         this.form.progress = 25
-      } else if (newValue === 'In Progress') {
+      } else if (newValue === 'In-Progress') {
         this.form.progress = 50
       } else if (newValue === 'Completed') {
         this.form.progress = 75

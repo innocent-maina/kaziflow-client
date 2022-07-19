@@ -149,11 +149,11 @@
                 Submit
               </b-button>
               <b-button
-                type="is-info"
+                type=""
                 :loading="isLoading"
-                @click="test"
+                @click="$router.push('/dashboard/tasks')"
               >
-                Test me
+                Back
               </b-button>
             </b-field>
           </form>
@@ -246,6 +246,8 @@ import CardComponent from '@/components/CardComponent.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import Notification from '@/components/Notification.vue'
 
+// import vue router
+// import router from 'vue-router'
 export default defineComponent({
   name: 'TasksForm',
   components: {

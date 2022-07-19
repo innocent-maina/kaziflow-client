@@ -88,6 +88,25 @@
               />
             </b-field>
             <b-field
+              label="Role"
+              message="User's role"
+              horizontal
+            >
+              <div class="select">
+                <b-select
+                  v-model="form.role"
+                  placeholder="Select a role"
+                >
+                  <option value="Employee">
+                    Employee
+                  </option>
+                  <option value="Admin">
+                    Admin
+                  </option>
+                </b-select>
+              </div>
+            </b-field>
+            <b-field
               label="Phone Number"
               message="Phone Number"
               horizontal
@@ -106,6 +125,13 @@
                 native-type="submit"
               >
                 Submit
+              </b-button>
+              <b-button
+                type=""
+                :loading="isLoading"
+                @click="$router.push('/dashboard/employees')"
+              >
+                Back
               </b-button>
             </b-field>
           </form>
@@ -138,6 +164,13 @@
           <b-field label="Email">
             <b-input
               :value="form.email"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <b-field label="Role">
+            <b-input
+              :value="form.role"
               custom-class="is-static"
               readonly
             />
@@ -195,6 +228,7 @@ export default defineComponent({
         lastName: '',
         email: '',
         password: '',
+        role: 'Employee',
         phoneNumber: ''
       },
       createdReadable: null
@@ -233,6 +267,7 @@ export default defineComponent({
         this.form.lastName = ''
         this.form.email = ''
         this.form.password = ''
+        this.form.role = ''
         this.form.phoneNumber = ''
         this.createdReadable = new Date().toLocaleDateString()
       } else {
@@ -254,6 +289,7 @@ export default defineComponent({
           this.form.firstName = item.firstName
           this.form.lastName = item.lastName
           this.form.email = item.email
+          this.form.role = item.role
           this.form.phoneNumber = item.phoneNumber
 
           this.createdReadable = new Date(item.created_mm_dd_yyyy).toLocaleDateString()
@@ -273,6 +309,7 @@ export default defineComponent({
         firstName: this.form.firstName,
         lastName: this.form.lastName,
         email: this.form.email,
+        role: this.form.role,
         phoneNumber: this.form.phoneNumber,
         password: this.form.password
       }

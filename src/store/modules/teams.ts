@@ -12,7 +12,7 @@ export default {
   getters: {
     getTeamsCount: state => {
       return state.teamsCount
-    },
+    }
   },
   mutations: {
     SET_TEAMS (state, payload) {
@@ -20,7 +20,7 @@ export default {
     },
     SET_TEAMS_COUNT (state, payload) {
       state.teamsCount = payload
-    },
+    }
   },
   actions: {
     async getAllTeams ({ commit }) {
@@ -35,12 +35,19 @@ export default {
         console.error(error)
       }
     },
-    async createTeam (payload) {
+    async createTeam ({ commit }, payload) {
       try {
-        await $http.Api({
-          method: 'POST',
-          url: '/teams',
-          data: payload
+        // eslint-disable-next-line no-async-promise-executor
+        return new Promise(async (resolve, reject) => {
+          await $http.Api({
+            method: 'POST',
+            url: '/teams',
+            data: payload
+          }).then((response) => {
+            resolve(response)
+          }).catch((error) => {
+            reject(error)
+          })
         })
       } catch (error) {
         console.error(error)
@@ -66,6 +73,6 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    },
+    }
   }
 }

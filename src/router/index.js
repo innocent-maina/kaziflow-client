@@ -35,8 +35,26 @@ const routes = [
       component: () =>
         import(
           /* webpackChunkName: "pages" */
-          '../views/pages/Employees/ListEmployees.vue'
+          '../views/pages/Employees/Index.vue'
         ),
+      children: [{
+        path: '',
+        name: 'ListEmployees',
+        component: () =>
+          import(
+            /* webpackChunkName: "pages" */
+            '../views/pages/Employees/ListEmployees.vue'
+          )
+      },
+      {
+        path: ':employeeId',
+        name: 'ViewEmployee',
+        component: () =>
+          import(
+            /* webpackChunkName: "pages" */
+            '../views/pages/Employees/ViewEmployee.vue'
+          )
+      }],
       meta: {
         requiresAuth: true
       }
@@ -47,8 +65,26 @@ const routes = [
       component: () =>
         import(
           /* webpackChunkName: "pages" */
-          '../views/pages/Projects/ListProjects.vue'
+          '../views/pages/Projects/Index.vue'
         ),
+      children: [{
+        path: '',
+        name: 'ListProjects',
+        component: () =>
+          import(
+            /* webpackChunkName: "pages" */
+            '../views/pages/Projects/ListProjects.vue'
+          )
+      },
+      {
+        path: ':projectId',
+        name: 'ViewProject',
+        component: () =>
+          import(
+            /* webpackChunkName: "pages" */
+            '../views/pages/Projects/ViewProject.vue'
+          )
+      }],
       meta: {
         requiresAuth: true
       }
@@ -60,8 +96,28 @@ const routes = [
       component: () =>
         import(
           /* webpackChunkName: "pages" */
-          '../views/pages/Tasks/ListTasks.vue'
+          '../views/pages/Tasks/Index.vue'
         ),
+      children: [{
+
+        path: '',
+        name: 'ListTasks',
+        component: () =>
+          import(
+            /* webpackChunkName: "pages" */
+            '../views/pages/Tasks/ListTasks.vue'
+          )
+      },
+      {
+        path: ':taskId',
+        name: 'ViewTask',
+        component: () =>
+          import(
+            /* webpackChunkName: "pages" */
+            '../views/pages/Tasks/ViewTask.vue'
+          )
+
+      }],
       meta: {
         requiresAuth: true
       }
@@ -72,8 +128,30 @@ const routes = [
       component: () =>
         import(
           /* webpackChunkName: "pages" */
-          '../views/pages/Teams/ListTeams.vue'
+          '../views/pages/Teams/Index.vue'
         ),
+      children: [
+        {
+
+          path: '',
+          name: 'ListTeams',
+          component: () =>
+            import(
+              /* webpackChunkName: "pages" */
+              '../views/pages/Teams/ListTeams.vue'
+            )
+        },
+        {
+          path: ':teamId',
+          name: 'ViewTeam',
+          component: () =>
+            import(
+              /* webpackChunkName: "pages" */
+              '../views/pages/Teams/ViewTeam.vue'
+            )
+
+        }
+      ],
       meta: {
         requiresAuth: true
       }
@@ -159,7 +237,7 @@ const routes = [
   {
     path: '/forms',
     component: () =>
-      import(/* webpackChunkName: "forms" */ '../views/pages/Index.vue'),
+      import(/* webpackChunkName: "forms" */ '../views/pages/FormsIndex.vue'),
     children: [{
       meta: {
         title: 'Edit Project',
@@ -222,7 +300,6 @@ const routes = [
       meta: {
         title: 'Edit Task',
         requiresAuth: true
-      // role: 'Employee'
       },
       path: '/task/edit/:id',
       name: 'task.edit',
@@ -237,7 +314,6 @@ const routes = [
       meta: {
         title: 'New Task',
         requiresAuth: true
-      // role: 'Employee'
       },
       path: '/task/new',
       name: 'task.new',
