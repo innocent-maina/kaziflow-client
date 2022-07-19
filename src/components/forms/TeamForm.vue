@@ -273,11 +273,12 @@ export default defineComponent({
     },
     submit () {
       const teamData = {
-        name: this.form.name,
         description: this.form.description,
         members: this.form.members,
         leader: this.form.leader,
-        responsibilities: this.form.responsibilities
+        responsibilities: this.form.responsibilities,
+        name: this.form.name
+
       }
       const updateTeam = {
         teamId: this.$route.params.id,

@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import $http from '@/plugins/axios'
 
 export default {
@@ -17,7 +17,7 @@ export default {
     },
     SET_EMPLOYEES_COUNT (state, payload) {
       state.employeesCount = payload
-    },
+    }
   },
   actions: {
     async getAllEmployees ({ commit }, state) {
@@ -63,6 +63,6 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    },
+    }
   }
 }

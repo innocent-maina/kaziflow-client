@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import $http from '@/plugins/axios'
 
 export default {
@@ -16,7 +16,7 @@ export default {
     },
     SET_TASKS_COUNT (state, payload) {
       state.tasksCount = payload
-    },
+    }
   },
   actions: {
     async getAllTasks ({ commit }) {
@@ -57,7 +57,7 @@ export default {
       try {
         await $http.Api({
           method: 'DELETE',
-          url: `/tasks/${payload.taskId}`,
+          url: `/tasks/${payload}`,
           data: payload.task
         })
       } catch (error) {

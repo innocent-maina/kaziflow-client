@@ -88,8 +88,7 @@
           <b-button
             type="is-danger"
             size="is-small"
-            @click.prevent="trashModalOpen(props.row)"
-            @click="remove(props.row._id)"
+            @click="deleteItem(props.row)"
           >
             <b-icon
               icon="trash-can"
@@ -153,18 +152,15 @@ export default defineComponent({
 
   },
   created () {
-    this.getProducts()
+    this.getTeams()
   },
   methods: {
-    getProducts () {
+    getTeams () {
       this.$store.dispatch('teams/getAllTeams')
     },
     trashModalOpen (obj) {
       this.trashObject = obj
       this.isModalActive = true
-    },
-    remove (id) {
-      this.$store.dispatch('teams/deleteTeam', id)
     },
     trashConfirm () {
       this.isModalActive = false
@@ -176,6 +172,15 @@ export default defineComponent({
     },
     trashCancel () {
       this.isModalActive = false
+    },
+    deleteItem (obj) {
+      this.$store.dispatch('teams/deleteTeam', obj._id)
+      this.$buefy.snackbar.open({
+        message: 'Deleted Team ' + obj.name,
+        queue: true
+      })
+      this.$store.dispatch('teams/getAllTeams')
+      this.getTeams()
     }
   }
 })

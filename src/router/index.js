@@ -222,7 +222,6 @@ const routes = [
       meta: {
         title: 'Edit Task',
         requiresAuth: true
-      // role: 'Employee'
       },
       path: '/task/edit/:id',
       name: 'task.edit',
@@ -237,7 +236,6 @@ const routes = [
       meta: {
         title: 'New Task',
         requiresAuth: true
-      // role: 'Employee'
       },
       path: '/task/new',
       name: 'task.new',
