@@ -106,6 +106,13 @@
               >
                 Submit
               </b-button>
+              <b-button
+                type=""
+                :loading="isLoading"
+                @click="$router.push('/dashboard/teams')"
+              >
+                Back
+              </b-button>
             </b-field>
           </form>
         </card-component>

@@ -148,13 +148,13 @@
               >
                 Submit
               </b-button>
-              <!-- <b-button
-                type="is-info"
+              <b-button
+                type=""
                 :loading="isLoading"
-                @click="test"
+                @click="$router.push('/dashboard/tasks')"
               >
-                Test me
-              </b-button> -->
+                Back
+              </b-button>
             </b-field>
           </form>
         </card-component>

@@ -156,6 +156,7 @@
               <b-button
                 type=""
                 :loading="isLoading"
+                @click="$router.push('/dashboard/projects')"
               >
                 Back
               </b-button>
