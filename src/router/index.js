@@ -9,7 +9,7 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "pages" */
-        '../views/pages/Index.vue'
+        '../views/pages/FormsIndex.vue'
       ),
     children: [{
       path: '',
