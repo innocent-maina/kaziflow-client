@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>View Project</h2>
     <title-bar :title-stack="titleStack" />
     <hero-bar>
       {{ heroTitle }}
