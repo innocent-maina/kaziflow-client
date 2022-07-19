@@ -148,13 +148,13 @@
               >
                 Submit
               </b-button>
-              <b-button
+              <!-- <b-button
                 type="is-info"
                 :loading="isLoading"
                 @click="test"
               >
                 Test me
-              </b-button>
+              </b-button> -->
             </b-field>
           </form>
         </card-component>
@@ -246,6 +246,8 @@ import CardComponent from '@/components/CardComponent.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import Notification from '@/components/Notification.vue'
 
+// import vue router
+// import router from 'vue-router'
 export default defineComponent({
   name: 'TasksForm',
   components: {

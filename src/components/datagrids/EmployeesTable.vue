@@ -95,8 +95,7 @@
           <b-button
             type="is-danger"
             size="is-small"
-            @click.prevent="trashModalOpen(props.row)"
-            @click="remove(props.row._id)"
+            @click="deleteItem(props.row)"
           >
             <b-icon
               icon="trash-can"
@@ -159,10 +158,10 @@ export default defineComponent({
 
   },
   created () {
-    this.getProducts()
+    this.getEmployees()
   },
   methods: {
-    getProducts () {
+    getEmployees () {
       this.$store.dispatch('employees/getAllEmployees')
     },
     trashModalOpen (obj) {
@@ -177,11 +176,17 @@ export default defineComponent({
         queue: false
       })
     },
-    remove (id) {
-      this.$store.dispatch('employees/deleteEmployee', id)
-    },
     trashCancel () {
       this.isModalActive = false
+    },
+    deleteItem (obj) {
+      this.$store.dispatch('employees/deleteEmployee', obj._id)
+      this.$buefy.snackbar.open({
+        message: 'Deleted Employee ' + obj.firstName,
+        queue: true
+      })
+      this.$store.dispatch('employees/getAllEmployees')
+      this.getEmployees()
     }
   }
 })
