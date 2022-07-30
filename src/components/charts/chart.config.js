@@ -1,3 +1,4 @@
+import store from '../../store'
 export const chartColors = {
   default: {
     primary: '#00D1B2',
@@ -6,81 +7,81 @@ export const chartColors = {
   }
 }
 
-const myChartData = n => {
-  const data = []
+// const myChartData = n => {
+//   const data = []
 
-  for (let i = 0; i < n; i++) {
-    data.push(Math.round(Math.random() * 200))
-  }
+//   for (let i = 0; i < n; i++) {
+//     data.push(Math.round(Math.random() * 200))
+//   }
 
-  return data
-}
+//   return data
+// }
 
-const datasetObject = (color, points) => {
+// const datasetObject = (color, points) => {
+//   return {
+//     fill: true,
+//     borderColor: chartColors.default[color],
+//     borderWidth: 2,
+//     borderDash: [],
+//     borderDashOffset: 0.0,
+//     pointBackgroundColor: chartColors.default[color],
+//     pointBorderColor: 'rgba(255,255,255,0)',
+//     pointHoverBackgroundColor: chartColors.default[color],
+//     pointBorderWidth: 20,
+//     pointHoverRadius: 4,
+//     pointHoverBorderWidth: 15,
+//     pointRadius: 4,
+//     data: myChartData(points),
+//     tension: 0.5,
+//     cubicInterpolationMode: 'default'
+//   }
+// }
+
+export const lineChartData = () => {
+  const teamsNumber = store.state.teams.teamsCount
+  const tasksNumber = store.state.tasks.tasksCount
+  const projectsNumber = store.state.projects.projectsCount
   return {
-    fill: true,
-    borderColor: chartColors.default[color],
-    borderWidth: 2,
-    borderDash: [],
-    borderDashOffset: 0.0,
-    pointBackgroundColor: chartColors.default[color],
-    pointBorderColor: 'rgba(255,255,255,0)',
-    pointHoverBackgroundColor: chartColors.default[color],
-    pointBorderWidth: 20,
-    pointHoverRadius: 4,
-    pointHoverBorderWidth: 15,
-    pointRadius: 4,
-    data: myChartData(points),
-    tension: 0.5,
-    cubicInterpolationMode: 'default'
-  }
-}
-
-export const lineChartData = (points = 6) => {
-  const labels = []
-
-  for (let i = 1; i <= points; i++) {
-    labels.push(`0${i}`)
-  }
-
-  return {
-    labels,
+    labels: ['Projects', 'Tasks', 'Teams'],
     datasets: [
-      datasetObject('primary', points),
-      datasetObject('info', points),
-      datasetObject('danger', points)
+      {
+        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+        data: [projectsNumber, tasksNumber, teamsNumber]
+      }
     ]
   }
 }
 
-export const barChartData = (points = 12) => {
-  const labels = []
-
-  for (let i = 1; i <= points; i++) {
-    labels.push(`0${i}`)
-  }
+export const barChartData = () => {
+  const teamsNumber = store.state.teams.teamsCount
+  const tasksNumber = store.state.tasks.tasksCount
+  const employeesNumber = store.state.employees.employeesCount
+  const projectsNumber = store.state.projects.projectsCount
 
   return {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     datasets: [
-      datasetObject('primary', points),
-      datasetObject('info', points),
-      datasetObject('danger', points)
+      {
+        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+        data: [projectsNumber, tasksNumber, employeesNumber, teamsNumber]
+      }
     ]
   }
 }
 
 export const pieChartData = () => {
+  const teamsNumber = store.state.teams.teamsCount
+  const tasksNumber = store.state.tasks.tasksCount
+  const employeesNumber = store.state.employees.employeesCount
+  const projectsNumber = store.state.projects.projectsCount
   return {
-    labels: ['Project One', 'Project Two', 'Project Three', 'Other'],
+
+    labels: ['Projects', 'Tasks', 'Employees', 'Teams'],
     datasets: [
       {
         backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-        data: [4, 2, 14, 9]
+        data: [projectsNumber, tasksNumber, employeesNumber, teamsNumber]
       }
-      // datasetObject('primary', 40),
-      // datasetObject('info', 20),
-      // datasetObject('danger', points)
     ]
   }
 }

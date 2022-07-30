@@ -184,9 +184,10 @@ export default defineComponent({
     }
   },
   async mounted () {
+    this.PieChartData()
     this.LineChartData()
     this.BarChartData()
-    this.PieChartData()
+
     await this.$buefy.snackbar.open({
       message: 'Welcome back ' + this.$store.state.authentication.firstName,
       queue: false
@@ -197,6 +198,8 @@ export default defineComponent({
     this.$store.dispatch('tasks/getAllTasks')
     this.$store.dispatch('projects/getAllProjects')
     this.$store.dispatch('employees/getAllEmployees')
+
+    this.PieChartData()
   },
   methods: {
     LineChartData () {
