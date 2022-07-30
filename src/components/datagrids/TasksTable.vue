@@ -107,6 +107,15 @@
           class="buttons is-right no-wrap"
         >
           <router-link
+            :to="{name:'ViewTask', params: {id: props.row._id}}"
+            class="button is-small is-success"
+          >
+            <b-icon
+              icon="eye"
+              size="is-small"
+            />
+          </router-link>
+          <router-link
             :to="{name:'task.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
           >
@@ -115,18 +124,6 @@
               size="is-small"
             />
           </router-link>
-          <!-- <b-button
-            v-if="userRole == 'Admin'"
-            type="is-danger"
-            size="is-small"
-            @click.prevent="trashModalOpen(props.row)"
-            @click="trashConfirm(props.row._id)"
-          >
-            <b-icon
-              icon="trash-can"
-              size="is-small"
-            />
-          </b-button> -->
           <b-button
             type="is-danger"
             size="is-small"
