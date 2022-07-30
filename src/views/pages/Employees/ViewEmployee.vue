@@ -1,25 +1,25 @@
 <template>
   <div>
-    <h2>View Employee</h2>
+    <!-- <h2>View Employee</h2> -->
     <title-bar :title-stack="titleStack" />
     <hero-bar>
-      {{ heroTitle }}
-      <router-link
+      <!-- {{ heroTitle }} -->
+      <!-- <router-link
         slot="right"
         :to="heroRouterLinkTo"
         class="button"
       >
         {{ heroRouterLinkLabel }}
-      </router-link>
+      </router-link> -->
     </hero-bar>
     <section class="section is-main-section">
-      <notification class="is-info">
+      <!-- <notification class="is-info">
         <div>
           <span><b>Update Employee info.</b> Employees will be notified whenever their data changes</span>
         </div>
-      </notification>
+      </notification> -->
       <tiles>
-        <card-component
+        <!-- <card-component
           :title="formCardTitle"
           icon="account-edit"
           class="tile is-child"
@@ -110,7 +110,7 @@
               </b-button>
             </b-field>
           </form>
-        </card-component>
+        </card-component> -->
         <card-component
           v-if="isProfileExists"
           title="Employee Profile"
@@ -152,9 +152,33 @@
           </b-field>
           <hr>
         </card-component>
+
+        <card-component
+          v-if="isProfileExists"
+          title="Employee Profile"
+          icon="account"
+          class="tile is-child"
+        >
+          <b-field label="Email">
+            <b-input
+              :value="form.email"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <b-field label="Phone Number">
+            <b-input
+              :value="form.phoneNumber"
+              custom-class="is-static"
+              readonly
+            />
+          </b-field>
+          <hr>
+        </card-component>
       </tiles>
     </section>
   </div>
+  <!-- https://agentestudio.com/blog/design-user-profile-page -->
 </template>
 
 <script>
@@ -165,20 +189,20 @@ import TitleBar from '@/components/TitleBar.vue'
 import HeroBar from '@/components/HeroBar.vue'
 import Tiles from '@/components/Tiles.vue'
 import CardComponent from '@/components/CardComponent.vue'
-import FilePicker from '@/components/FilePicker.vue'
+// import FilePicker from '@/components/FilePicker.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
-import Notification from '@/components/Notification.vue'
+// import Notification from '@/components/Notification.vue'
 // import bcrypt from 'bcryptjs'
 export default defineComponent({
   name: 'EmployeesForm',
   components: {
     UserAvatar,
-    FilePicker,
+    // FilePicker,
     CardComponent,
     Tiles,
     HeroBar,
-    TitleBar,
-    Notification
+    TitleBar
+    // Notification
   },
   props: {
     id: {
