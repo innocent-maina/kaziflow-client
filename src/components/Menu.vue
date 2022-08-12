@@ -10,14 +10,23 @@
       >
         <b-icon icon="menu" />
       </a>
-      <div class="aside-tools-label">
+
+      <!-- <div class="aside-tools-label">
         <span v-if="userRole == 'Admin'">Dashboard</span>
         <span v-if="userRole == 'Employee'">My Workspace</span>
-      </div>
+      </div> -->
+    </div>
+
+    <div class="mt-2 mb-3 mr-3 ml-6">
+      <img
+        src="../assets/logo.png"
+        width="112"
+        height="28"
+      >
     </div>
     <div class="menu is-menu-main">
       <b-menu class="is-custom-mobile">
-        <b-menu-list label="General">
+        <b-menu-list label="">
           <!-- Home pages -->
           <b-menu-item
             v-if="userRole == 'Admin'"
