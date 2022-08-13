@@ -33,8 +33,8 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import CardComponent from '@/components/CardComponent.vue'
-import GrowingNumber from '@/components/GrowingNumber.vue'
+import CardComponent from '@/components/BaseCardComponent.vue'
+import GrowingNumber from '@/components/BaseGrowingNumber.vue'
 
 export default defineComponent({
   name: 'CardWidget',

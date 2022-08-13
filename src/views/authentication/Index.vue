@@ -1,16 +1,16 @@
 <template>
-  <authentication-layout>
+  <layout>
     <router-view />
-  </authentication-layout>
+  </layout>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import AuthenticationLayout from '../../layouts/AuthenticationLayout'
+import Layout from '../../layouts/Layout'
 export default defineComponent({
   name: 'Index',
   components: {
-    AuthenticationLayout
+    Layout
   },
   created () {
     this.$store.dispatch('system/toggleFullPage', true)

@@ -9,9 +9,9 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import Navbar from '@/components/Navbar.vue'
-import Menu from '@/components/Menu.vue'
-import FooterBar from '@/components/FooterBar.vue'
+import Navbar from '@/components/shared/Navbar.vue'
+import Menu from '@/components/shared/Menu.vue'
+import FooterBar from '@/components/shared/FooterBar.vue'
 
 export default defineComponent({
   name: 'AdminLayout',

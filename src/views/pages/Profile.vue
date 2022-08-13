@@ -53,13 +53,13 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-import CardComponent from '@/components/CardComponent.vue'
-import TitleBar from '@/components/TitleBar.vue'
-import HeroBar from '@/components/HeroBar.vue'
+import CardComponent from '@/components/BaseCardComponent.vue'
+import TitleBar from '@/components/BaseTitleBar.vue'
+import HeroBar from '@/components/BaseHeroBar.vue'
 import ProfileUpdateForm from '@/components/forms/ProfileUpdateForm.vue'
 import PasswordUpdateForm from '@/components/forms/PasswordUpdateForm.vue'
-import Tiles from '@/components/Tiles.vue'
-import UserAvatar from '@/components/UserAvatar.vue'
+import Tiles from '@/components/BaseTiles.vue'
+import UserAvatar from '@/components/BaseUserAvatar.vue'
 
 export default defineComponent({
   name: 'Profile',

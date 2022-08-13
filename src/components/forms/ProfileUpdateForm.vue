@@ -64,8 +64,8 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import FilePicker from '@/components/FilePicker.vue'
-import CardComponent from '@/components/CardComponent.vue'
+import FilePicker from '@/components/BaseFilePicker.vue'
+import CardComponent from '@/components/BaseCardComponent.vue'
 
 export default defineComponent({
   name: 'ProfileUpdateForm',

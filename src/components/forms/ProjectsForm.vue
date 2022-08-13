@@ -241,13 +241,13 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-import TitleBar from '@/components/TitleBar.vue'
-import HeroBar from '@/components/HeroBar.vue'
-import Tiles from '@/components/Tiles.vue'
-import CardComponent from '@/components/CardComponent.vue'
-import FilePicker from '@/components/FilePicker.vue'
-import UserAvatar from '@/components/UserAvatar.vue'
-import Notification from '@/components/Notification.vue'
+import TitleBar from '@/components/BaseTitleBar.vue'
+import HeroBar from '@/components/BaseHeroBar.vue'
+import Tiles from '@/components/BaseTiles.vue'
+import CardComponent from '@/components/BaseCardComponent.vue'
+import FilePicker from '@/components/BaseFilePicker.vue'
+import UserAvatar from '@/components/BaseUserAvatar.vue'
+import Notification from '@/components/BaseNotification.vue'
 
 export default defineComponent({
   name: 'ProjectsForm',

@@ -19,7 +19,7 @@
 
     <div class="mt-2 mb-3 mr-3 ml-6">
       <img
-        src="../assets/logo.png"
+        src="../../assets/logo.png"
         width="112"
         height="28"
       >

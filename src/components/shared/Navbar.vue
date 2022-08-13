@@ -120,8 +120,8 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-import NavBarMenu from '@/components/NavBarMenu.vue'
-import UserAvatar from '@/components/UserAvatar.vue'
+import NavBarMenu from '@/components/shared/NavBarMenu.vue'
+import UserAvatar from '@/components/BaseUserAvatar.vue'
 
 export default defineComponent({
   name: 'NavBar',

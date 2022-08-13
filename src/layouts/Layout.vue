@@ -19,7 +19,7 @@
 import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
-  name: 'Index',
+  name: 'Layout',
   created () {
     this.$store.dispatch('system/toggleFullPage', true)
   },

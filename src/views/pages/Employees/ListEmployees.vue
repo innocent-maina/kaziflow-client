@@ -35,11 +35,11 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import Notification from '@/components/Notification.vue'
+import Notification from '@/components/BaseNotification.vue'
 import EmployeesTable from '@/components/datagrids/EmployeesTable.vue'
-import CardComponent from '@/components/CardComponent.vue'
-import TitleBar from '@/components/TitleBar.vue'
-import HeroBar from '@/components/HeroBar.vue'
+import CardComponent from '@/components/BaseCardComponent.vue'
+import TitleBar from '@/components/BaseTitleBar.vue'
+import HeroBar from '@/components/BaseHeroBar.vue'
 
 export default defineComponent({
   name: 'Employees',

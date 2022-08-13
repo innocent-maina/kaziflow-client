@@ -71,7 +71,7 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import CardComponent from '@/components/CardComponent.vue'
+import CardComponent from '@/components/BaseCardComponent.vue'
 // import axios from 'axios'
 export default defineComponent({
   name: 'Login',

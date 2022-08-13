@@ -119,7 +119,7 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
-import ModalBox from '@/components/ModalBox.vue'
+import ModalBox from '@/components/BaseModalBox.vue'
 
 export default defineComponent({
   name: 'TeamsTable',

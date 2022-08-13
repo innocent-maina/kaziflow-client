@@ -62,7 +62,7 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import CardComponent from '@/components/CardComponent.vue'
+import CardComponent from '@/components/BaseCardComponent.vue'
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode'
 

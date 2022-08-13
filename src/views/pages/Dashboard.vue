@@ -127,16 +127,16 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import * as chartConfig from '@/components/charts/chart.config.js'
-import TitleBar from '@/components/TitleBar.vue'
-import HeroBar from '@/components/HeroBar.vue'
-import Tiles from '@/components/Tiles.vue'
-import CardWidget from '@/components/CardWidget.vue'
-import CardComponent from '@/components/CardComponent.vue'
+import TitleBar from '@/components/BaseTitleBar.vue'
+import HeroBar from '@/components/BaseHeroBar.vue'
+import Tiles from '@/components/BaseTiles.vue'
+import CardWidget from '@/components/BaseCardWidget.vue'
+import CardComponent from '@/components/BaseCardComponent.vue'
 import LineChart from '@/components/charts/LineChart.vue'
 import BarChart from '@/components/charts/BarChart.vue'
 import PieChart from '@/components/charts/PieChart.vue'
 import TasksTable from '@/components/datagrids/TasksTable.vue'
-import Notification from '@/components/Notification.vue'
+import Notification from '@/components/BaseNotification.vue'
 
 export default defineComponent({
   name: 'Home',

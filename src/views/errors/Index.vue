@@ -1,16 +1,16 @@
 <template>
-  <error-layout>
+  <layout>
     <router-view />
-  </error-layout>
+  </layout>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import ErrorLayout from '../../layouts/ErrorLayout'
+import Layout from '../../layouts/Layout'
 export default defineComponent({
   name: 'Index',
   components: {
-    ErrorLayout
+    Layout
   },
   created () {
     this.$store.dispatch('system/toggleFullPage', true)
