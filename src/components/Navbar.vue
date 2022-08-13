@@ -75,7 +75,7 @@
               <b-icon
                 icon="email"
                 custom-size="default"
-                href="https://gmail.com"
+                href="https://innocentwahomegmail.com"
               />
               <span>Messages</span>
             </a>

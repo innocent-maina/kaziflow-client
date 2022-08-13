@@ -77,6 +77,15 @@
           class="buttons is-right no-wrap"
         >
           <router-link
+            :to="{name:'ViewTeam', params: {id: props.row._id}}"
+            class="button is-small is-success"
+          >
+            <b-icon
+              icon="eye"
+              size="is-small"
+            />
+          </router-link>
+          <router-link
             :to="{name:'team.edit', params: {id: props.row._id}}"
             class="button is-small is-info"
           >

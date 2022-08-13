@@ -13,195 +13,86 @@
       </router-link>
     </hero-bar>
     <section class="section is-main-section">
-      <notification class="is-info">
-        <div>
-          <span><b> can now create their own tasks!</b></span>
-        </div>
-      </notification>
       <tiles>
-        <card-component
-          :title="formCardTitle"
-          icon="account-edit"
-          class="tile is-child"
-        >
-          <form @submit.prevent="submit">
-            <b-field
-              label="ID"
-              horizontal
-            >
-              <b-input
-                v-model="form.id"
-                custom-class="is-static"
-                readonly
-              />
-            </b-field>
-            <hr>
-            <b-field
-              label="Name"
-              message="Task name"
-              horizontal
-            >
-              <b-input
-                v-model="form.name"
-                placeholder="e.g. Create Datagrids"
-                required
-              />
-            </b-field>
-            <b-field
-              label="Description"
-              message="Description of the task"
-              horizontal
-            >
-              <b-input
-                v-model="form.description"
-                placeholder="e.g. You are required to create component datagrids..."
-                required
-              />
-            </b-field>
-            <b-field
-              label="Project"
-              message="Project this task belongs to"
-              horizontal
-            >
-              <b-input
-                v-model="form.project"
-                placeholder="e.g. Project A"
-                required
-              />
-            </b-field>
-            <b-field
-              label="Reporter"
-              message="Creator the task"
-              horizontal
-            >
-              <b-input
-                v-model="form.reporter"
-                placeholder="e.g. Karen Nduta"
-                required
-              />
-            </b-field>
-            <b-field
-              label="Assignee"
-              message="Individual working on the task"
-              horizontal
-            >
-              <b-input
-                v-model="form.assignee"
-                placeholder="e.g. Karen Nduta"
-                required
-              />
-            </b-field>
-            <b-field
-              label="Status"
-              message="Task update"
-              horizontal
-            >
-              <div class="select">
-                <b-select
-                  v-model="form.status"
-                  placeholder="Select a status"
-                >
-                  <option value="Un-Assigned">
-                    Un-assigned
-                  </option>
-                  <option value="To-Do">
-                    To do
-                  </option>
-                  <option value="In Progress">
-                    In Progress
-                  </option>
-                  <option value="In Review">
-                    In Review
-                  </option>
-                  <option value="Completed">
-                    Completed
-                  </option>
-                </b-select>
-              </div>
-            </b-field>
-            <b-field
-              label="Due Date"
-              horizontal
-            >
-              <b-datepicker
-                v-model="form.dueDate"
-                placeholder="Click to select..."
-                icon="calendar-today"
-                @input="dateInput"
-              />
-            </b-field>
-            <hr>
-            <b-field
-              label="Progress"
-              horizontal
-            >
-              <b-slider
-                v-model="form.progress"
-                type="is-info"
-              />
-            </b-field>
-            <hr>
-            <b-field horizontal>
-              <b-button
-                type="is-info"
-                :loading="isLoading"
-                native-type="submit"
-              >
-                Submit
-              </b-button>
-              <b-button
-                type="is-info"
-                :loading="isLoading"
-                @click="test"
-              >
-                Test me
-              </b-button>
-            </b-field>
-          </form>
-        </card-component>
-
         <card-component
           v-if="isProfileExists"
           title="Task Overview"
           icon="account"
           class="tile is-child"
         >
-          <user-avatar
-            :avatar="form.avatar"
-            class="image has-max-width is-aligned-center"
-          />
+          <div class="columns">
+            <div class="column">
+              <p class="subtitle">
+                Reporter:
+              </p>
+              <div class="columns">
+                <div class="column">
+                  <user-avatar
+                    :avatar="form.avatar"
+                    class="image has-max-width is-aligned-left"
+                  />
+                </div>
+                <div class="column">
+                  <p class="subtitle">
+                    <a href="">{{ form.reporter }} LastName</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <p class="subtitle">
+                Assignee
+              </p>
+              <div class="columns">
+                <div class="column">
+                  <user-avatar
+                    :avatar="form.avatar"
+                    class="image has-max-width is-aligned-left"
+                  />
+                </div>
+                <div class="column">
+                  <p class="subtitle">
+                    <a href="">{{ form.assignee }} LastName</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <hr>
           <b-field label="Name">
-            <b-input
-              :value="form.name"
-              custom-class="is-static"
-              readonly
-            />
+            <p class="subtitle">
+              {{ form.name }}
+            </p>
           </b-field>
           <b-field label="Description">
-            <b-input
-              :value="form.description"
-              custom-class="is-static"
-              readonly
-            />
+            <p class="subtitle">
+              {{ form.description }}
+              <br>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
+              cupiditate. Culpa aut laudantium ratione, aliquam et, illum dolore
+              optio at vitae asperiores reiciendis? Reiciendis explicabo
+              suscipit est delectus quae at ut dicta sequi maiores soluta omnis
+              enim minus tempora, ratione placeat officia ducimus quas voluptate
+              dolorem eligendi? Cupiditate quos beatae suscipit reprehenderit
+              corporis repudiandae dignissimos sapiente assumenda velit numquam
+              asperiores amet, saepe in. Reiciendis mollitia repellat nam harum
+              perferendis, itaque labore porro, error eaque, vitae dolorum
+              deleniti. Aliquam dolorem nisi reiciendis, eligendi totam
+              consectetur atque sint quae iure! Impedit magni exercitationem nam
+              velit beatae excepturi optio architecto aperiam quam quis.
+            </p>
           </b-field>
+          <hr>
+        </card-component>
+        <card-component
+          v-if="isProfileExists"
+          title="Meta "
+          icon="account"
+          class="tile is-child"
+        >
           <b-field label="Project">
             <b-input
               :value="form.project"
-              custom-class="is-static"
-              readonly
-            />
-          </b-field>
-          <b-field label="Reporter">
-            <b-input
-              :value="form.reporter"
-              custom-class="is-static"
-              readonly
-            />
-          </b-field>
-          <b-field label="Assignee">
-            <b-input
-              :value="form.assignee"
               custom-class="is-static"
               readonly
             />
@@ -245,7 +136,7 @@ import Tiles from '@/components/Tiles.vue'
 import CardComponent from '@/components/CardComponent.vue'
 // import FilePicker from '@/components/FilePicker.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
-import Notification from '@/components/Notification.vue'
+// import Notification from '@/components/Notification.vue'
 
 export default defineComponent({
   name: 'TasksForm',
@@ -255,8 +146,8 @@ export default defineComponent({
     CardComponent,
     Tiles,
     HeroBar,
-    TitleBar,
-    Notification
+    TitleBar
+    // Notification
   },
   props: {
     id: {
@@ -270,6 +161,7 @@ export default defineComponent({
       isLoading: false,
       loadData: '',
       form: {
+        avatar: 'https://avatars.dicebear.com/v2/gridy/Hope-Howe.svg',
         id: '',
         name: '',
         description: '',
@@ -285,10 +177,7 @@ export default defineComponent({
   },
   computed: {
     titleStack () {
-      return [
-        'Tasks',
-        this.isProfileExists ? this.form.name : 'New Task'
-      ]
+      return ['Tasks', this.isProfileExists ? this.form.name : 'New Task']
     },
     heroTitle () {
       return this.isProfileExists ? this.form.name : 'Create Task'
@@ -303,7 +192,7 @@ export default defineComponent({
       return this.isProfileExists ? 'Edit Task' : 'Create Task'
     },
     ...mapState({
-      tasks: state => state.tasks.tasks
+      tasks: (state) => state.tasks.tasks
     })
   },
   watch: {
@@ -346,7 +235,9 @@ export default defineComponent({
   methods: {
     getData () {
       if (this.$route.params.id) {
-        const item = this.tasks.find((task) => task._id === this.$route.params.id)
+        const item = this.tasks.find(
+          (task) => task._id === this.$route.params.id
+        )
 
         if (item) {
           this.isProfileExists = true

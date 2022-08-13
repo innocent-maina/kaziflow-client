@@ -9,7 +9,7 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "pages" */
-        '../views/pages/Index.vue'
+        '../views/pages/FormsIndex.vue'
       ),
     children: [{
       path: '',
@@ -47,7 +47,7 @@ const routes = [
           )
       },
       {
-        path: ':employeeId',
+        path: '/employee/view/:id',
         name: 'ViewEmployee',
         component: () =>
           import(
@@ -77,7 +77,7 @@ const routes = [
           )
       },
       {
-        path: ':projectId',
+        path: '/project/view/:id',
         name: 'ViewProject',
         component: () =>
           import(
@@ -109,7 +109,7 @@ const routes = [
           )
       },
       {
-        path: ':taskId',
+        path: '/task/view/:id',
         name: 'ViewTask',
         component: () =>
           import(
@@ -142,7 +142,7 @@ const routes = [
             )
         },
         {
-          path: ':teamId',
+          path: '/team/view/:id',
           name: 'ViewTeam',
           component: () =>
             import(
