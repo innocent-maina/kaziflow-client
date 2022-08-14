@@ -7,10 +7,9 @@ export default {
   state: {
     teams: [],
     teamsCount: ''
-
   },
   getters: {
-    getTeamsCount: state => {
+    getTeamsCount: (state) => {
       return state.teamsCount
     }
   },
@@ -24,55 +23,36 @@ export default {
   },
   actions: {
     async getAllTeams ({ commit }) {
-      try {
-        const response = await $http.Api({
-          method: 'GET',
-          url: '/teams'
-        })
-        commit('SET_TEAMS', response.data?.data)
-        commit('SET_TEAMS_COUNT', response.data?.data.length)
-      } catch (error) {
-        console.error(error)
-      }
+      const response = await $http.Api({
+        method: 'GET',
+        url: '/teams'
+      })
+      commit('SET_TEAMS', response.data?.data)
+      commit('SET_TEAMS_COUNT', response.data?.data.length)
+      return response
     },
     async createTeam ({ commit }, payload) {
-      try {
-        // eslint-disable-next-line no-async-promise-executor
-        return new Promise(async (resolve, reject) => {
-          await $http.Api({
-            method: 'POST',
-            url: '/teams',
-            data: payload
-          }).then((response) => {
-            resolve(response)
-          }).catch((error) => {
-            reject(error)
-          })
-        })
-      } catch (error) {
-        console.error(error)
-      }
+      const response = await $http.Api({
+        method: 'POST',
+        url: '/teams',
+        data: payload
+      })
+      return response
     },
     async updateTeam ({ commit }, payload) {
-      try {
-        await $http.Api({
-          method: 'PUT',
-          url: `/teams/${payload.teamId}`,
-          data: payload.team
-        })
-      } catch (error) {
-        console.error(error)
-      }
+      const response = await $http.Api({
+        method: 'PUT',
+        url: `/teams/${payload.teamId}`,
+        data: payload.team
+      })
+      return response
     },
     async deleteTeam ({ commit }, payload) {
-      try {
-        await $http.Api({
-          method: 'DELETE',
-          url: `/teams/${payload}`
-        })
-      } catch (error) {
-        console.error(error)
-      }
+      const response = await $http.Api({
+        method: 'DELETE',
+        url: `/teams/${payload}`
+      })
+      return response
     }
   }
 }

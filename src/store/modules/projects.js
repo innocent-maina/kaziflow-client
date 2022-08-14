@@ -27,7 +27,6 @@ export default {
   },
   actions: {
     async getAllProjects ({ commit }) {
-      // try {
       const response = await $http.Api({
         method: 'GET',
         url: '/projects'

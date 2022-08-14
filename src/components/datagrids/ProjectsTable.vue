@@ -144,8 +144,6 @@
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
 import ModalBox from '@/components/BaseModalBox.vue'
-import useProjects from '../../hooks/projects'
-const { fetchProjects } = useProjects()
 
 export default defineComponent({
   name: 'TasksTable',
@@ -179,18 +177,10 @@ export default defineComponent({
   },
   created () {
     this.getProjects()
-    fetchProjects()
   },
   methods: {
     getProjects () {
       this.$store.dispatch('projects/getAllProjects')
-        .then((response) => {
-          console.log(response)
-        })
-    },
-    wahome () {
-      console.log('start function')
-      fetchProjects()
         .then((response) => {
           console.log(response)
         })
