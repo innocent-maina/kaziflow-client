@@ -426,16 +426,16 @@ export default defineComponent({
                 })
               }, 750)
             } else if (response.status === 500) {
-              // this.isLoading = true
-              // setTimeout(() => {
-              //   this.isLoading = false
-              //   this.$buefy.snackbar.open(
-              //     {
-              //       message: 'Failed to create a project!',
-              //       queue: false
-              //     }
-              //   )
-              // }, 750)
+              this.isLoading = true
+              setTimeout(() => {
+                this.isLoading = false
+                this.$buefy.snackbar.open(
+                  {
+                    message: 'Failed to create a project!',
+                    queue: false
+                  }
+                )
+              }, 750)
             }
           })
       }

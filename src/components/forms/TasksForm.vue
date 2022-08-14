@@ -370,7 +370,7 @@ export default defineComponent({
     dateInput (v) {
       this.createdReadable = new Date(v).toLocaleDateString()
     },
-    submit () {
+    async submit () {
       const taskData = {
         name: this.form.name,
         description: this.form.description,
@@ -386,11 +386,18 @@ export default defineComponent({
         task: this.form
       }
       if (this.$route.params.id) {
-        this.$store.dispatch('tasks/updateTask', updateTask)
-        this.$buefy.snackbar.open({
-          message: 'Successfully updated the task',
-          queue: true
-        })
+        try {
+          this.$store.dispatch('tasks/updateTask', updateTask)
+          this.$buefy.snackbar.open({
+            message: 'Successfully updated the task',
+            queue: true
+          })
+        } catch (error) {
+          this.$buefy.snackbar.open({
+            message: 'Error created the task',
+            queue: true
+          })
+        }
       } else {
         this.$store.dispatch('tasks/createTasks', taskData)
         this.$buefy.snackbar.open({
