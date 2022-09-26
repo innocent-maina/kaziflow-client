@@ -72,7 +72,7 @@
             >
               <b-input
                 v-model="form.members"
-                placeholder="e.g. Karen Nduta & John Kamau"
+                placeholder="e.g. Innocent Maina & John Kamau"
                 required
               />
             </b-field>
@@ -83,7 +83,7 @@
             >
               <b-input
                 v-model="form.leader"
-                placeholder="e.g. Karen Nduta"
+                placeholder="e.g. Innocent Maina"
                 required
               />
             </b-field>

@@ -76,7 +76,7 @@
             >
               <b-input
                 v-model="form.reporter"
-                placeholder="e.g. Karen Nduta"
+                placeholder="e.g. Innocent Maina"
                 required
               />
             </b-field>
@@ -87,7 +87,7 @@
             >
               <b-input
                 v-model="form.assignee"
-                placeholder="e.g. Karen Nduta"
+                placeholder="e.g. Innocent Maina"
                 required
               />
             </b-field>

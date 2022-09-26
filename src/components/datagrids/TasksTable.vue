@@ -2,7 +2,7 @@
   <div>
     <modal-box
       :is-active="isModalActive"
-      :trash-object-name="trashObject ? trashObject.name : null "
+      :trash-object-name="trashObject ? trashObject.name : null"
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
@@ -91,23 +91,22 @@
       </b-table-column>
       <b-table-column
         v-slot="props"
-        label="Due date"
+        label="Due dates"
       >
         <small
           class="has-text-grey is-abbr-like"
           :title="props.row.dueDate"
-        >{{ props.row.dueDate }}</small>
+        >{{ props.row.dueDate.split("T")[0]
+        }}</small>
       </b-table-column>
       <b-table-column
         v-slot="props"
         custom-key="actions"
         cell-class="is-actions-cell"
       >
-        <div
-          class="buttons is-right no-wrap"
-        >
+        <div class="buttons is-right no-wrap">
           <router-link
-            :to="{name:'task.edit', params: {id: props.row._id}}"
+            :to="{ name: 'task.edit', params: { id: props.row._id } }"
             class="button is-small is-info"
           >
             <b-icon
