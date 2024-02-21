@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@vue/composition-api": "^1.6.1",
-    "axios": "^0.26.1",
+    "axios": "^0.28.0",
     "bcryptjs": "^2.4.3",
     "buefy": "^0.9.13",
     "bulma": "^0.9.3",
